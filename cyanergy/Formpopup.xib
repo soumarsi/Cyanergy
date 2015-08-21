@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CGformpopup">
+            <rect key="frame" x="0.0" y="0.0" width="466" height="410"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1di-sq-bgQ">
+                    <rect key="frame" x="121" y="65" width="345" height="345"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Triangle" highlightedImage="Triangle" translatesAutoresizingMaskIntoConstraints="NO" id="csd-dJ-tlA">
+                            <rect key="frame" x="-22" y="18" width="55" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="55" id="taK-OS-yTt"/>
+                            </constraints>
+                        </imageView>
+                        <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="itx-6G-EPy">
+                            <rect key="frame" x="33" y="0.0" width="312" height="337"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="itx-6G-EPy" firstAttribute="leading" secondItem="1di-sq-bgQ" secondAttribute="leading" constant="33" id="DgY-Mv-6wt"/>
+                        <constraint firstItem="csd-dJ-tlA" firstAttribute="top" secondItem="1di-sq-bgQ" secondAttribute="top" constant="18" id="QvL-ye-nrF"/>
+                        <constraint firstItem="itx-6G-EPy" firstAttribute="top" secondItem="1di-sq-bgQ" secondAttribute="top" id="URD-kQ-Zxd"/>
+                        <constraint firstItem="csd-dJ-tlA" firstAttribute="leading" secondItem="1di-sq-bgQ" secondAttribute="leading" constant="-22" id="jZD-yE-nRv"/>
+                        <constraint firstAttribute="bottom" secondItem="itx-6G-EPy" secondAttribute="bottom" constant="8" id="kSL-uE-PAm"/>
+                        <constraint firstAttribute="trailing" secondItem="itx-6G-EPy" secondAttribute="trailing" id="pHK-XS-ybd"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="1di-sq-bgQ" secondAttribute="bottom" id="0Dv-j6-Ajj"/>
+                <constraint firstItem="1di-sq-bgQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="121" id="9uv-JY-9IP"/>
+                <constraint firstAttribute="trailing" secondItem="1di-sq-bgQ" secondAttribute="trailing" id="EI1-1n-Rnb"/>
+                <constraint firstItem="1di-sq-bgQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="65" id="s71-mh-BRA"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="formBaseView" destination="1di-sq-bgQ" id="6ef-tc-uGy"/>
+                <outlet property="popupListView" destination="itx-6G-EPy" id="4CM-2I-wf3"/>
+                <outlet property="triangleImageView" destination="csd-dJ-tlA" id="4b5-gX-QyB"/>
+            </connections>
+            <point key="canvasLocation" x="223" y="292"/>
+        </view>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="CGformpopupTableViewCell" selectionStyle="default" indentationWidth="10" id="QFb-Ho-GVp" customClass="CGformpopupTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="312" height="70"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QFb-Ho-GVp" id="Cts-zu-vEU">
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FGl-CM-QaP">
+                        <rect key="frame" x="9" y="8" width="295" height="53"/>
+                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
+                        <color key="textColor" red="0.38823529411764707" green="0.38823529411764707" blue="0.38823529411764707" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="FGl-CM-QaP" firstAttribute="centerX" secondItem="Cts-zu-vEU" secondAttribute="centerX" id="344-r1-e60"/>
+                    <constraint firstItem="FGl-CM-QaP" firstAttribute="top" secondItem="Cts-zu-vEU" secondAttribute="topMargin" id="KW7-mn-QXP"/>
+                    <constraint firstItem="FGl-CM-QaP" firstAttribute="trailing" secondItem="Cts-zu-vEU" secondAttribute="trailingMargin" id="uvh-Xh-vzN"/>
+                    <constraint firstItem="FGl-CM-QaP" firstAttribute="bottom" secondItem="Cts-zu-vEU" secondAttribute="bottomMargin" id="zhn-8e-hZX"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="popupNameLabel" destination="FGl-CM-QaP" id="7il-r3-q1w"/>
+            </connections>
+            <point key="canvasLocation" x="233" y="627"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Triangle" width="52" height="44"/>
+    </resources>
+</document>
