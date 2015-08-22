@@ -12,11 +12,21 @@
 #import "CYAuditTopbar.h"
 #import "UIColor+CGColor.h"
 
+#define xPoint = 0;
+#define xPointPlus = 5;
+#define yPoint = 0;
+#define yPointPlus = 8;
 
-@interface CGHomeViewController ()<Homeviewcontroller,cgsidebar,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UITextViewDelegate,UIAlertViewDelegate,UIScrollViewDelegate>{
+
+@interface CGHomeViewController ()<Homeviewcontroller,cgsidebar,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UITextViewDelegate,UIAlertViewDelegate,UIScrollViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UIPopoverControllerDelegate>{
     
     CYAuditTopbar *topbar;
-    
+    UIImage *MainImage;
+    UIActionSheet *sheet;
+    NSMutableArray *imgStoreArray;
+    UIImageView *dynamicImageView;
+    int count,divide;
+    UIButton *plusbutton;
 }
 
 
@@ -31,7 +41,9 @@
     _sideBar.delegate = self;
     [self.view addSubview:_sideBar];
 
-   
+    imgStoreArray = [[NSMutableArray alloc]init];
+    
+    [self tileFunc];
     
   
 //    _formPopUp = [[CGformpopup alloc]init];
@@ -185,6 +197,9 @@
     }
     
 }
+
+//------------------------------FORM 1----------------------------//
+
 -(void)form1{
     
     _check = @"step1";
@@ -241,6 +256,250 @@
     
     [_auditForm.next addTarget:self action:@selector(next) forControlEvents:UIControlEventTouchUpInside];
     
+}
+
+//------------------------FORM 2-------------------//
+
+-(void)form2{
+    
+    //        [_auditForm removeFromSuperview];  // Not removing bcoz it will be overlapped by form 2
+    
+    _check = @"step2";
+    
+    
+    //------Setting to set view frame------//
+    
+    _auditForm2 = [[CYAuditForm2 alloc]init];
+    
+    CGRect tempRect1=[_auditForm2 frame];
+    tempRect1.origin.x       =   121.0f;
+    tempRect1.origin.y       =   103.0f;
+    [_auditForm2 setFrame:tempRect1];
+    [self.baseView addSubview:_auditForm2];
+    
+    _auditForm2.scrollV.delegate = self;
+    [_auditForm2.scrollV setContentSize:CGSizeMake(0, _auditForm2.scrollV.frame.origin.y+_auditForm2.scrollV.frame.size.height+4000)];
+    [_auditForm2.scrollV setUserInteractionEnabled:YES];
+    
+    
+    _auditForm2.numField1.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.numField2.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.numField3.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.numField4.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.numField5.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.numField6.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.numField7.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.numField8.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.numField9.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.numField10.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.numField11.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.numField12.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.numField13.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.numField14.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.numField15.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.numField16.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.numField17.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.numField18.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    
+    
+    _auditForm2.commentBox1.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.commentBox2.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.commentBox3.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.commentBox4.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.commentBox5.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.commentBox6.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.commentBox7.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.commentBox8.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.commentBox9.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.commentBox10.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.commentBox11.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.commentBox12.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.commentBox13.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.commentBox14.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.commentBox15.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.commentBox16.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.commentBox17.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.commentBox18.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.commentBox19.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.commentBox20.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    _auditForm2.commentBox21.layer.borderColor = [[UIColor uniGrayColor] CGColor];
+    
+    [_auditForm2.yesNo1 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    [_auditForm2.yesNo2 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    [_auditForm2.yesNo3 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    [_auditForm2.yesNo4 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    [_auditForm2.yesNo5 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    [_auditForm2.yesNo6 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    [_auditForm2.yesNo7 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    [_auditForm2.yesNo8 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    [_auditForm2.yesNo9 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    [_auditForm2.yesNo10 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    [_auditForm2.yesNo11 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    [_auditForm2.yesNo12 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    [_auditForm2.yesNo13 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    [_auditForm2.yesNo14 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    [_auditForm2.yesNo15 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    [_auditForm2.yesNo16 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    
+    [_auditForm2.back1 addTarget:self action:@selector(back1) forControlEvents:UIControlEventTouchUpInside];
+    [_auditForm2.next2 addTarget:self action:@selector(next2) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(myKeyboardWillHideHandler:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+    
+}
+
+//------------------------------FORM 3------------------------//
+
+-(void)form3{
+    
+    _check = @"step2";
+    
+
+    _auditForm3 = [[CYAuditForm3 alloc]init];
+    
+    CGRect tempRect2=[_auditForm3 frame];
+    tempRect2.origin.x       =   121.0f;
+    tempRect2.origin.y       =   103.0f;
+    [_auditForm3 setFrame:tempRect2];
+    [self.baseView addSubview:_auditForm3];
+
+    
+  
+    [_auditForm3.scrollV setUserInteractionEnabled:NO];
+    
+    
+    [_auditForm3.addImage addTarget:self action:@selector(addImage) forControlEvents:UIControlEventTouchUpInside];
+    [_auditForm3.submit addTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
+    [_auditForm3.back3 addTarget:self action:@selector(back3) forControlEvents:UIControlEventTouchUpInside];
+
+    
+}
+
+-(void)addImage{
+    
+    [_auditForm3.addImage setHidden:YES];
+    [_auditForm3.addImage setUserInteractionEnabled:NO];
+    
+    [self startMediaBrowserFromViewController:self usingDelegate:self];
+    
+//    sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera", @"Photo Library", nil];
+//    [sheet showInView:_auditForm3];
+
+    
+    
+}
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    
+    if(buttonIndex==actionSheet.cancelButtonIndex){
+        
+        [_auditForm3.addImage setHidden:NO];
+        [_auditForm3.addImage setUserInteractionEnabled:YES];
+        
+        return;
+    }
+    
+//    [self startMediaBrowserFromViewController:self usingDelegate:self];
+    
+//    UIImagePickerControllerSourceType type = UIImagePickerControllerSourceTypePhotoLibrary;
+//    
+//    if([UIImagePickerController isSourceTypeAvailable:type]){
+//        if(buttonIndex==0 && [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+//            type = UIImagePickerControllerSourceTypeCamera;
+//        }
+//        
+//        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+//        picker.allowsEditing = YES;
+//        picker.delegate   = self;
+//        picker.sourceType = type;
+//
+//        [self presentViewController:picker animated:YES completion:nil];
+//    
+//    }
+    
+}
+-(void)tileFunc{
+    
+    count = imgStoreArray.count % 2;
+    divide = imgStoreArray.count / 2.0f;
+    
+    dynamicImageView = [[UIImageView alloc]init];
+    
+    dynamicImageView.frame = CGRectMake((8+440)*count+8, (270*divide)+8, 440, 265);
+    dynamicImageView.tag = imgStoreArray.count;
+    dynamicImageView.backgroundColor = [UIColor clearColor];
+    dynamicImageView.layer.borderWidth = 1.0f;
+    dynamicImageView.layer.borderColor = [[UIColor grayColor]CGColor];
+    [_auditForm3.scrollV addSubview:dynamicImageView];
+    
+    
+    plusbutton = [[UIButton alloc]init];
+    [plusbutton setFrame:CGRectMake((8+440)*count+8, (270*divide)+8, 440, 265)];
+    [plusbutton setImage:[UIImage imageNamed:@"plus"] forState:UIControlStateNormal];
+    [plusbutton addTarget:self action:@selector(addImage) forControlEvents:UIControlEventTouchUpInside];
+    [_auditForm3.scrollV addSubview:plusbutton];
+    
+    DebugLog(@"FRAME-------->X= %f , Y= %f , WID= %f , HEI= %f",dynamicImageView.frame.origin.x, dynamicImageView.frame.origin.y,dynamicImageView.frame.size.width,dynamicImageView.frame.size.height);
+    DebugLog(@"COUNT--------> %d",count);
+    DebugLog(@"DIVIDE--------> %d",divide);
+    
+//    _auditForm3.bottomView.frame = cgrect;
+    
+    _auditForm3.bottomView.frame = CGRectMake(8.0f, (270*divide)+8+265.0f, 887.0f, 339.0f);
+    
+    
+    _auditForm3.scrollV.delegate = self;
+    [_auditForm3.scrollV setContentSize:CGSizeMake(0, _auditForm3.bottomView.frame.origin.y+_auditForm3.bottomView.frame.size.height+70)];
+    [_auditForm3.scrollV setUserInteractionEnabled:YES];
+    
+    
+    
+    
+    
+    
+    
+}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    
+    MainImage= info[UIImagePickerControllerEditedImage];
+    
+    DebugLog(@"COUNT--------> %ld     %ld",(long)dynamicImageView.tag,imgStoreArray.count);
+    
+    
+    if (dynamicImageView.tag == imgStoreArray.count)
+    {
+        dynamicImageView.image =MainImage;
+        [plusbutton removeFromSuperview];
+    }
+        [picker dismissViewControllerAnimated:YES completion:Nil];
+    
+    [imgStoreArray addObject:MainImage];
+    
+    [self  tileFunc];
+    
+}
+- (BOOL) startMediaBrowserFromViewController: (UIViewController*) controller
+                               usingDelegate: (id <UIImagePickerControllerDelegate,
+                                               UINavigationControllerDelegate>) delegate {
+    
+    
+    UIImagePickerController *mediaUI = [[UIImagePickerController alloc] init];
+    mediaUI.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    mediaUI.delegate = delegate;
+    mediaUI.allowsEditing = YES;
+    
+    UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:mediaUI];
+    popover.delegate=self;
+    [popover presentPopoverFromRect:CGRectMake(10, 55, 350, 350) inView:_auditForm3 permittedArrowDirections:Nil animated:YES];
+    
+    return YES;
 }
 -(void)onoff:(UISwitch *)sender{
     
@@ -380,104 +639,20 @@
         
     }else{
     
-//        [_auditForm removeFromSuperview];  // Not removing bcoz it will be overlapped by form 2
-        
-        _check = @"step2";
-        
-        topbar = [[CYAuditTopbar alloc]init];
-        
-        CGRect tempRect=[topbar frame];
-        tempRect.origin.x       =   121.0f;
-        tempRect.origin.y       =   63.0f;
-        [topbar setFrame:tempRect];
-        [self.baseView addSubview:topbar];
-        
-        //------Setting to set view frame------//
-        
-        _auditForm2 = [[CYAuditForm2 alloc]init];
-        
-        CGRect tempRect1=[_auditForm2 frame];
-        tempRect1.origin.x       =   121.0f;
-        tempRect1.origin.y       =   103.0f;
-        [_auditForm2 setFrame:tempRect1];
-        [self.baseView addSubview:_auditForm2];
-        
-        _auditForm2.scrollV.delegate = self;
-        [_auditForm2.scrollV setContentSize:CGSizeMake(0, _auditForm2.scrollV.frame.origin.y+_auditForm2.scrollV.frame.size.height+4000)];
-        [_auditForm2.scrollV setUserInteractionEnabled:YES];
-        
-        
-        _auditForm2.numField1.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.numField2.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.numField3.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.numField4.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.numField5.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.numField6.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.numField7.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.numField8.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.numField9.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.numField10.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.numField11.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.numField12.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.numField13.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.numField14.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.numField15.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.numField16.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.numField17.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.numField18.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        
-        
-        _auditForm2.commentBox1.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.commentBox2.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.commentBox3.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.commentBox4.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.commentBox5.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.commentBox6.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.commentBox7.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.commentBox8.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.commentBox9.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.commentBox10.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.commentBox11.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.commentBox12.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.commentBox13.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.commentBox14.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.commentBox15.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.commentBox16.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.commentBox17.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.commentBox18.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.commentBox19.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.commentBox20.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        _auditForm2.commentBox21.layer.borderColor = [[UIColor uniGrayColor] CGColor];
-        
-        [_auditForm2.yesNo1 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
-        [_auditForm2.yesNo2 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
-        [_auditForm2.yesNo3 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
-        [_auditForm2.yesNo4 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
-        [_auditForm2.yesNo5 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
-        [_auditForm2.yesNo6 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
-        [_auditForm2.yesNo7 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
-        [_auditForm2.yesNo8 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
-        [_auditForm2.yesNo9 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
-        [_auditForm2.yesNo10 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
-        [_auditForm2.yesNo11 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
-        [_auditForm2.yesNo12 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
-        [_auditForm2.yesNo13 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
-        [_auditForm2.yesNo14 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
-        [_auditForm2.yesNo15 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
-        [_auditForm2.yesNo16 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
-        
-
-        
-        [_auditForm2.back1 addTarget:self action:@selector(back1) forControlEvents:UIControlEventTouchUpInside];
-        
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(myKeyboardWillHideHandler:)
-                                                     name:UIKeyboardWillHideNotification
-                                                   object:nil];
-
+            [self form2];
         
         }
+    
+}
+-(void)next2{
+    
+    [self form3];
+    [self tileFunc];
+    
+}
+-(void)submit{
+    
+    DebugLog(@"SUBMIT------------>");
     
 }
 
@@ -722,7 +897,11 @@
     
     [_auditForm2 removeFromSuperview];
     
-//    [self form1];
+    
+}
+-(void)back3{
+    
+    [_auditForm3 removeFromSuperview];
     
 }
 
@@ -741,7 +920,7 @@
         
         CGRect tempRect=[_auditForm frame];
         tempRect.origin.x       =   121.0f;
-        tempRect.origin.y       =   63.0f;
+        tempRect.origin.y       =   103.0f;
         [_auditForm setFrame:tempRect];
         
         
@@ -767,29 +946,12 @@
         
         CGRect tempRect=[_auditForm frame];
         tempRect.origin.x       =   121.0f;
-        tempRect.origin.y       =   63.0f;
+        tempRect.origin.y       =   103.0f;
         [_auditForm setFrame:tempRect];
 
     }
    
 }
-
-//- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-//    
-//    if([text isEqualToString:@"\n"]) {
-//        [textView resignFirstResponder];
-//        
-//        CGRect tempRect=[_auditForm frame];
-//        tempRect.origin.x       =   121.0f;
-//        tempRect.origin.y       =   63.0f;
-//        [_auditForm setFrame:tempRect];
-//
-//        
-//        return NO;
-//    }
-//    
-//    return YES;
-//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

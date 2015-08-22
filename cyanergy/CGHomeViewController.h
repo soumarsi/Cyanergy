@@ -13,6 +13,7 @@
 #import "CGformpopupTableViewCell.h"
 #import "CYAuditForm.h"
 #import "CYAuditForm2.h"
+#import "CYAuditForm3.h"
 
 @interface CGHomeViewController : UIViewController
 
@@ -22,6 +23,7 @@
 @property (nonatomic, strong) CGformpopup *formPopUp;
 @property (nonatomic, strong) CYAuditForm *auditForm;
 @property (nonatomic, strong) CYAuditForm2 *auditForm2;
+@property (nonatomic, strong) CYAuditForm3 *auditForm3;
 @property (weak, nonatomic) IBOutlet UIView *baseView;
 @property (nonatomic) UIAlertView *alertView;
 

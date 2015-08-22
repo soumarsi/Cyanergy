@@ -94,23 +94,23 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" restorationIdentifier="CYAuditForm2" id="iN0-l3-epB" customClass="CYAuditForm2">
-            <rect key="frame" x="0.0" y="0.0" width="903" height="708"/>
+            <rect key="frame" x="0.0" y="0.0" width="903" height="677"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VUq-uH-RRq" userLabel="mainView">
-                    <rect key="frame" x="0.0" y="0.0" width="903" height="708"/>
+                    <rect key="frame" x="0.0" y="0.0" width="903" height="677"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="step1off" translatesAutoresizingMaskIntoConstraints="NO" id="AOl-3q-b07">
-                            <rect key="frame" x="0.0" y="5" width="100" height="30"/>
+                            <rect key="frame" x="0.0" y="8" width="100" height="30"/>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="step2on" translatesAutoresizingMaskIntoConstraints="NO" id="dDj-BC-RFq">
-                            <rect key="frame" x="99" y="5" width="100" height="30"/>
+                            <rect key="frame" x="99" y="8" width="100" height="30"/>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="step3off" translatesAutoresizingMaskIntoConstraints="NO" id="VXl-87-pHV">
-                            <rect key="frame" x="198" y="5" width="100" height="30"/>
+                            <rect key="frame" x="198" y="8" width="100" height="30"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DKG-ri-S4m">
-                            <rect key="frame" x="763" y="9" width="85" height="24"/>
+                            <rect key="frame" x="763" y="12" width="85" height="24"/>
                             <color key="backgroundColor" red="1" green="0.80661888199999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="13"/>
                             <state key="normal" title="NEXT">
@@ -119,14 +119,14 @@
                             </state>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ws9-2w-vKG">
-                            <rect key="frame" x="17" y="43" width="870" height="1"/>
+                            <rect key="frame" x="17" y="46" width="870" height="1"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sn8-P6-nNl">
-                            <rect key="frame" x="0.0" y="43" width="903" height="4999"/>
+                            <rect key="frame" x="0.0" y="46" width="903" height="4999"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SCHEDULE 15:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Vx-mt-dCQ">
                                     <rect key="frame" x="17" y="8" width="138" height="21"/>
@@ -1259,7 +1259,7 @@
                             </connections>
                         </scrollView>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XiW-RG-cpH">
-                            <rect key="frame" x="652" y="9" width="85" height="24"/>
+                            <rect key="frame" x="652" y="12" width="85" height="24"/>
                             <color key="backgroundColor" red="1" green="0.80661888199999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="13"/>
                             <state key="normal" title="BACK">
