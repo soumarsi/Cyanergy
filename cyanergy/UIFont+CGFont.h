@@ -10,4 +10,6 @@
 
 @interface UIFont (CGFont)
 +(UIFont *)usernameFont;
++(UIFont *)imageTextFont;
+
 @end

@@ -14,4 +14,8 @@
 {
     return [UIFont fontWithName:@"Lato-Regular" size:20];
 }
++(UIFont *)imageTextFont
+{
+    return [UIFont fontWithName:@"Lato-Light" size:18];
+}
 @end

@@ -19,8 +19,9 @@
 #import "CGhomelistTableViewCell.h"
 #import "CYAuditTopbar.h"
 #import "UIColor+CGColor.h"
+#import "mySmoothLineView.h"
 
-@interface CGHomeViewController : UIViewController<Homeviewcontroller,cgsidebar,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UITextViewDelegate,UIAlertViewDelegate,UIScrollViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UIPopoverControllerDelegate,CLLocationManagerDelegate>
+@interface CGHomeViewController : UIViewController<Homeviewcontroller,cgsidebar,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UITextViewDelegate,UIAlertViewDelegate,UIScrollViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UIPopoverControllerDelegate,CLLocationManagerDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 
 
 @property (nonatomic, strong) RightBar *homeNav;
@@ -32,7 +33,11 @@
 @property (weak, nonatomic) IBOutlet UIView *baseView;
 @property (nonatomic) UIAlertView *alertView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
-
+@property (strong, nonatomic) mySmoothLineView *auditorsignView;
+@property (strong, nonatomic) mySmoothLineView *cosumerSignView;
+@property (strong, nonatomic) UITextField *imageText;
 @property (nonatomic, strong) NSString *check;
+@property (nonatomic,strong) UIPickerView *categoryPickerView;
+@property (nonatomic, strong) UIView *background;
 
 @end

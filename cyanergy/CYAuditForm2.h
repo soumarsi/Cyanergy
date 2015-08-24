@@ -72,6 +72,11 @@
 @property (strong, nonatomic) IBOutlet UITextView *commentBox21;
 
 
+@property (strong, nonatomic) IBOutlet UIButton *auditStatus1;
+@property (strong, nonatomic) IBOutlet UIButton *auditStatus2;
+@property (strong, nonatomic) IBOutlet UIButton *auditStatus3;
+@property (strong, nonatomic) IBOutlet UIButton *auditStatus4;
+
 
 @property (strong, nonatomic) IBOutlet UIButton *next2;
 @property (strong, nonatomic) IBOutlet UIButton *back1;

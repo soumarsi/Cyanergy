@@ -7,7 +7,7 @@
 //
 
 #import "CGHomeViewController.h"
-
+#import "UIFont+CGFont.h"
 
 @interface CGHomeViewController (){
     
@@ -20,6 +20,8 @@
     UIButton *plusbutton;
     CGFloat latitude,longitude;
     UIButton *crossButton;
+    NSArray *pickerData;
+    NSString *status;
     
 }
 
@@ -46,7 +48,8 @@
     [self.locationManager startUpdatingLocation];
     
     //-----------------------------------------------PK--//
-
+    
+    
     imgStoreArray = [[NSMutableArray alloc]init];
     
     [self tileFunc];
@@ -261,6 +264,7 @@
     
     _auditForm.comment.layer.borderColor = [[UIColor uniGrayColor] CGColor];
     _auditForm.comment.delegate = self;
+    _auditForm.comment.text = @"Give your comment here";
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(myKeyboardWillHideHandler:)
                                                  name:UIKeyboardWillHideNotification
@@ -364,7 +368,12 @@
     [_auditForm2.yesNo15 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
     [_auditForm2.yesNo16 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
     
+    //--------Auditor Status----------//
     
+    [_auditForm2.auditStatus1 addTarget:self action:@selector(auditStatus:) forControlEvents:UIControlEventTouchUpInside];
+    [_auditForm2.auditStatus2 addTarget:self action:@selector(auditStatus:) forControlEvents:UIControlEventTouchUpInside];
+    [_auditForm2.auditStatus3 addTarget:self action:@selector(auditStatus:) forControlEvents:UIControlEventTouchUpInside];
+    [_auditForm2.auditStatus4 addTarget:self action:@selector(auditStatus:) forControlEvents:UIControlEventTouchUpInside];
     
     [_auditForm2.back1 addTarget:self action:@selector(back1) forControlEvents:UIControlEventTouchUpInside];
     [_auditForm2.next2 addTarget:self action:@selector(next2) forControlEvents:UIControlEventTouchUpInside];
@@ -401,6 +410,20 @@
     
     _auditForm3.auditorSigView.layer.borderColor = [[UIColor uniGreenColor]CGColor];
     _auditForm3.custSigView.layer.borderColor = [[UIColor uniGreenColor] CGColor];
+    
+    //----Auditor Signature---//
+    
+    _auditorsignView= [[ mySmoothLineView alloc] initWithFrame:CGRectMake(0,0,430,170)];
+    [_auditorsignView setBackgroundColor:[UIColor clearColor]];
+    [_auditForm3.auditorSigView addSubview: _auditorsignView];
+    
+    //---Customer Signature---//
+
+    _cosumerSignView= [[ mySmoothLineView alloc] initWithFrame:CGRectMake(0,0,430,170)];
+    [_cosumerSignView setBackgroundColor:[UIColor clearColor]];
+    [_auditForm3.custSigView addSubview:_cosumerSignView];
+    
+    //--------------------------
     
     [_auditForm3.submit addTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
     [_auditForm3.back3 addTarget:self action:@selector(back3) forControlEvents:UIControlEventTouchUpInside];
@@ -543,10 +566,12 @@
             {
                 
                 dynamicImageView = [[UIImageView alloc]init];
-                dynamicImageView.frame = CGRectMake((8+440)*count+8, (270*divide)+8, 440, 265);
+                dynamicImageView.frame = CGRectMake((8+440)*count+8, (270*divide)+8, 440, 225);
                 dynamicImageView.tag = k;
                 dynamicImageView.backgroundColor = [UIColor clearColor];
                 dynamicImageView.layer.borderWidth = 1.0f;
+                dynamicImageView.contentMode = UIViewContentModeScaleAspectFill;
+                dynamicImageView.clipsToBounds = YES;
                 dynamicImageView.layer.borderColor = [[UIColor grayColor]CGColor];
                 [_auditForm3.scrollV addSubview:dynamicImageView];
                 DebugLog(@"DIVIDE--------> %@",[imgStoreArray objectAtIndex:k]);
@@ -562,6 +587,16 @@
                 [crossButton addTarget:self action:@selector(crossimage:) forControlEvents:UIControlEventTouchUpInside];
                 [_auditForm3.scrollV addSubview:crossButton];
                 crossButton.layer.zPosition = 1000;
+                
+                
+                _imageText = [[UITextField alloc]initWithFrame:CGRectMake((8+440)*count+8, (270*divide)+225+8, 440, 39)];
+                [self.imageText setTextAlignment:NSTextAlignmentCenter];
+                [self.imageText setTextColor:[UIColor blackColor]];
+                [self.imageText setFont:[UIFont imageTextFont]];
+                [self.imageText setDelegate:self];
+                self.imageText.layer.borderWidth = 1.0f;
+                self.imageText.layer.borderColor = [[UIColor grayColor]CGColor];
+                [_auditForm3.scrollV addSubview:_imageText];
             }
             
             
@@ -743,36 +778,91 @@
 }
 -(void)next{
     
-    if ([_auditForm.phone.text isEqualToString:@""]) {
-        
-        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Phone number cannot be blank" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [_alertView show];
-        
-    }else if(_auditForm.phone.text.length < 10){
-        
-        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Phone number must be of 10 digits" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [_alertView show];
-        
-    }else if ([_auditForm.phone.text rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location != NSNotFound){
-
-        DebugLog(@"This field accepts only numeric entries.");
-        
-        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please give only numeric value" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [_alertView show];
-        
-    }else{
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(myKeyboardWillHideHandler:)
-                                                     name:UIKeyboardWillHideNotification
-                                                   object:nil];
+//    if ([_auditForm.firstName.text isEqualToString:@""]) {
+//        
+//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter your first name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        
+//        [_alertView show];
+//        
+//    }else if ([_auditForm.lastName.text isEqualToString:@""]){
+//        
+//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter your last name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        
+//        [_alertView show];
+//        
+//    }else if ([_auditForm.suburb.text isEqualToString:@""]){
+//        
+//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter suburb" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        
+//        [_alertView show];
+//        
+//    }else if ([_auditForm.postcode.text isEqualToString:@""]){
+//        
+//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter postal code" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        
+//        [_alertView show];
+//        
+//    }else if ([_auditForm.address1.text isEqualToString:@""] && [_auditForm.address2.text isEqualToString:@""]){
+//        
+//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter address" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        
+//        [_alertView show];
+//        
+//    }else if ([_auditForm.state.text isEqualToString:@""]){
+//        
+//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter state" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        
+//        [_alertView show];
+//        
+//    }else if ([_auditForm.installFirstName.text isEqualToString:@""]){
+//        
+//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter installer first name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        
+//        [_alertView show];
+//        
+//    }else if ([_auditForm.installLastName.text isEqualToString:@""]){
+//        
+//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter installer last name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        
+//        [_alertView show];
+//        
+//    }else if ([_auditForm.comment.text isEqualToString:@""]){
+//        
+//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please give comment" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        
+//        [_alertView show];
+//        
+//    }else if ([_auditForm.comment.text isEqualToString:@"Give your comment here"]){
+//        
+//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please give comment" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        
+//        [_alertView show];
+//        
+//    }else if ([_auditForm.phone.text isEqualToString:@""]) {
+//        
+//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Phone number cannot be blank" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        
+//        [_alertView show];
+//        
+//    }else if(_auditForm.phone.text.length < 10 || _auditForm.phone.text.length >10){
+//        
+//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Phone number must be of 10 digits" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        
+//        [_alertView show];
+//        
+//    }else if ([_auditForm.phone.text rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location != NSNotFound){
+//
+//        DebugLog(@"This field accepts only numeric entries.");
+//        
+//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please give only numeric value" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        
+//        [_alertView show];
+//        
+//    }else{
     
             [self form2];
         
-        }
+//        }
     
 }
 -(void)next2{
@@ -1072,6 +1162,7 @@
 }
 -(void)textViewDidBeginEditing:(UITextView *)textView{
     
+    _auditForm.comment.text = @"";
     
     CGRect tempRect=[_auditForm frame];
     tempRect.origin.x       =   121.0f;
@@ -1093,6 +1184,137 @@
    
 }
 
+-(void)auditStatus:(UIButton *)sender{
+    
+    //---------Picker---------//
+    
+    pickerData = @[@"Pass", @"Fail", @"Partially Fail"];
+    
+    DebugLog(@"Audit Status--------->");
+    
+    _background = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    _background.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.5f];
+    [self.view addSubview:_background];
+    
+    _categoryPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.origin.y+[UIScreen mainScreen].bounds.size.height-200, [UIScreen mainScreen].bounds.size.width, 300)];
+    _categoryPickerView.backgroundColor = [UIColor whiteColor];
+    [_categoryPickerView setDataSource: self];
+    [_categoryPickerView setDelegate: self];
+    _categoryPickerView.showsSelectionIndicator = YES;
+    
+    [_categoryPickerView selectRow:0 inComponent:0 animated:YES];
+    
+    UIToolbar *pickerToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, _categoryPickerView.frame.origin.y-44, [UIScreen mainScreen].bounds.size.width, 44)];
+    pickerToolbar.barStyle = UIBarStyleBlackOpaque;
+    [pickerToolbar sizeToFit];
+    
+    
+    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(categoryDoneButtonPressed:)];
+    doneBtn.tag = sender.tag;
+    
+    UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(categoryCancelButtonPressed)];
+    
+    [pickerToolbar setItems:@[cancelBtn, doneBtn] animated:YES];
+    
+    [_background addSubview:pickerToolbar];
+    [_background addSubview:_categoryPickerView];
+    
+    
+
+   status = [pickerData objectAtIndex:[_categoryPickerView selectedRowInComponent:0]];
+
+    NSLog(@"status-- %@", status);
+    //-------------------------------------------------------
+    
+}
+
+//----------Picker Delegate-----------//
+
+// The number of columns of data
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+// The number of rows of data
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return pickerData.count;
+}
+
+// The data to return for the row and component (column) that's being passed in
+- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    
+    return pickerData[row];
+}
+
+//- (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
+//{
+//    NSAttributedString *attString = [[NSAttributedString alloc] initWithString:pickerData[row] attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+//    
+//    return attString;
+//    
+//}
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    DebugLog(@"did select-----> %@",pickerData[row]);
+    
+    status = [NSString stringWithFormat:@"%@",pickerData[row]];
+}
+
+-(void)categoryCancelButtonPressed{
+    
+    [_background removeFromSuperview];
+    
+}
+-(void)categoryDoneButtonPressed:(UIButton *)sender{
+    
+    
+    NSLog(@"-=-=-=- Tag %ld", (long)sender.tag);
+    
+    if (sender.tag == 1) {
+        
+        [_auditForm2.auditStatus1 setTitle:status forState:UIControlStateNormal];
+        
+    }else if (sender.tag == 2) {
+     
+        [_auditForm2.auditStatus2 setTitle:status forState:UIControlStateNormal];
+        
+    }else if (sender.tag == 3) {
+        
+        [_auditForm2.auditStatus3 setTitle:status forState:UIControlStateNormal];
+        
+    }else if (sender.tag == 4) {
+        
+        [_auditForm2.auditStatus4 setTitle:status forState:UIControlStateNormal];
+        
+    }else{
+        
+        if (sender.tag == 1) {
+            
+            [_auditForm2.auditStatus1 setTitle:@"Select a status" forState:UIControlStateNormal];
+            
+        }else if (sender.tag == 2) {
+            
+            [_auditForm2.auditStatus2 setTitle:@"Select a status" forState:UIControlStateNormal];
+            
+        }else if (sender.tag == 3) {
+            
+            [_auditForm2.auditStatus3 setTitle:@"Select a status" forState:UIControlStateNormal];
+            
+        }else if (sender.tag == 4) {
+            
+            [_auditForm2.auditStatus4 setTitle:@"Select a status" forState:UIControlStateNormal];
+            
+        }
+        
+    }
+    
+    [_background removeFromSuperview];
+    
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
