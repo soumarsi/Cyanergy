@@ -13,13 +13,11 @@
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollV;
 
-@property (strong, nonatomic) IBOutlet UIImageView *imageInitial;
-@property (strong, nonatomic) IBOutlet UIButton *addImage;
-
-
 @property (strong, nonatomic) IBOutlet UIView *bottomView;
 @property (strong, nonatomic) IBOutlet UIView *auditorSigView;
 @property (strong, nonatomic) IBOutlet UIView *custSigView;
+@property (strong, nonatomic) IBOutlet UILabel *latitudeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *longitudeLabel;
 
 
 @property (strong, nonatomic) IBOutlet UIButton *submit;

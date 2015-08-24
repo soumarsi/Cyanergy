@@ -16,7 +16,8 @@
     self = [[[NSBundle mainBundle]loadNibNamed:@"CYAuditForm3" owner:self options:nil] objectAtIndex:0];
     
     
-    
+    _custSigView.layer.borderWidth = 2.0f;
+    _auditorSigView.layer.borderWidth = 2.0f;
     
     return self;
     

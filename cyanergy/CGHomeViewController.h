@@ -14,8 +14,13 @@
 #import "CYAuditForm.h"
 #import "CYAuditForm2.h"
 #import "CYAuditForm3.h"
+#import <CoreLocation/CoreLocation.h>
+#import "UIImage+CGimage.h"
+#import "CGhomelistTableViewCell.h"
+#import "CYAuditTopbar.h"
+#import "UIColor+CGColor.h"
 
-@interface CGHomeViewController : UIViewController
+@interface CGHomeViewController : UIViewController<Homeviewcontroller,cgsidebar,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UITextViewDelegate,UIAlertViewDelegate,UIScrollViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UIPopoverControllerDelegate,CLLocationManagerDelegate>
 
 
 @property (nonatomic, strong) RightBar *homeNav;
@@ -26,6 +31,7 @@
 @property (nonatomic, strong) CYAuditForm3 *auditForm3;
 @property (weak, nonatomic) IBOutlet UIView *baseView;
 @property (nonatomic) UIAlertView *alertView;
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @property (nonatomic, strong) NSString *check;
 

@@ -7,18 +7,9 @@
 //
 
 #import "CGHomeViewController.h"
-#import "UIImage+CGimage.h"
-#import "CGhomelistTableViewCell.h"
-#import "CYAuditTopbar.h"
-#import "UIColor+CGColor.h"
-
-#define xPoint = 0;
-#define xPointPlus = 5;
-#define yPoint = 0;
-#define yPointPlus = 8;
 
 
-@interface CGHomeViewController ()<Homeviewcontroller,cgsidebar,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UITextViewDelegate,UIAlertViewDelegate,UIScrollViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UIPopoverControllerDelegate>{
+@interface CGHomeViewController (){
     
     CYAuditTopbar *topbar;
     UIImage *MainImage;
@@ -27,8 +18,9 @@
     UIImageView *dynamicImageView;
     int count,divide;
     UIButton *plusbutton;
+    CGFloat latitude,longitude;
+    
 }
-
 
 @end
 
@@ -40,6 +32,19 @@
     _sideBar = [[CGsidebar alloc]init];
     _sideBar.delegate = self;
     [self.view addSubview:_sideBar];
+    
+    //------------CORE LOCATION FOR LAT LONG-------------//
+    
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
+    if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    
+    [self.locationManager startUpdatingLocation];
+    
+    //-----------------------------------------------PK--//
 
     imgStoreArray = [[NSMutableArray alloc]init];
     
@@ -54,6 +59,23 @@
     
     // Do any additional setup after loading the view.
 }
+
+//--------- Location Manager Delegate Methods
+
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation{
+    
+    NSLog(@"LAT--------> %f", newLocation.coordinate.latitude);
+    NSLog(@"LONG-------> %f", newLocation.coordinate.longitude);
+    
+    latitude = newLocation.coordinate.latitude;
+    longitude = newLocation.coordinate.longitude;
+    
+    [self.locationManager stopUpdatingLocation];
+    
+}
+
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -373,8 +395,12 @@
   
     [_auditForm3.scrollV setUserInteractionEnabled:NO];
     
+    _auditForm3.latitudeLabel.text = [NSString stringWithFormat:@"%f",latitude];
+    _auditForm3.longitudeLabel.text = [NSString stringWithFormat:@"%f",longitude];
     
-    [_auditForm3.addImage addTarget:self action:@selector(addImage) forControlEvents:UIControlEventTouchUpInside];
+    _auditForm3.auditorSigView.layer.borderColor = [[UIColor uniGreenColor]CGColor];
+    _auditForm3.custSigView.layer.borderColor = [[UIColor uniGreenColor] CGColor];
+    
     [_auditForm3.submit addTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
     [_auditForm3.back3 addTarget:self action:@selector(back3) forControlEvents:UIControlEventTouchUpInside];
 
@@ -383,8 +409,8 @@
 
 -(void)addImage{
     
-    [_auditForm3.addImage setHidden:YES];
-    [_auditForm3.addImage setUserInteractionEnabled:NO];
+//    [_auditForm3.addImage setHidden:YES];
+//    [_auditForm3.addImage setUserInteractionEnabled:NO];
     
     [self startMediaBrowserFromViewController:self usingDelegate:self];
     
@@ -400,8 +426,8 @@
     
     if(buttonIndex==actionSheet.cancelButtonIndex){
         
-        [_auditForm3.addImage setHidden:NO];
-        [_auditForm3.addImage setUserInteractionEnabled:YES];
+//        [_auditForm3.addImage setHidden:NO];
+//        [_auditForm3.addImage setUserInteractionEnabled:YES];
         
         return;
     }
@@ -430,40 +456,46 @@
     count = imgStoreArray.count % 2;
     divide = imgStoreArray.count / 2.0f;
     
-    dynamicImageView = [[UIImageView alloc]init];
-    
-    dynamicImageView.frame = CGRectMake((8+440)*count+8, (270*divide)+8, 440, 265);
-    dynamicImageView.tag = imgStoreArray.count;
-    dynamicImageView.backgroundColor = [UIColor clearColor];
-    dynamicImageView.layer.borderWidth = 1.0f;
-    dynamicImageView.layer.borderColor = [[UIColor grayColor]CGColor];
-    [_auditForm3.scrollV addSubview:dynamicImageView];
-    
-    
-    plusbutton = [[UIButton alloc]init];
-    [plusbutton setFrame:CGRectMake((8+440)*count+8, (270*divide)+8, 440, 265)];
-    [plusbutton setImage:[UIImage imageNamed:@"plus"] forState:UIControlStateNormal];
-    [plusbutton addTarget:self action:@selector(addImage) forControlEvents:UIControlEventTouchUpInside];
-    [_auditForm3.scrollV addSubview:plusbutton];
-    
-    DebugLog(@"FRAME-------->X= %f , Y= %f , WID= %f , HEI= %f",dynamicImageView.frame.origin.x, dynamicImageView.frame.origin.y,dynamicImageView.frame.size.width,dynamicImageView.frame.size.height);
-    DebugLog(@"COUNT--------> %d",count);
-    DebugLog(@"DIVIDE--------> %d",divide);
-    
-//    _auditForm3.bottomView.frame = cgrect;
-    
-    _auditForm3.bottomView.frame = CGRectMake(8.0f, (270*divide)+8+265.0f, 887.0f, 339.0f);
-    
-    
-    _auditForm3.scrollV.delegate = self;
-    [_auditForm3.scrollV setContentSize:CGSizeMake(0, _auditForm3.bottomView.frame.origin.y+_auditForm3.bottomView.frame.size.height+70)];
-    [_auditForm3.scrollV setUserInteractionEnabled:YES];
-    
-    
-    
-    
-    
-    
+    if (imgStoreArray.count < 20) {
+        
+        
+        dynamicImageView = [[UIImageView alloc]init];
+        
+        dynamicImageView.frame = CGRectMake((8+440)*count+8, (270*divide)+8, 440, 265);
+        dynamicImageView.tag = imgStoreArray.count;
+        dynamicImageView.backgroundColor = [UIColor clearColor];
+        dynamicImageView.layer.borderWidth = 1.0f;
+        dynamicImageView.layer.borderColor = [[UIColor grayColor]CGColor];
+        [_auditForm3.scrollV addSubview:dynamicImageView];
+        
+        
+        plusbutton = [[UIButton alloc]init];
+        [plusbutton setFrame:CGRectMake((8+440)*count+8, (270*divide)+8, 440, 265)];
+        [plusbutton setImage:[UIImage imageNamed:@"plus"] forState:UIControlStateNormal];
+        [plusbutton addTarget:self action:@selector(addImage) forControlEvents:UIControlEventTouchUpInside];
+        [_auditForm3.scrollV addSubview:plusbutton];
+        
+        DebugLog(@"FRAME-------->X= %f , Y= %f , WID= %f , HEI= %f",dynamicImageView.frame.origin.x, dynamicImageView.frame.origin.y,dynamicImageView.frame.size.width,dynamicImageView.frame.size.height);
+        DebugLog(@"COUNT--------> %d",count);
+        DebugLog(@"DIVIDE--------> %d",divide);
+        
+        //    _auditForm3.bottomView.frame = cgrect;
+        
+        _auditForm3.bottomView.frame = CGRectMake(8.0f, (270*divide)+8+265.0f, 887.0f, 339.0f);
+        
+        
+        _auditForm3.scrollV.delegate = self;
+        [_auditForm3.scrollV setContentSize:CGSizeMake(0, _auditForm3.bottomView.frame.origin.y+_auditForm3.bottomView.frame.size.height+70)];
+        [_auditForm3.scrollV setUserInteractionEnabled:YES];
+        
+    }else{
+        
+        UIAlertView *alertMe = [[UIAlertView alloc]initWithTitle:nil message:@"Maximum image limit reached" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [alertMe show];
+        
+    }
+
     
 }
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
@@ -497,7 +529,7 @@
     
     UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:mediaUI];
     popover.delegate=self;
-    [popover presentPopoverFromRect:CGRectMake(10, 55, 350, 350) inView:_auditForm3 permittedArrowDirections:Nil animated:YES];
+    [popover presentPopoverFromRect:CGRectMake(49, 55, 350, 350) inView:_auditForm3 permittedArrowDirections:0 animated:YES];
     
     return YES;
 }
@@ -637,7 +669,20 @@
         
         [_alertView show];
         
+    }else if ([_auditForm.phone.text rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location != NSNotFound){
+
+        DebugLog(@"This field accepts only numeric entries.");
+        
+        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please give only numeric value" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [_alertView show];
+        
     }else{
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(myKeyboardWillHideHandler:)
+                                                     name:UIKeyboardWillHideNotification
+                                                   object:nil];
     
             [self form2];
         
@@ -645,6 +690,11 @@
     
 }
 -(void)next2{
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(myKeyboardWillHideHandler:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
     
     [self form3];
     [self tileFunc];
@@ -895,11 +945,15 @@
 
 -(void)back1{
     
+    _check  = @"step1";
+    
     [_auditForm2 removeFromSuperview];
     
     
 }
 -(void)back3{
+    
+    _check = @"step2";
     
     [_auditForm3 removeFromSuperview];
     

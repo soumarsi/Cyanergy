@@ -40,6 +40,7 @@
 		BEDD0F601B85BA1500782509 /* CYAuditForm2.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEDD0F5F1B85BA1500782509 /* CYAuditForm2.xib */; };
 		BEE96AB31B872DCA00AE2688 /* CYAuditTopbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEE96AB21B872DCA00AE2688 /* CYAuditTopbar.xib */; };
 		BEE96AB61B872DEB00AE2688 /* CYAuditTopbar.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE96AB51B872DEB00AE2688 /* CYAuditTopbar.m */; };
+		BEF5C2DD1B8ADB5300CE4CDA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF5C2DC1B8ADB5300CE4CDA /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,7 @@
 		BEE96AB21B872DCA00AE2688 /* CYAuditTopbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CYAuditTopbar.xib; sourceTree = "<group>"; };
 		BEE96AB41B872DEB00AE2688 /* CYAuditTopbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYAuditTopbar.h; sourceTree = "<group>"; };
 		BEE96AB51B872DEB00AE2688 /* CYAuditTopbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYAuditTopbar.m; sourceTree = "<group>"; };
+		BEF5C2DC1B8ADB5300CE4CDA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEF5C2DD1B8ADB5300CE4CDA /* CoreLocation.framework in Frameworks */,
 				2C7DCB281B84536200EB92CA /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -205,6 +208,7 @@
 		2C8B2F261B81F4E500C06C43 = {
 			isa = PBXGroup;
 			children = (
+				BEF5C2DC1B8ADB5300CE4CDA /* CoreLocation.framework */,
 				2C7DCB271B84536200EB92CA /* QuartzCore.framework */,
 				2C8B2F311B81F4E500C06C43 /* cyanergy */,
 				2C8B2F4E1B81F4E500C06C43 /* cyanergyTests */,

@@ -11,6 +11,9 @@
             <string>Lato-Bold</string>
             <string>Lato-Bold</string>
         </mutableArray>
+        <mutableArray key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </mutableArray>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -96,7 +99,7 @@
                                         <view contentMode="scaleToFill" id="igI-IQ-AWH">
                                             <rect key="frame" x="8" y="85" width="430" height="170"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="0.76796874999999998" green="1" blue="0.46908143939393909" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
                                                     <integer key="value" value="2"/>
@@ -109,7 +112,7 @@
                                         <view contentMode="scaleToFill" id="24w-VV-gJU">
                                             <rect key="frame" x="446" y="85" width="430" height="170"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="0.76796874999999998" green="1" blue="0.46908143940000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
                                                     <integer key="value" value="2"/>
@@ -134,6 +137,20 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CGa-jf-Fah">
+                                            <rect key="frame" x="122" y="8" width="104" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="h5E-ZI-BYn">
+                                            <rect key="frame" x="234" y="8" width="104" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
@@ -157,6 +174,8 @@
                 <outlet property="back3" destination="PnH-NU-qDb" id="BVN-2a-pXG"/>
                 <outlet property="bottomView" destination="KwY-t6-72Q" id="JO8-7x-Uba"/>
                 <outlet property="custSigView" destination="24w-VV-gJU" id="mgm-T1-qNr"/>
+                <outlet property="latitudeLabel" destination="CGa-jf-Fah" id="hv1-pF-0Ld"/>
+                <outlet property="longitudeLabel" destination="h5E-ZI-BYn" id="7Rn-9Y-Znz"/>
                 <outlet property="scrollV" destination="wA0-GZ-HOw" id="T0T-8B-sXZ"/>
                 <outlet property="submit" destination="Gee-lF-iAw" id="4gw-ig-e3G"/>
             </connections>
