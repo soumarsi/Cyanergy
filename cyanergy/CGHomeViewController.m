@@ -19,6 +19,7 @@
     int count,divide;
     UIButton *plusbutton;
     CGFloat latitude,longitude;
+    UIButton *crossButton;
     
 }
 
@@ -412,7 +413,19 @@
 //    [_auditForm3.addImage setHidden:YES];
 //    [_auditForm3.addImage setUserInteractionEnabled:NO];
     
-    [self startMediaBrowserFromViewController:self usingDelegate:self];
+    if (imgStoreArray.count < 20) {
+        
+        [self startMediaBrowserFromViewController:self usingDelegate:self];
+
+    }else{
+        
+        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Maximum image limit reached, delete if want to add new image" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [_alertView show];
+
+        
+    }
+    
     
 //    sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera", @"Photo Library", nil];
 //    [sheet showInView:_auditForm3];
@@ -453,11 +466,14 @@
 }
 -(void)tileFunc{
     
-    count = imgStoreArray.count % 2;
-    divide = imgStoreArray.count / 2.0f;
+    [dynamicImageView removeFromSuperview];
+    [plusbutton removeFromSuperview];
+    [crossButton removeFromSuperview];
     
-    if (imgStoreArray.count < 20) {
-        
+    if (imgStoreArray.count == 0)
+    {
+        count = imgStoreArray.count % 2;
+        divide = imgStoreArray.count / 2.0f;
         
         dynamicImageView = [[UIImageView alloc]init];
         
@@ -467,6 +483,7 @@
         dynamicImageView.layer.borderWidth = 1.0f;
         dynamicImageView.layer.borderColor = [[UIColor grayColor]CGColor];
         [_auditForm3.scrollV addSubview:dynamicImageView];
+        dynamicImageView.image = nil;
         
         
         plusbutton = [[UIButton alloc]init];
@@ -475,48 +492,117 @@
         [plusbutton addTarget:self action:@selector(addImage) forControlEvents:UIControlEventTouchUpInside];
         [_auditForm3.scrollV addSubview:plusbutton];
         
+        
+        
         DebugLog(@"FRAME-------->X= %f , Y= %f , WID= %f , HEI= %f",dynamicImageView.frame.origin.x, dynamicImageView.frame.origin.y,dynamicImageView.frame.size.width,dynamicImageView.frame.size.height);
         DebugLog(@"COUNT--------> %d",count);
-        DebugLog(@"DIVIDE--------> %d",divide);
         
-        //    _auditForm3.bottomView.frame = cgrect;
         
         _auditForm3.bottomView.frame = CGRectMake(8.0f, (270*divide)+8+265.0f, 887.0f, 339.0f);
-        
-        
         _auditForm3.scrollV.delegate = self;
         [_auditForm3.scrollV setContentSize:CGSizeMake(0, _auditForm3.bottomView.frame.origin.y+_auditForm3.bottomView.frame.size.height+70)];
         [_auditForm3.scrollV setUserInteractionEnabled:YES];
         
-    }else{
-        
-        UIAlertView *alertMe = [[UIAlertView alloc]initWithTitle:nil message:@"Maximum image limit reached" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [alertMe show];
-        
     }
-
+    else
+    {
+        for (int k = 0; k <= imgStoreArray.count; k++)
+        {
+            
+            NSLog(@"-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=%d",k);
+            
+            count = k % 2;
+            divide = k/ 2.0f;
+            
+            
+            
+            
+            
+            
+            NSLog(@"entry-=-=-=-=-=--=");
+            if (imgStoreArray.count == k)
+            {
+                
+                NSLog(@"entry");
+                dynamicImageView = [[UIImageView alloc]init];
+                dynamicImageView.frame = CGRectMake((8+440)*count+8, (270*divide)+8, 440, 265);
+                dynamicImageView.backgroundColor = [UIColor clearColor];
+                dynamicImageView.layer.borderWidth = 1.0f;
+                dynamicImageView.layer.borderColor = [[UIColor grayColor]CGColor];
+                [_auditForm3.scrollV addSubview:dynamicImageView];
+                dynamicImageView.image = nil;
+                
+                
+                plusbutton = [[UIButton alloc]init];
+                [plusbutton setFrame:CGRectMake((8+440)*count+8, (270*divide)+8, 440, 265)];
+                [plusbutton setImage:[UIImage imageNamed:@"plus"] forState:UIControlStateNormal];
+                [plusbutton addTarget:self action:@selector(addImage) forControlEvents:UIControlEventTouchUpInside];
+                [_auditForm3.scrollV addSubview:plusbutton];
+            }
+            else
+            {
+                
+                dynamicImageView = [[UIImageView alloc]init];
+                dynamicImageView.frame = CGRectMake((8+440)*count+8, (270*divide)+8, 440, 265);
+                dynamicImageView.tag = k;
+                dynamicImageView.backgroundColor = [UIColor clearColor];
+                dynamicImageView.layer.borderWidth = 1.0f;
+                dynamicImageView.layer.borderColor = [[UIColor grayColor]CGColor];
+                [_auditForm3.scrollV addSubview:dynamicImageView];
+                DebugLog(@"DIVIDE--------> %@",[imgStoreArray objectAtIndex:k]);
+                dynamicImageView.image =[imgStoreArray objectAtIndex:k];
+                
+                [plusbutton removeFromSuperview];
+                
+                crossButton = [[UIButton alloc]init];
+                [crossButton setFrame:CGRectMake((8+440)*count+416, (270*divide)+11, 25, 25)];
+                [crossButton setBackgroundColor:[UIColor clearColor]];
+                [crossButton setImage:[UIImage imageNamed:@"crossBtn"] forState:UIControlStateNormal];
+                crossButton.tag = k;
+                [crossButton addTarget:self action:@selector(crossimage:) forControlEvents:UIControlEventTouchUpInside];
+                [_auditForm3.scrollV addSubview:crossButton];
+                crossButton.layer.zPosition = 1000;
+            }
+            
+            
+            DebugLog(@"FRAME-------->X= %f , Y= %f , WID= %f , HEI= %f",dynamicImageView.frame.origin.x, dynamicImageView.frame.origin.y,dynamicImageView.frame.size.width,dynamicImageView.frame.size.height);
+            DebugLog(@"COUNT--------> %d",count);
+            
+            
+            _auditForm3.bottomView.frame = CGRectMake(8.0f, (270*divide)+8+265.0f, 887.0f, 339.0f);
+            _auditForm3.scrollV.delegate = self;
+            [_auditForm3.scrollV setContentSize:CGSizeMake(0, _auditForm3.bottomView.frame.origin.y+_auditForm3.bottomView.frame.size.height+70)];
+            [_auditForm3.scrollV setUserInteractionEnabled:YES];
+        }
+    }
+}
+-(void)crossimage:(UIButton *)sender
+{
+    
+    [imgStoreArray removeObjectAtIndex:sender.tag];
+    
+    
+    NSLog(@"-=-=-=-=--= imagstorearray-=-= %@===== %lu", imgStoreArray,(unsigned long)imgStoreArray.count);
+    
+    [self next2];
+    
     
 }
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     
     MainImage= info[UIImagePickerControllerEditedImage];
     
-    DebugLog(@"COUNT--------> %ld     %ld",(long)dynamicImageView.tag,imgStoreArray.count);
+    DebugLog(@"COUNT--------> %ld     %ld",(long)dynamicImageView.tag,(unsigned long)imgStoreArray.count);
     
-    
-    if (dynamicImageView.tag == imgStoreArray.count)
-    {
-        dynamicImageView.image =MainImage;
-        [plusbutton removeFromSuperview];
-    }
-        [picker dismissViewControllerAnimated:YES completion:Nil];
-    
+    [picker dismissViewControllerAnimated:YES completion:Nil];
     [imgStoreArray addObject:MainImage];
+    
+    
     
     [self  tileFunc];
     
 }
+
 - (BOOL) startMediaBrowserFromViewController: (UIViewController*) controller
                                usingDelegate: (id <UIImagePickerControllerDelegate,
                                                UINavigationControllerDelegate>) delegate {
