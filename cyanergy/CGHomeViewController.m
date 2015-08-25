@@ -390,9 +390,10 @@
 
 -(void)form3{
     
-    _check = @"step2";
+    _check = @"step3";
     
-
+    DebugLog(@"Casdfghjkjhgfdsdfghjk------> %@",_check);
+    
     _auditForm3 = [[CYAuditForm3 alloc]init];
     
     CGRect tempRect2=[_auditForm3 frame];
@@ -427,6 +428,11 @@
     
     [_auditForm3.submit addTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
     [_auditForm3.back3 addTarget:self action:@selector(back3) forControlEvents:UIControlEventTouchUpInside];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(myKeyboardWillHideHandler:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
 
     
 }
@@ -1137,10 +1143,34 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
     
-    CGRect tempRect=[_auditForm frame];
-    tempRect.origin.x       =   121.0f;
-    tempRect.origin.y       =   -63.0f;
-    [_auditForm setFrame:tempRect];
+    DebugLog(@"CHECK--------> %@",_check);
+    
+    if ([_check isEqualToString: @"step1"]) {
+        
+        CGRect tempRect=[_auditForm frame];
+        tempRect.origin.x       =   121.0f;
+        tempRect.origin.y       =   -63.0f;
+        [_auditForm setFrame:tempRect];
+        
+    }else if ([_check isEqualToString: @"step2"]) {
+        
+        CGRect tempRect=[_auditForm2 frame];
+        tempRect.origin.x       =   121.0f;
+        tempRect.origin.y       =   -63.0f;
+        [_auditForm2 setFrame:tempRect];
+        
+    }else if ([_check isEqualToString: @"step3"]) {
+        
+        DebugLog(@"CHECK--------> %@",_check);
+        
+        CGRect tempRect=[_auditForm3 frame];
+        tempRect.origin.x       =   121.0f;
+        tempRect.origin.y       =   -63.0f;
+        [_auditForm3 setFrame:tempRect];
+        
+    }
+    
+    
     
 }
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
@@ -1180,6 +1210,20 @@
         tempRect.origin.y       =   103.0f;
         [_auditForm setFrame:tempRect];
 
+    }else if ([_check isEqualToString:@"step2"]) {
+        
+        CGRect tempRect=[_auditForm2 frame];
+        tempRect.origin.x       =   121.0f;
+        tempRect.origin.y       =   103.0f;
+        [_auditForm2 setFrame:tempRect];
+        
+    }else if ([_check isEqualToString:@"step3"]) {
+        
+        CGRect tempRect=[_auditForm3 frame];
+        tempRect.origin.x       =   121.0f;
+        tempRect.origin.y       =   103.0f;
+        [_auditForm3 setFrame:tempRect];
+        
     }
    
 }
@@ -1212,9 +1256,12 @@
     UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(categoryDoneButtonPressed:)];
     doneBtn.tag = sender.tag;
     
+    UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+
+    
     UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(categoryCancelButtonPressed)];
     
-    [pickerToolbar setItems:@[cancelBtn, doneBtn] animated:YES];
+    [pickerToolbar setItems:@[cancelBtn,flexSpace, doneBtn] animated:YES];
     
     [_background addSubview:pickerToolbar];
     [_background addSubview:_categoryPickerView];
