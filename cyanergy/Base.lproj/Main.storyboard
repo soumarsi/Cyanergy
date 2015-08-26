@@ -162,12 +162,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" tag="2" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="106" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="UXn-07-RIK">
-                                        <rect key="frame" x="121" y="60" width="903" height="708"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <rect key="frame" x="121" y="0.0" width="903" height="768"/>
+                                        <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="903" id="DvP-dT-LUJ"/>
-                                            <constraint firstAttribute="height" constant="708" id="jy0-YG-hbC"/>
+                                            <constraint firstAttribute="height" constant="768" id="jy0-YG-hbC"/>
                                         </constraints>
+                                        <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell contentMode="scaleToFill" restorationIdentifier="CGhomelistTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="CGhomelistTableViewCell" rowHeight="106" id="Xrp-6C-0Vf" customClass="CGhomelistTableViewCell">
                                                 <rect key="frame" x="0.0" y="0.0" width="903" height="44"/>
@@ -219,7 +220,7 @@
                                         </prototypes>
                                     </tableView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COMMING SOON" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="omi-Ut-Zgj">
-                                        <rect key="frame" x="371" y="400" width="400" height="80"/>
+                                        <rect key="frame" x="371" y="362" width="400" height="96"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="400" id="E15-fK-UsL"/>
                                         </constraints>
@@ -230,10 +231,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="omi-Ut-Zgj" firstAttribute="top" secondItem="UXn-07-RIK" secondAttribute="bottom" constant="-368" id="2Rh-4l-mqR"/>
+                                    <constraint firstItem="omi-Ut-Zgj" firstAttribute="top" secondItem="UXn-07-RIK" secondAttribute="bottom" constant="-406" id="2Rh-4l-mqR"/>
                                     <constraint firstItem="UXn-07-RIK" firstAttribute="centerY" secondItem="omi-Ut-Zgj" secondAttribute="centerY" constant="-26" id="AbJ-7M-2YG"/>
                                     <constraint firstItem="omi-Ut-Zgj" firstAttribute="leading" secondItem="Rxc-RO-vFf" secondAttribute="leading" constant="371" id="D8c-El-FdM"/>
-                                    <constraint firstItem="UXn-07-RIK" firstAttribute="top" secondItem="Rxc-RO-vFf" secondAttribute="top" constant="60" id="X3R-wl-36Z"/>
+                                    <constraint firstItem="UXn-07-RIK" firstAttribute="top" secondItem="Rxc-RO-vFf" secondAttribute="top" id="X3R-wl-36Z"/>
                                     <constraint firstItem="UXn-07-RIK" firstAttribute="leading" secondItem="Rxc-RO-vFf" secondAttribute="leading" constant="121" id="eZm-rV-l5m"/>
                                 </constraints>
                             </view>
@@ -256,7 +257,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pmD-QB-gdw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1672" y="254"/>
+            <point key="canvasLocation" x="1680" y="136"/>
         </scene>
         <!--Navigation View Controller-->
         <scene sceneID="r59-sv-zqz">
