@@ -13,6 +13,8 @@
 #import "Auditformdetails.h"
 #import "AuditImage.h"
 #import "Listingtable.h"
+#import "FormView.h"
+
 @interface CGHomeViewController (){
     
     CYAuditTopbar *topbar;
@@ -30,6 +32,7 @@
     Auditformdetails *auditFormDetails;
     AuditImage *auditImage;
     Listingtable *Listed;
+    FormView *completeForm;
 }
 
 @end
@@ -79,7 +82,7 @@
     
     self.mainListedArray = matchingNames;
     
-    NSLog(@"-=-=-=-- %d", self.mainListedArray.count);
+    NSLog(@"-=-=-=-- %lu", (unsigned long)self.mainListedArray.count);
     
     if (self.mainListedArray.count == 0)
     {
@@ -710,128 +713,104 @@
     
     switch (sender.tag) {
         case 1:
-            DebugLog(@"ascheeeee============>%ld",(long)sender.tag);
             
             if ([sender isOn]) {
                 
-                DebugLog(@"ascheeeee============>ON");
                 _auditForm.generalQuestion1 = @"Yes";
 
             }else{
                 
-                DebugLog(@"ascheeeee============>OFF");
                 _auditForm.generalQuestion1 = @"No";
             }
             
             break;
             
         case 2:
-            DebugLog(@"ascheeeee============>%ld",(long)sender.tag);
             
             if ([sender isOn]) {
                 
-                DebugLog(@"ascheeeee============>ON");
                 _auditForm.generalQuestion2 = @"Yes";
                 
             }else{
                 
-                DebugLog(@"ascheeeee============>OFF");
                 _auditForm.generalQuestion2 = @"No";
                 
             }
             break;
             
         case 3:
-            DebugLog(@"ascheeeee============>%ld",(long)sender.tag);
             
             if ([sender isOn]) {
                 
-                DebugLog(@"ascheeeee============>ON");
                 _auditForm.generalQuestion3 = @"Yes";
                 
             }else{
                 
-                DebugLog(@"ascheeeee============>OFF");
                 _auditForm.generalQuestion3 = @"No";
                 
             }
             break;
             
         case 4:
-            DebugLog(@"ascheeeee============>%ld",(long)sender.tag);
             
             if ([sender isOn]) {
                 
-                DebugLog(@"ascheeeee============>ON");
                 _auditForm.generalQuestion4 = @"Yes";
                 
             }else{
                 
-                DebugLog(@"ascheeeee============>OFF");
                 _auditForm.generalQuestion4 = @"No";
                 
             }
             break;
             
         case 5:
-            DebugLog(@"ascheeeee============>%ld",(long)sender.tag);
             
             if ([sender isOn]) {
                 
-                DebugLog(@"ascheeeee============>ON");
                 _auditForm.generalQuestion5 = @"Yes";
                 
             }else{
                 
-                DebugLog(@"ascheeeee============>OFF");
                 _auditForm.generalQuestion5 = @"No";
                 
             }
             break;
             
         case 6:
-            DebugLog(@"ascheeeee============>%ld",(long)sender.tag);
             
             if ([sender isOn]) {
                 
-                DebugLog(@"ascheeeee============>ON");
                 _auditForm.generalQuestion6 = @"Yes";
                 
             }else{
                 
-                DebugLog(@"ascheeeee============>OFF");
                 _auditForm.generalQuestion6 = @"No";
                 
             }
             break;
             
         case 7:
-            DebugLog(@"ascheeeee============>%ld",(long)sender.tag);
             
             if ([sender isOn]) {
                 
-                DebugLog(@"ascheeeee============>ON");
                 _auditForm.generalQuestion7 = @"Yes";
                 
             }else{
                 
-                DebugLog(@"ascheeeee============>OFF");
                 _auditForm.generalQuestion7 = @"No";
                 
             }
             break;
             
         case 8:
-            DebugLog(@"ascheeeee============>%ld",(long)sender.tag);
             
             if ([sender isOn]) {
                 
-                DebugLog(@"ascheeeee============>ON");
                 _auditForm.generalQuestion8 = @"Yes";
                 
             }else{
                 
-                DebugLog(@"ascheeeee============>OFF");
                 _auditForm.generalQuestion8 = @"No";
                 
             }
@@ -952,250 +931,202 @@
     
     switch (sender.tag) {
         case 1:
-            DebugLog(@"ascheeeee============>%ld",(long)sender.tag);
             
             if ([sender isOn]) {
                 
-                DebugLog(@"ascheeeee============>ON");
                 _auditForm2.sd15_doorinstall = @"Yes";
                 
             }else{
                 
-                DebugLog(@"ascheeeee============>OFF");
                 _auditForm2.sd15_doorinstall = @"No";
             }
             
             break;
             
         case 2:
-            DebugLog(@"ascheeeee============>%ld",(long)sender.tag);
             
             if ([sender isOn]) {
                 
-                DebugLog(@"ascheeeee============>ON");
                 _auditForm2.sd15_chimneyinstall = @"Yes";
                 
             }else{
                 
-                DebugLog(@"ascheeeee============>OFF");
                 _auditForm2.sd15_chimneyinstall = @"No";
                 
             }
             break;
             
         case 3:
-            DebugLog(@"ascheeeee============>%ld",(long)sender.tag);
             
             if ([sender isOn]) {
                 
-                DebugLog(@"ascheeeee============>ON");
                  _auditForm2.sd15_externaldoorinstall = @"Yes";
                 
             }else{
                 
-                DebugLog(@"ascheeeee============>OFF");
                 _auditForm2.sd15_externaldoorinstall = @"No";
             }
             break;
             
         case 4:
-            DebugLog(@"ascheeeee============>%ld",(long)sender.tag);
             
             if ([sender isOn]) {
                 
-                DebugLog(@"ascheeeee============>ON");
                 _auditForm2.sd15_spareproduct = @"Yes";
                 
             }else{
                 
-                DebugLog(@"ascheeeee============>OFF");
                 _auditForm2.sd15_spareproduct = @"No";
                 
             }
             break;
             
         case 5:
-            DebugLog(@"ascheeeee============>%ld",(long)sender.tag);
             
             if ([sender isOn]) {
                 
-                DebugLog(@"ascheeeee============>ON");
                 _auditForm2.sd17_showerenergysaving = @"Yes";
                 
             }else{
                 
-                DebugLog(@"ascheeeee============>OFF");
                 _auditForm2.sd17_showerenergysaving = @"No";
                 
             }
             break;
             
         case 6:
-            DebugLog(@"ascheeeee============>%ld",(long)sender.tag);
             
             if ([sender isOn]) {
                 
-                DebugLog(@"ascheeeee============>ON");
                 _auditForm2.sd17_previousshower = @"Yes";
                 
             }else{
                 
-                DebugLog(@"ascheeeee============>OFF");
                 _auditForm2.sd17_previousshower = @"No";
                 
             }
             break;
             
         case 7:
-            DebugLog(@"ascheeeee============>%ld",(long)sender.tag);
             
             if ([sender isOn]) {
                 
-                DebugLog(@"ascheeeee============>ON");
                 _auditForm2.sd17_spareshower = @"Yes";
                 
             }else{
                 
-                DebugLog(@"ascheeeee============>OFF");
                 _auditForm2.sd17_spareshower = @"No";
             }
             break;
             
         case 8:
-            DebugLog(@"ascheeeee============>%ld",(long)sender.tag);
             
             if ([sender isOn]) {
                 
-                DebugLog(@"ascheeeee============>ON");
                 _auditForm2.sd17_installbucket = @"Yes";
                 
             }else{
                 
-                DebugLog(@"ascheeeee============>OFF");
                 _auditForm2.sd17_installbucket = @"No";
                 
             }
             break;
             
         case 9:
-            DebugLog(@"ascheeeee============>%ld",(long)sender.tag);
             
             if ([sender isOn]) {
                 
-                DebugLog(@"ascheeeee============>ON");
                 _auditForm2.sd21b_sensorglobes = @"Yes";
                 
             }else{
                 
-                DebugLog(@"ascheeeee============>OFF");
                 _auditForm2.sd21b_sensorglobes = @"No";
             }
             
             break;
             
         case 10:
-            DebugLog(@"ascheeeee============>%ld",(long)sender.tag);
             
             if ([sender isOn]) {
                 
-                DebugLog(@"ascheeeee============>ON");
                 _auditForm2.sd21b_emptyglobes = @"Yes";
                 
             }else{
                 
-                DebugLog(@"ascheeeee============>OFF");
                 _auditForm2.sd21b_emptyglobes = @"No";
             }
             break;
             
         case 11:
-            DebugLog(@"ascheeeee============>%ld",(long)sender.tag);
             
             if ([sender isOn]) {
                 
-                DebugLog(@"ascheeeee============>ON");
                 _auditForm2.sd21b_HEglobes = @"Yes";
                 
             }else{
                 
-                DebugLog(@"ascheeeee============>OFF");
                 _auditForm2.sd21b_HEglobes = @"No";
             }
             break;
             
         case 12:
-            DebugLog(@"ascheeeee============>%ld",(long)sender.tag);
             
             if ([sender isOn]) {
                 
                 _auditForm2.sd21b_customerglobes = @"Yes";
-                DebugLog(@"ascheeeee============>ON");
                 
             }else{
                 
-                DebugLog(@"ascheeeee============>OFF");
                 _auditForm2.sd21b_customerglobes = @"No";
                 
             }
             break;
 
         case 13:
-            DebugLog(@"ascheeeee============>%ld",(long)sender.tag);
             
             if ([sender isOn]) {
                 
-                DebugLog(@"ascheeeee============>ON");
                 _auditForm2.sd21c_sensorglobes = @"Yes";
                 
             }else{
                 
-                DebugLog(@"ascheeeee============>OFF");
                 _auditForm2.sd21c_sensorglobes = @"No";
             }
             break;
             
         case 14:
-            DebugLog(@"ascheeeee============>%ld",(long)sender.tag);
             
             if ([sender isOn]) {
                 
-                DebugLog(@"ascheeeee============>ON");
                 _auditForm2.sd21c_emptyglobe = @"Yes";
             }else{
                 
-                DebugLog(@"ascheeeee============>OFF");
                 _auditForm2.sd21c_emptyglobe = @"No";
                 
             }
             break;
             
         case 15:
-            DebugLog(@"ascheeeee============>%ld",(long)sender.tag);
             
             if ([sender isOn]) {
                 
-                DebugLog(@"ascheeeee============>ON");
                 _auditForm2.sd21c_heglobes = @"Yes";
                 
             }else{
                 
-                DebugLog(@"ascheeeee============>OFF");
                 _auditForm2.sd21c_heglobes = @"No";
                 
             }
             break;
             
         case 16:
-            DebugLog(@"ascheeeee============>%ld",(long)sender.tag);
             
             if ([sender isOn]) {
                 
-                DebugLog(@"ascheeeee============>ON");
                 _auditForm2.sd21c_customerglobe = @"Yes";
                 
             }else{
                 
-                DebugLog(@"ascheeeee============>OFF");
                 _auditForm2.sd21c_customerglobe = @"No";
                 
             }
@@ -1251,10 +1182,8 @@
         tempRect.origin.y       =   -63.0f;
         [_auditForm3 setFrame:tempRect];
         
-        NSLog(@"textfield-=-=- tag %d-=-=-=%@", textField.tag,self.imageTextArray);
+        NSLog(@"textfield-=-=- tag %ld-=-=-=%@", (long)textField.tag,self.imageTextArray);
     }
-    
-    
     
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField
@@ -1268,7 +1197,7 @@
     [_imageTextArray removeObjectAtIndex:textField.tag];
     [_imageTextArray insertObject:textField.text atIndex:textField.tag];
         
-    NSLog(@"imagetextarray--=-=-= %d", self.imageTextArray.count);
+    NSLog(@"imagetextarray--=-=-= %lu", (unsigned long)self.imageTextArray.count);
     }
 }
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
@@ -1595,7 +1524,97 @@
     
     [cyanergyAppdelegate saveContext];
     
+    [self fillForm];
+    
     [self mainView];
+    
+}
+
+-(void)fillForm{
+    
+    completeForm.auditor_name_lbl.text = [[NSUserDefaults standardUserDefaults]objectForKey:@"username"];
+    completeForm.first_name_lbl.text = _auditForm.firstName.text;
+    completeForm.last_name_lbl.text = _auditForm.lastName.text;
+    completeForm.subrub_lbl.text = _auditForm.suburb.text;
+    completeForm.ph_no_lbl.text = _auditForm.phone.text;
+    completeForm.add1_lbl.text = _auditForm.address1.text;
+    completeForm.add2_lbl.text = _auditForm.address2.text;
+    completeForm.post_code_lbl.text = _auditForm.postcode.text;
+    completeForm.state_lbl.text = _auditForm.state.text;
+    completeForm.installer_first_name.text = _auditForm.installFirstName.text;
+    completeForm.installer_last_name_lbl.text = _auditForm.installLastName.text;
+    completeForm.gen_qus1_yesNo_lbl.text = _auditForm.generalQuestion1;
+    completeForm.gen_qus2_yesNo_lbl.text = _auditForm.generalQuestion2;
+    completeForm.gen_qus3_yesNo_lbl.text = _auditForm.generalQuestion3;
+    completeForm.gen_qus4_yesNo_lbl.text = _auditForm.generalQuestion4;
+    completeForm.gen_qus5_yesNo_lbl.text = _auditForm.generalQuestion5;
+    completeForm.gen_qus6_yesNo_lbl.text = _auditForm.generalQuestion6;
+    completeForm.gen_qus7_yesNo_lbl.text = _auditForm.generalQuestion7;
+    completeForm.gen_qus8_yesNo_lbl.text = _auditForm.generalQuestion8;
+    completeForm.gen_qus_comment_tview.text = _auditForm.comment.text;
+    
+    completeForm.schedule15_qus1_yesNo_lbl.text = _auditForm2.numField1.text;
+    completeForm.schedule15_qus2_yesNo_lbl.text = _auditForm2.numField2.text;
+    completeForm.schedule15_qus3_yesNo_lbl.text = _auditForm2.numField3.text;
+    completeForm.schedule15_qus4_yesNo_lbl.text = _auditForm2.numField4.text;
+    completeForm.schedule15_qus5_yesNo_lbl.text = _auditForm2.sd15_doorinstall;
+    completeForm.schedule15_qus5_comment_tview.text = _auditForm2.commentBox3.text;
+    completeForm.schedule15_qus6_yesNo_lbl.text = _auditForm2.sd15_chimneyinstall;
+    completeForm.schedule15_qus6_comment_tview.text = _auditForm2.commentBox4.text;
+    completeForm.schedule15_qus7_yesNo_lbl.text = _auditForm2.numField5.text;
+    completeForm.schedule15_qus8_yesNo_lbl.text = _auditForm2.numField6.text;
+    completeForm.schedule15_qus9_yesNo_lbl.text = _auditForm2.sd15_externaldoorinstall;
+    completeForm.schedule15_qus9_comment_tview.text = _auditForm2.commentBox5.text;
+    completeForm.schedule15_qus10_yesNo_lbl.text = _auditForm2.sd15_spareproduct;
+     completeForm.schedule15_qus10_comment_tview.text = _auditForm2.commentBox6.text;
+    completeForm.schedule15_auditStatus_yesNo_lbl.text = _auditForm2.auditStatus1.titleLabel.text;
+    completeForm.schedule15_auditStatus_comment_tview.text = _auditForm2.commentBox2.text;
+    
+    completeForm.schedule17_qus1_yesNo_lbl.text = _auditForm2.numField7.text;
+    completeForm.schedule17_qus2_yesNo_lbl.text = _auditForm2.numField8.text;
+    completeForm.schedule17_qus3_yesNo_lbl.text = _auditForm2.sd17_showerenergysaving;
+    completeForm.schedule17_qus3_comment_tview.text = _auditForm2.commentBox7.text;
+    completeForm.schedule17_qus4_yesNo_lbl.text = _auditForm2.sd17_previousshower;
+    completeForm.schedule17_qus4_comment_tview.text = _auditForm2.commentBox8.text;
+    completeForm.schedule17_qus25_yesNo_lbl.text = _auditForm2.sd17_spareshower;
+    completeForm.schedule17_qus5_comment_tview.text = _auditForm2.commentBox9.text;
+    completeForm.schedule17_qus6_yesNo_lbl.text = _auditForm2.sd17_installbucket;
+    completeForm.schedule17_qus6_comment_tview.text = _auditForm2.commentBox10.text;
+    completeForm.schedule17_auditStatus_yesNo_lbl.text = _auditForm2.auditStatus2.titleLabel.text;
+    completeForm.schedule17_auditStatus_comment_tview.text = _auditForm2.commentBox11.text;
+    
+    completeForm.schedule21B_qus1_yesNo_lbl.text = _auditForm2.numField9.text;
+    completeForm.schedule21B_qus2_yesNo_lbl.text = _auditForm2.sd21b_sensorglobes;
+    completeForm.schedule21B_qus2_comment_tview.text = _auditForm2.commentBox12.text;
+    completeForm.schedule21B_qus3_yesNo_lbl.text = _auditForm2.sd21b_emptyglobes;
+    completeForm.schedule21B_qus3_comment_tview.text = _auditForm2.commentBox13.text;
+    completeForm.schedule21B_qus4_yesNo_lbl.text = _auditForm2.sd21b_HEglobes;
+    completeForm.schedule21B_qus4_comment_tview.text = _auditForm2.commentBox14.text;
+    completeForm.schedule21B_qus5_yesNo_lbl.text = _auditForm2.sd21b_customerglobes;;
+    completeForm.schedule21B_qus5_comment_tview.text = _auditForm2.commentBox15.text;
+    completeForm.schedule21B_qus6_yesNo_lbl.text = _auditForm2.numField10.text;
+    completeForm.schedule21B_qus7_yesNo_lbl.text = _auditForm2.numField11.text;
+    completeForm.schedule21B_qus8_yesNo_lbl.text = _auditForm2.numField12.text;
+    completeForm.schedule21B_qus9_yesNo_lbl.text = _auditForm2.numField13.text;
+    completeForm.schedule21B_auditStatus_yesNo_lbl.text = _auditForm2.auditStatus3.titleLabel.text;
+    completeForm.schedule21B_auditStatus_comment_tview.text = _auditForm2.commentBox16.text;
+
+    completeForm.schedule21C_qus1_yesNo_lbl.text = _auditForm2.numField8.text;
+    completeForm.schedule21C_qus2_yesNo_lbl.text = _auditForm2.sd21c_sensorglobes;
+    completeForm.schedule21C_qus2_comment_tview.text = _auditForm2.commentBox21.text;
+    completeForm.schedule21C_qus3_yesNo_lbl.text = _auditForm2.sd21c_emptyglobe;
+    completeForm.schedule21C_qus3_comment_tview.text = _auditForm2.commentBox17.text;
+    completeForm.schedule21C_qus4_yesNo_lbl.text = _auditForm2.sd21c_heglobes;
+    completeForm.schedule21C_qus4_comment_tview.text = _auditForm2.commentBox18.text;
+    completeForm.schedule21C_qus5_yesNo_lbl.text = _auditForm2.sd21c_customerglobe;
+    completeForm.schedule21C_qus5_comment_tview.text = _auditForm2.commentBox19.text;
+    completeForm.schedule21C_qus6_yesNo_lbl.text = _auditForm2.numField16.text;
+    completeForm.schedule21C_qus7_yesNo_lbl.text = _auditForm2.numField15.text;
+    completeForm.schedule21C_qus8_yesNo_lbl.text = _auditForm2.numField14.text;
+    completeForm.schedule21C_qus9_yesNo_lbl.text = _auditForm2.numField17.text;
+    completeForm.schedule21C_auditStatus_yesNo_lbl.text = _auditForm2.auditStatus4.titleLabel.text;
+    completeForm.schedule21C_auditStatus_comment_tview.text = _auditForm2.commentBox20.text;
+    
     
 }
 

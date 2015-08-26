@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>9A3FC10D-D0D3-4F12-A1A9-1528445DE0FB</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>cyanergy</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>4AB535DC73A83360007FFAB24090AE390B62B7E1</key>
 		<string>https://github.com/soumarsi/Cyanergy.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>cyanergy.xcodeproj/project.xcworkspace</string>
+	<string>cyanergy.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>4AB535DC73A83360007FFAB24090AE390B62B7E1</key>
