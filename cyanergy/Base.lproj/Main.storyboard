@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WSJ-p0-mtx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WSJ-p0-mtx">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -10,6 +10,8 @@
             <string>Lato-Bold</string>
         </mutableArray>
         <mutableArray key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+            <string>Lato-Regular</string>
             <string>Lato-Regular</string>
             <string>Lato-Regular</string>
             <string>Lato-Regular</string>
@@ -159,7 +161,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rxc-RO-vFf">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <subviews>
-                                    <tableView hidden="YES" clipsSubviews="YES" tag="2" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="UXn-07-RIK">
+                                    <tableView clipsSubviews="YES" tag="2" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="106" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="UXn-07-RIK">
                                         <rect key="frame" x="121" y="60" width="903" height="708"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -167,13 +169,13 @@
                                             <constraint firstAttribute="height" constant="708" id="jy0-YG-hbC"/>
                                         </constraints>
                                         <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="CGhomelistTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="CGhomelistTableViewCell" rowHeight="50" id="Xrp-6C-0Vf" customClass="CGhomelistTableViewCell">
+                                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="CGhomelistTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="CGhomelistTableViewCell" rowHeight="106" id="Xrp-6C-0Vf" customClass="CGhomelistTableViewCell">
                                                 <rect key="frame" x="0.0" y="0.0" width="903" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xrp-6C-0Vf" id="bcu-ZL-aaT">
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New File" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K14-Py-Z0r">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K14-Py-Z0r">
                                                             <rect key="frame" x="28" y="0.0" width="245" height="41"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="41" id="WaO-2e-pXp"/>
@@ -183,6 +185,24 @@
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vyg-WW-Cbs">
+                                                            <rect key="frame" x="28" y="60" width="245" height="37"/>
+                                                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="20"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CxR-RM-dAN">
+                                                            <rect key="frame" x="651" y="8" width="220" height="33"/>
+                                                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="20"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v86-bN-dST">
+                                                            <rect key="frame" x="651" y="60" width="220" height="34"/>
+                                                            <state key="normal">
+                                                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </state>
+                                                        </button>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="K14-Py-Z0r" firstAttribute="top" secondItem="bcu-ZL-aaT" secondAttribute="top" id="E4t-Oq-cr7"/>
@@ -190,14 +210,13 @@
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
+                                                    <outlet property="creationdate" destination="Vyg-WW-Cbs" id="cEM-VE-1KS"/>
                                                     <outlet property="nameLabel" destination="K14-Py-Z0r" id="xZo-oY-p2b"/>
+                                                    <outlet property="pdfshow" destination="v86-bN-dST" id="5n4-IH-hkn"/>
+                                                    <outlet property="type" destination="CxR-RM-dAN" id="PX7-fc-2iR"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
-                                        <connections>
-                                            <outlet property="dataSource" destination="FOM-zF-Je2" id="YYA-Pn-3gd"/>
-                                            <outlet property="delegate" destination="FOM-zF-Je2" id="MZA-un-5M0"/>
-                                        </connections>
                                     </tableView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COMMING SOON" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="omi-Ut-Zgj">
                                         <rect key="frame" x="371" y="400" width="400" height="80"/>
@@ -231,6 +250,8 @@
                     <size key="freeformSize" width="1024" height="768"/>
                     <connections>
                         <outlet property="baseView" destination="Rxc-RO-vFf" id="hIt-BM-HV6"/>
+                        <outlet property="comingsoon" destination="omi-Ut-Zgj" id="ZmC-ep-r4p"/>
+                        <outlet property="listingTable" destination="UXn-07-RIK" id="c3L-S1-MzM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pmD-QB-gdw" userLabel="First Responder" sceneMemberID="firstResponder"/>

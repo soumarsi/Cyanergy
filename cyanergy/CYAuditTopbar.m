@@ -16,7 +16,7 @@
     self = [[[NSBundle mainBundle]loadNibNamed:@"CYAuditTopbar" owner:self options:nil] objectAtIndex:0];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"d-M-yyyy";
+    formatter.dateFormat = @"dd-MM-yyyy";
     NSString *string = [formatter stringFromDate:[NSDate date]];
     
     _date.text = [NSString stringWithFormat:@"%@",string];

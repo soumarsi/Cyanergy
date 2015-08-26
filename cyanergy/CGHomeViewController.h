@@ -22,6 +22,8 @@
 #import "mySmoothLineView.h"
 
 @interface CGHomeViewController : UIViewController<Homeviewcontroller,cgsidebar,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UITextViewDelegate,UIAlertViewDelegate,UIScrollViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UIPopoverControllerDelegate,CLLocationManagerDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *listingTable;
+@property (weak, nonatomic) IBOutlet UILabel *comingsoon;
 
 
 @property (nonatomic, strong) RightBar *homeNav;
@@ -39,5 +41,6 @@
 @property (nonatomic, strong) NSString *check;
 @property (nonatomic,strong) UIPickerView *categoryPickerView;
 @property (nonatomic, strong) UIView *background;
-
+@property (nonatomic, strong) NSMutableArray *imageTextArray;
+@property (nonatomic, strong) NSMutableArray *mainListedArray;
 @end

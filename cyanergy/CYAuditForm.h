@@ -40,6 +40,15 @@
 @property (strong, nonatomic) IBOutlet UISwitch *yesNo7;
 @property (strong, nonatomic) IBOutlet UISwitch *yesNo8;
 
+@property (strong, nonatomic) NSString *generalQuestion1;
+@property (strong, nonatomic) NSString *generalQuestion2;
+@property (strong, nonatomic) NSString *generalQuestion3;
+@property (strong, nonatomic) NSString *generalQuestion4;
+@property (strong, nonatomic) NSString *generalQuestion5;
+@property (strong, nonatomic) NSString *generalQuestion6;
+@property (strong, nonatomic) NSString *generalQuestion7;
+@property (strong, nonatomic) NSString *generalQuestion8;
+
 
 //@property (nonatomic, weak) id<switchFun>delegate;
 

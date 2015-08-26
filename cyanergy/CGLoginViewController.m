@@ -42,6 +42,10 @@
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     CGLoginViewController *vc = [sb instantiateViewControllerWithIdentifier:@"CGHomeViewController"];
     [self.navigationController pushViewController:vc animated:YES];
+    
+    [[NSUserDefaults standardUserDefaults]setObject:@"1" forKey:@"userid"];
+    [[NSUserDefaults standardUserDefaults]setObject:@"John Curter" forKey:@"username"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField

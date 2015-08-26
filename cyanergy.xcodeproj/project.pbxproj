@@ -19,6 +19,8 @@
 		2C5F8DAD1B8366A8008DC61D /* CGformpopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5F8DAC1B8366A8008DC61D /* CGformpopup.m */; };
 		2C7DCB261B84424500EB92CA /* CGformpopupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7DCB251B84424500EB92CA /* CGformpopupTableViewCell.m */; };
 		2C7DCB281B84536200EB92CA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C7DCB271B84536200EB92CA /* QuartzCore.framework */; };
+		2C7FC1AC1B8C6CB800E20070 /* Auditformdetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FC1AB1B8C6CB800E20070 /* Auditformdetails.m */; };
+		2C7FC1AF1B8C6CB900E20070 /* AuditImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FC1AE1B8C6CB900E20070 /* AuditImage.m */; };
 		2C8B2F351B81F4E500C06C43 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8B2F341B81F4E500C06C43 /* main.m */; };
 		2C8B2F381B81F4E500C06C43 /* CGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8B2F371B81F4E500C06C43 /* CGAppDelegate.m */; };
 		2C8B2F3B1B81F4E500C06C43 /* cyanergy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C8B2F391B81F4E500C06C43 /* cyanergy.xcdatamodeld */; };
@@ -31,6 +33,7 @@
 		2C8B2F611B820C8600C06C43 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C8B2F5D1B820C8600C06C43 /* Lato-Regular.ttf */; };
 		2C8B2F621B820C8600C06C43 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C8B2F5E1B820C8600C06C43 /* Lato-Bold.ttf */; };
 		2C8B2F631B820C8600C06C43 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C8B2F5F1B820C8600C06C43 /* Lato-Light.ttf */; };
+		2CCB19DA1B8D90AD00905B61 /* Listingtable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CCB19D91B8D90AD00905B61 /* Listingtable.m */; };
 		BEC37EF51B847DF7002339AC /* CYAuditForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC37EF41B847DF7002339AC /* CYAuditForm.m */; };
 		BEC37EF71B847E34002339AC /* CYAuditForm.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEC37EF61B847E34002339AC /* CYAuditForm.xib */; };
 		BEDB17DC1B8834940045BCEC /* CYAuditForm3.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDB17DB1B8834940045BCEC /* CYAuditForm3.m */; };
@@ -77,6 +80,10 @@
 		2C7DCB241B84424500EB92CA /* CGformpopupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGformpopupTableViewCell.h; sourceTree = "<group>"; };
 		2C7DCB251B84424500EB92CA /* CGformpopupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGformpopupTableViewCell.m; sourceTree = "<group>"; };
 		2C7DCB271B84536200EB92CA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		2C7FC1AA1B8C6CB800E20070 /* Auditformdetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Auditformdetails.h; sourceTree = "<group>"; };
+		2C7FC1AB1B8C6CB800E20070 /* Auditformdetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Auditformdetails.m; sourceTree = "<group>"; };
+		2C7FC1AD1B8C6CB900E20070 /* AuditImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuditImage.h; sourceTree = "<group>"; };
+		2C7FC1AE1B8C6CB900E20070 /* AuditImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuditImage.m; sourceTree = "<group>"; };
 		2C8B2F2F1B81F4E500C06C43 /* cyanergy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cyanergy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C8B2F331B81F4E500C06C43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C8B2F341B81F4E500C06C43 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -96,6 +103,8 @@
 		2C8B2F5E1B820C8600C06C43 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
 		2C8B2F5F1B820C8600C06C43 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
 		2C8B2F641B821A0C00C06C43 /* cyanergy-PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "cyanergy-PrefixHeader.pch"; sourceTree = "<group>"; };
+		2CCB19D81B8D90AD00905B61 /* Listingtable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Listingtable.h; sourceTree = "<group>"; };
+		2CCB19D91B8D90AD00905B61 /* Listingtable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Listingtable.m; sourceTree = "<group>"; };
 		BEC37EF31B847DF7002339AC /* CYAuditForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYAuditForm.h; sourceTree = "<group>"; };
 		BEC37EF41B847DF7002339AC /* CYAuditForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYAuditForm.m; sourceTree = "<group>"; };
 		BEC37EF61B847E34002339AC /* CYAuditForm.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CYAuditForm.xib; sourceTree = "<group>"; };
@@ -211,6 +220,19 @@
 			name = Cell;
 			sourceTree = "<group>";
 		};
+		2C7FC1A91B8C6B1100E20070 /* NSManageObject */ = {
+			isa = PBXGroup;
+			children = (
+				2C7FC1AD1B8C6CB900E20070 /* AuditImage.h */,
+				2C7FC1AE1B8C6CB900E20070 /* AuditImage.m */,
+				2C7FC1AA1B8C6CB800E20070 /* Auditformdetails.h */,
+				2C7FC1AB1B8C6CB800E20070 /* Auditformdetails.m */,
+				2CCB19D81B8D90AD00905B61 /* Listingtable.h */,
+				2CCB19D91B8D90AD00905B61 /* Listingtable.m */,
+			);
+			name = NSManageObject;
+			sourceTree = "<group>";
+		};
 		2C8B2F261B81F4E500C06C43 = {
 			isa = PBXGroup;
 			children = (
@@ -234,6 +256,7 @@
 		2C8B2F311B81F4E500C06C43 /* cyanergy */ = {
 			isa = PBXGroup;
 			children = (
+				2C7FC1A91B8C6B1100E20070 /* NSManageObject */,
 				BEF5C3121B8B26AB00CE4CDA /* SignatureFunc */,
 				2C5F8D9C1B835D78008DC61D /* Cell */,
 				2C5F8D8A1B82F43A008DC61D /* storyboard */,
@@ -411,8 +434,10 @@
 				BEF5C3181B8B26DA00CE4CDA /* SmoothLineView.m in Sources */,
 				2C5F8D9B1B832E86008DC61D /* CGsidebar.m in Sources */,
 				BEDB17DC1B8834940045BCEC /* CYAuditForm3.m in Sources */,
+				2C7FC1AF1B8C6CB900E20070 /* AuditImage.m in Sources */,
 				2C5F8D901B82F94C008DC61D /* UIFont+CGFont.m in Sources */,
 				BEDD0F5E1B85B97900782509 /* CYAuditForm2.m in Sources */,
+				2C7FC1AC1B8C6CB800E20070 /* Auditformdetails.m in Sources */,
 				2C5F8DAD1B8366A8008DC61D /* CGformpopup.m in Sources */,
 				2C5F8D8D1B82F498008DC61D /* RightBar.m in Sources */,
 				2C7DCB261B84424500EB92CA /* CGformpopupTableViewCell.m in Sources */,
@@ -428,6 +453,7 @@
 				BEF5C3171B8B26DA00CE4CDA /* mySmoothLineView.m in Sources */,
 				BEC37EF51B847DF7002339AC /* CYAuditForm.m in Sources */,
 				BEE96AB61B872DEB00AE2688 /* CYAuditTopbar.m in Sources */,
+				2CCB19DA1B8D90AD00905B61 /* Listingtable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
