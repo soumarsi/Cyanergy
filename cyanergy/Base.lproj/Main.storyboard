@@ -163,7 +163,7 @@
                                 <subviews>
                                     <tableView clipsSubviews="YES" tag="2" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="106" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="UXn-07-RIK">
                                         <rect key="frame" x="121" y="0.0" width="903" height="768"/>
-                                        <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="903" id="DvP-dT-LUJ"/>
                                             <constraint firstAttribute="height" constant="768" id="jy0-YG-hbC"/>
@@ -258,6 +258,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pmD-QB-gdw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1680" y="136"/>
+        </scene>
+        <!--Audit View Controller-->
+        <scene sceneID="7Th-UX-1lk">
+            <objects>
+                <viewController storyboardIdentifier="CGAuditViewController" id="hZy-Gi-FNa" customClass="CGAuditViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Q46-We-nyp"/>
+                        <viewControllerLayoutGuide type="bottom" id="7rM-0h-EQe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1yn-lt-NPh">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uri-VH-x13">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Uri-VH-x13" firstAttribute="leading" secondItem="1yn-lt-NPh" secondAttribute="leading" id="AP6-q7-oAW"/>
+                            <constraint firstItem="Uri-VH-x13" firstAttribute="top" secondItem="1yn-lt-NPh" secondAttribute="top" id="Egr-J1-0LR"/>
+                            <constraint firstAttribute="trailing" secondItem="Uri-VH-x13" secondAttribute="trailing" id="ZBA-of-1Lb"/>
+                            <constraint firstItem="Uri-VH-x13" firstAttribute="bottom" secondItem="7rM-0h-EQe" secondAttribute="top" id="inw-0T-Kjm"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="baseview" destination="Uri-VH-x13" id="1Dm-pD-gYK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Fr-mj-fYA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2569" y="91"/>
         </scene>
         <!--Navigation View Controller-->
         <scene sceneID="r59-sv-zqz">

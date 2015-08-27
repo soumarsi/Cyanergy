@@ -13,7 +13,7 @@
 
 @interface Auditformdetails : NSManagedObject
 
-@property (nonatomic, retain) NSDate *auditdate;
+@property (nonatomic, retain) NSString *auditdate;
 @property (nonatomic, retain) NSString * auditid;
 @property (nonatomic, retain) NSString * consumer_addline1;
 @property (nonatomic, retain) NSString * consumer_addline2;

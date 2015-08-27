@@ -15,7 +15,7 @@
 
 @property (nonatomic, retain) NSString * formtype;
 @property (nonatomic, retain) NSData * pdfdata;
-@property (nonatomic, retain) NSDate *creationdate;
+@property (nonatomic, retain) NSString *creationdate;
 @property (nonatomic, retain) NSString * customer_fname;
 @property (nonatomic, retain) NSString * customer_lname;
 @property (nonatomic, retain) Auditformdetails *auditform;

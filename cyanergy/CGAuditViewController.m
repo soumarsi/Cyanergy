@@ -1,52 +1,23 @@
 //
-//  CGHomeViewController.m
+//  CGAuditViewController.m
 //  cyanergy
 //
-//  Created by Soumarsi Kundu on 18/08/15.
+//  Created by Soumarsi Kundu on 27/08/15.
 //  Copyright (c) 2015 ESOLZ. All rights reserved.
 //
 
-#import "CGHomeViewController.h"
-#import "UIFont+CGFont.h"
+#import "CGAuditViewController.h"
 
-#import "CGAppDelegate.h"
-#import "Auditformdetails.h"
-#import "AuditImage.h"
-#import "Listingtable.h"
-#import "FormView.h"
-
-@interface CGHomeViewController (){
-    
-    CYAuditTopbar *topbar;
-    UIImage *MainImage;
-    UIActionSheet *sheet;
-    NSMutableArray *imgStoreArray;
-    UIImageView *dynamicImageView;
-    int count,divide;
-    UIButton *plusbutton;
-    CGFloat latitude,longitude;
-    UIButton *crossButton;
-    NSArray *pickerData;
-    NSString *status;
-    CGAppDelegate *cyanergyAppdelegate;
-    Auditformdetails *auditFormDetails;
-    AuditImage *auditImage;
-    Listingtable *Listed;
-    FormView *completeForm;
-}
+@interface CGAuditViewController ()
 
 @end
 
-@implementation CGHomeViewController
+@implementation CGAuditViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
 
-    _sideBar = [[CGsidebar alloc]init];
-    _sideBar.delegate = self;
-    [self.view addSubview:_sideBar];
-    
-    
     
     //------------CORE LOCATION FOR LAT LONG-------------//
     
@@ -62,41 +33,37 @@
     //-----------------------------------------------PK--//
     
     cyanergyAppdelegate = (CGAppDelegate *)[[UIApplication sharedApplication]delegate];
-    [self datashow];
     
+    
+    [self form1];
+    _auditForm.generalQuestion1 = @"No";
+    _auditForm.generalQuestion2 = @"No";
+    _auditForm.generalQuestion3 = @"No";
+    _auditForm.generalQuestion4 = @"No";
+    _auditForm.generalQuestion5 = @"No";
+    _auditForm.generalQuestion6 = @"No";
+    _auditForm.generalQuestion7 = @"No";
+    _auditForm.generalQuestion8 = @"No";
+    _auditForm2.sd15_doorinstall = @"No";
+    _auditForm2.sd15_chimneyinstall = @"No";
+    _auditForm2.sd15_externaldoorinstall = @"No";
+    _auditForm2.sd15_spareproduct = @"No";
+    _auditForm2.sd17_showerenergysaving = @"No";
+    _auditForm2.sd17_previousshower = @"No";
+    _auditForm2.sd17_spareshower = @"No";
+    _auditForm2.sd17_installbucket = @"No";
+    _auditForm2.sd21b_sensorglobes = @"No";
+    _auditForm2.sd21b_emptyglobes = @"No";
+    _auditForm2.sd21b_HEglobes = @"No";
+    _auditForm2.sd21b_customerglobes = @"No";
+    _auditForm2.sd21c_sensorglobes = @"No";
+    _auditForm2.sd21c_emptyglobe = @"No";
+    _auditForm2.sd21c_heglobes = @"No";
+    _auditForm2.sd21c_customerglobe = @"No";
     // Do any additional setup after loading the view.
 }
-
--(void)datashow
+-(void)logout
 {
-    
-    
-    
-    self.mainListedArray = [[NSMutableArray alloc]init];
-    
-    NSManagedObjectContext *manageobjectcontext = [cyanergyAppdelegate managedObjectContext];
-    NSFetchRequest *fetchrequst = [[NSFetchRequest alloc]init];
-    [fetchrequst setEntity:[NSEntityDescription entityForName:@"Listingtable" inManagedObjectContext:manageobjectcontext]];
-    NSError *error;
-    NSMutableArray *matchingNames = [[manageobjectcontext executeFetchRequest:fetchrequst error:&error] mutableCopy];
-    
-    self.mainListedArray = matchingNames;
-    
-    NSLog(@"-=-=-=-- %lu", (unsigned long)self.mainListedArray.count);
-    
-    if (self.mainListedArray.count == 0)
-    {
-        _comingsoon.hidden = NO;
-        _listingTable.hidden = YES;
-    }
-    else
-    {
-        
-        _listingTable.delegate = self;
-        _listingTable.dataSource = self;
-        _comingsoon.hidden = YES;
-        _listingTable.hidden = NO;
-    }
     
 }
 //--------- Location Manager Delegate Methods
@@ -105,8 +72,6 @@
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation{
     
-    NSLog(@"LAT--------> %f", newLocation.coordinate.latitude);
-    NSLog(@"LONG-------> %f", newLocation.coordinate.longitude);
     
     latitude = newLocation.coordinate.latitude;
     longitude = newLocation.coordinate.longitude;
@@ -114,13 +79,27 @@
     [self.locationManager stopUpdatingLocation];
     
 }
+//sidebar delegate method called
 
-
+-(void)formfunction
+{
+    
+}
+-(void)quotefunction
+{
+}
+-(void)invoicefunction
+{
+}
+-(void)syncfunction
+{
+    
+}
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-     self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBarHidden = NO;
     
     UIImage *buttonImage = [UIImage logoImage];
     
@@ -136,160 +115,23 @@
     UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.leftBarButtonItem = customBarItem;
     self.navigationItem.hidesBackButton = YES;
-
+    
     self.homeNav = [[RightBar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 160.0f, 45.0f)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.homeNav];
-   
+    
     self.homeNav.userName.text = @"Jhon Curter";
     
-}
-
--(void)logout
-{
+    _sideBar = [[CGsidebar alloc]init];
+    _sideBar.delegate = self;
+    [self.view addSubview:_sideBar];
     
-}
-
-//sidebar delegate method called
-
--(void)formfunction
-{
     self.sideBar.quoteButton.selected = NO;
     self.sideBar.invoiceButton.selected = NO;
     self.sideBar.quoteButton.highlighted = NO;
     self.sideBar.invoiceButton.highlighted = NO;
     self.sideBar.formButton.selected = YES;
-    
-    _formPopUp = [[CGformpopup alloc]initWithFrame:CGRectMake(300, 300, 345, 345)];
-    [self.baseView addSubview:_formPopUp];
-    _formPopUp.popupListView.delegate = self;
-    _formPopUp.popupListView.dataSource = self;
-    
-
+    self.sideBar.formButton.highlighted = YES;
 }
--(void)quotefunction
-{
-    self.sideBar.quoteButton.selected = YES;
-    self.sideBar.formButton.selected = NO;
-    self.sideBar.invoiceButton.selected = NO;
-    self.sideBar.formButton.highlighted = NO;
-    self.sideBar.invoiceButton.highlighted = NO;
-    
-    [_formPopUp removeFromSuperview];
-    
-    UIView *createExistingView=[[[NSBundle mainBundle] loadNibNamed:@"Formpopup" owner:self options:Nil] objectAtIndex:0];
-    CGRect tempRect=[createExistingView frame];
-    tempRect.origin.x       =   0.0f;
-    tempRect.origin.y       =   121.0f;
-    [createExistingView setFrame:tempRect];
-     [self.baseView addSubview:createExistingView];
-
-}
--(void)invoicefunction
-{
-    self.sideBar.formButton.selected = NO;
-    self.sideBar.quoteButton.selected = NO;
-    self.sideBar.formButton.highlighted = NO;
-    self.sideBar.quoteButton.highlighted = NO;
-    self.sideBar.invoiceButton.selected = YES;
-    [_formPopUp removeFromSuperview];
-}
--(void)syncfunction
-{
-    
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-       return 1;    //count of section
-}
-
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    if (_formPopUp.popupListView.tag == 1)
-    {
-        return 3;
-    }
-    return self.mainListedArray.count;    //count number of row from counting array hear cataGorry is An Array
-}
-
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (_formPopUp.popupListView.tag == 1)
-    {
-            DebugLog(@"======numberofsection");
-        static NSString *CellIdentifier = @"Formpopup";
-        CGformpopupTableViewCell *cell = (CGformpopupTableViewCell *)[_formPopUp.popupListView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
-        if (cell == nil) {
-            NSArray *nibArray = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
-            cell = (CGformpopupTableViewCell *)[nibArray objectAtIndex:1];
-        }
-        
-        cell.popupNameLabel.text = @"CYANERGY FIELD AUDIT FORM";
-         return cell;
-    }
-    else
-    {
-            DebugLog(@"======numberofsection2");
-        
-    CGhomelistTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CGhomelistTableViewCell" forIndexPath:indexPath];
-        
-        Listingtable *list = [self.mainListedArray objectAtIndex:indexPath.row];
-        
-        cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@",list.customer_fname,list.customer_lname];
-        cell.creationdate.text = [NSString stringWithFormat:@"Created on : %@",list.auditform.auditdate];
-        cell.type.text = [NSString stringWithFormat:@"Formtype : %@",list.auditform.formtype];
-        [cell.pdfshow setTitle:list.auditform.auditimage.auditid forState:UIControlStateNormal];
-         return cell;
-    }
-
-}
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if (_formPopUp.popupListView.tag == 1){
-        
-        
-        [_formPopUp removeFromSuperview];
-        
-        if (indexPath.row == 0) {
-            
-            [self form1];
-            _auditForm.generalQuestion1 = @"No";
-            _auditForm.generalQuestion2 = @"No";
-            _auditForm.generalQuestion3 = @"No";
-            _auditForm.generalQuestion4 = @"No";
-            _auditForm.generalQuestion5 = @"No";
-            _auditForm.generalQuestion6 = @"No";
-            _auditForm.generalQuestion7 = @"No";
-            _auditForm.generalQuestion8 = @"No";
-            _auditForm2.sd15_doorinstall = @"No";
-            _auditForm2.sd15_chimneyinstall = @"No";
-            _auditForm2.sd15_externaldoorinstall = @"No";
-            _auditForm2.sd15_spareproduct = @"No";
-            _auditForm2.sd17_showerenergysaving = @"No";
-            _auditForm2.sd17_previousshower = @"No";
-            _auditForm2.sd17_spareshower = @"No";
-            _auditForm2.sd17_installbucket = @"No";
-            _auditForm2.sd21b_sensorglobes = @"No";
-            _auditForm2.sd21b_emptyglobes = @"No";
-            _auditForm2.sd21b_HEglobes = @"No";
-            _auditForm2.sd21b_customerglobes = @"No";
-            _auditForm2.sd21c_sensorglobes = @"No";
-            _auditForm2.sd21c_emptyglobe = @"No";
-            _auditForm2.sd21c_heglobes = @"No";
-            _auditForm2.sd21c_customerglobe = @"No";
-        }
-        
-        
-    }
-    
-}
-
-//------------------------------FORM 1----------------------------//
-
 -(void)form1{
     
     _check = @"step1";
@@ -303,7 +145,7 @@
     tempRect.origin.x       =   121.0f;
     tempRect.origin.y       =   63.0f;
     [topbar setFrame:tempRect];
-    [self.baseView addSubview:topbar];
+    [self.baseview addSubview:topbar];
     
     //------Setting to set view frame------//
     
@@ -313,7 +155,7 @@
     tempRect1.origin.x       =   121.0f;
     tempRect1.origin.y       =   103.0f;
     [_auditForm setFrame:tempRect1];
-    [self.baseView addSubview:_auditForm];
+    [self.baseview addSubview:_auditForm];
     
     _auditForm.firstName.layer.borderColor = [[UIColor uniGrayColor] CGColor];
     _auditForm.lastName.layer.borderColor = [[UIColor uniGrayColor] CGColor];
@@ -348,7 +190,95 @@
     [_auditForm.next addTarget:self action:@selector(next) forControlEvents:UIControlEventTouchUpInside];
     
 }
-
+-(void)next{
+    
+    if ([_auditForm.firstName.text isEqualToString:@""]) {
+        
+        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter your first name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [_alertView show];
+        
+    }else if ([_auditForm.lastName.text isEqualToString:@""]){
+        
+        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter your last name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [_alertView show];
+        
+    }else if ([_auditForm.suburb.text isEqualToString:@""]){
+        
+        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter suburb" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [_alertView show];
+        
+    }else if ([_auditForm.postcode.text isEqualToString:@""]){
+        
+        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter postal code" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [_alertView show];
+        
+    }else if ([_auditForm.address1.text isEqualToString:@""] && [_auditForm.address2.text isEqualToString:@""]){
+        
+        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter address" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [_alertView show];
+        
+    }else if ([_auditForm.state.text isEqualToString:@""]){
+        
+        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter state" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [_alertView show];
+        
+    }else if ([_auditForm.installFirstName.text isEqualToString:@""]){
+        
+        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter installer first name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [_alertView show];
+        
+    }else if ([_auditForm.installLastName.text isEqualToString:@""]){
+        
+        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter installer last name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [_alertView show];
+        
+    }else if ([_auditForm.comment.text isEqualToString:@""]){
+        
+        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please give comment" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [_alertView show];
+        
+    }else if ([_auditForm.comment.text isEqualToString:@"Give your comment here"]){
+        
+        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please give comment" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [_alertView show];
+        
+    }else if ([_auditForm.phone.text isEqualToString:@""]) {
+        
+        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Phone number cannot be blank" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [_alertView show];
+        
+    }else if(_auditForm.phone.text.length < 10 || _auditForm.phone.text.length >10){
+        
+        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Phone number must be of 10 digits" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [_alertView show];
+        
+    }else if ([_auditForm.phone.text rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location != NSNotFound){
+        
+        DebugLog(@"This field accepts only numeric entries.");
+        
+        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please give only numeric value" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [_alertView show];
+        
+    }else{
+        
+        [self form2];
+        
+    }
+    
+}
 //------------------------FORM 2-------------------//
 
 -(void)form2{
@@ -366,7 +296,7 @@
     tempRect1.origin.x       =   121.0f;
     tempRect1.origin.y       =   103.0f;
     [_auditForm2 setFrame:tempRect1];
-    [self.baseView addSubview:_auditForm2];
+    [self.baseview addSubview:_auditForm2];
     
     _auditForm2.scrollV.delegate = self;
     [_auditForm2.scrollV setContentSize:CGSizeMake(0, _auditForm2.scrollV.frame.origin.y+_auditForm2.scrollV.frame.size.height+4000)];
@@ -448,7 +378,20 @@
                                                object:nil];
     
 }
-
+-(void)next2{
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(myKeyboardWillHideHandler:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+    
+    _imageTextArray = [[NSMutableArray alloc]init];
+    imgStoreArray = [[NSMutableArray alloc]init];
+    
+    [self form3];
+    [self tileFunc];
+    
+}
 //------------------------------FORM 3------------------------//
 
 -(void)form3{
@@ -463,10 +406,10 @@
     tempRect2.origin.x       =   121.0f;
     tempRect2.origin.y       =   103.0f;
     [_auditForm3 setFrame:tempRect2];
-    [self.baseView addSubview:_auditForm3];
-
+    [self.baseview addSubview:_auditForm3];
     
-  
+    
+    
     [_auditForm3.scrollV setUserInteractionEnabled:NO];
     
     _auditForm3.latitudeLabel.text = [NSString stringWithFormat:@"%f",latitude];
@@ -482,7 +425,7 @@
     [_auditForm3.auditorSigView addSubview: _auditorsignView];
     
     //---Customer Signature---//
-
+    
     _cosumerSignView= [[ mySmoothLineView alloc] initWithFrame:CGRectMake(0,0,430,170)];
     [_cosumerSignView setBackgroundColor:[UIColor clearColor]];
     [_auditForm3.custSigView addSubview:_cosumerSignView];
@@ -496,47 +439,7 @@
                                              selector:@selector(myKeyboardWillHideHandler:)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
-
     
-}
-
--(void)addImage{
-
-    
-        
-        [self startMediaBrowserFromViewController:self usingDelegate:self];
-
-    
-}
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    
-    
-    if(buttonIndex==actionSheet.cancelButtonIndex){
-        
-//        [_auditForm3.addImage setHidden:NO];
-//        [_auditForm3.addImage setUserInteractionEnabled:YES];
-        
-        return;
-    }
-    
-//    [self startMediaBrowserFromViewController:self usingDelegate:self];
-    
-//    UIImagePickerControllerSourceType type = UIImagePickerControllerSourceTypePhotoLibrary;
-//    
-//    if([UIImagePickerController isSourceTypeAvailable:type]){
-//        if(buttonIndex==0 && [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
-//            type = UIImagePickerControllerSourceTypeCamera;
-//        }
-//        
-//        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-//        picker.allowsEditing = YES;
-//        picker.delegate   = self;
-//        picker.sourceType = type;
-//
-//        [self presentViewController:picker animated:YES completion:nil];
-//    
-//    }
     
 }
 -(void)tileFunc{
@@ -589,7 +492,7 @@
             count = k % 2;
             divide = k/ 2.0f;
             
-           
+            
             NSLog(@"entry-=-=-=-=-=--=");
             if (imgStoreArray.count == k)
             {
@@ -622,7 +525,7 @@
                 dynamicImageView.clipsToBounds = YES;
                 dynamicImageView.layer.borderColor = [[UIColor grayColor]CGColor];
                 [_auditForm3.scrollV addSubview:dynamicImageView];
-                DebugLog(@"DIVIDE--------> %@",[imgStoreArray objectAtIndex:k]);
+                
                 dynamicImageView.image =[UIImage imageWithData:[imgStoreArray objectAtIndex:k]];
                 
                 [plusbutton removeFromSuperview];
@@ -667,17 +570,55 @@
     [_imageTextArray removeObjectAtIndex:sender.tag];
     
     
-    NSLog(@"-=-=-=-=--= imagstorearray-=-= %@===== %lu", imgStoreArray,(unsigned long)imgStoreArray.count);
     
     [self next2];
     
+    
+}
+-(void)addImage{
+    
+    
+    
+    [self startMediaBrowserFromViewController:self usingDelegate:self];
+    
+    
+}
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    
+    if(buttonIndex==actionSheet.cancelButtonIndex){
+        
+        //        [_auditForm3.addImage setHidden:NO];
+        //        [_auditForm3.addImage setUserInteractionEnabled:YES];
+        
+        return;
+    }
+    
+    //    [self startMediaBrowserFromViewController:self usingDelegate:self];
+    
+    //    UIImagePickerControllerSourceType type = UIImagePickerControllerSourceTypePhotoLibrary;
+    //
+    //    if([UIImagePickerController isSourceTypeAvailable:type]){
+    //        if(buttonIndex==0 && [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+    //            type = UIImagePickerControllerSourceTypeCamera;
+    //        }
+    //
+    //        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    //        picker.allowsEditing = YES;
+    //        picker.delegate   = self;
+    //        picker.sourceType = type;
+    //
+    //        [self presentViewController:picker animated:YES completion:nil];
+    //    
+    //    }
     
 }
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     
     MainImage= info[UIImagePickerControllerEditedImage];
     
-    DebugLog(@"COUNT--------> %ld     %ld",(long)dynamicImageView.tag,(unsigned long)imgStoreArray.count);
+    
     
     [picker dismissViewControllerAnimated:YES completion:Nil];
     
@@ -717,7 +658,7 @@
             if ([sender isOn]) {
                 
                 _auditForm.generalQuestion1 = @"Yes";
-
+                
             }else{
                 
                 _auditForm.generalQuestion1 = @"No";
@@ -819,113 +760,8 @@
         default:
             break;
     }
-
-}
--(void)next{
-    
-    if ([_auditForm.firstName.text isEqualToString:@""]) {
-        
-        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter your first name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [_alertView show];
-        
-    }else if ([_auditForm.lastName.text isEqualToString:@""]){
-        
-        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter your last name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [_alertView show];
-        
-    }else if ([_auditForm.suburb.text isEqualToString:@""]){
-        
-        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter suburb" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [_alertView show];
-        
-    }else if ([_auditForm.postcode.text isEqualToString:@""]){
-        
-        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter postal code" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [_alertView show];
-        
-    }else if ([_auditForm.address1.text isEqualToString:@""] && [_auditForm.address2.text isEqualToString:@""]){
-        
-        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter address" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [_alertView show];
-        
-    }else if ([_auditForm.state.text isEqualToString:@""]){
-        
-        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter state" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [_alertView show];
-        
-    }else if ([_auditForm.installFirstName.text isEqualToString:@""]){
-        
-        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter installer first name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [_alertView show];
-        
-    }else if ([_auditForm.installLastName.text isEqualToString:@""]){
-        
-        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter installer last name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [_alertView show];
-        
-    }else if ([_auditForm.comment.text isEqualToString:@""]){
-        
-        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please give comment" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [_alertView show];
-        
-    }else if ([_auditForm.comment.text isEqualToString:@"Give your comment here"]){
-        
-        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please give comment" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [_alertView show];
-        
-    }else if ([_auditForm.phone.text isEqualToString:@""]) {
-        
-        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Phone number cannot be blank" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [_alertView show];
-        
-    }else if(_auditForm.phone.text.length < 10 || _auditForm.phone.text.length >10){
-        
-        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Phone number must be of 10 digits" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [_alertView show];
-        
-    }else if ([_auditForm.phone.text rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location != NSNotFound){
-
-        DebugLog(@"This field accepts only numeric entries.");
-        
-        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please give only numeric value" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [_alertView show];
-        
-    }else{
-    
-            [self form2];
-        
-        }
     
 }
--(void)next2{
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(myKeyboardWillHideHandler:)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
-    
-    _imageTextArray = [[NSMutableArray alloc]init];
-    imgStoreArray = [[NSMutableArray alloc]init];
-    
-    [self form3];
-    [self tileFunc];
-    
-}
-
-
 -(void)yesno:(UISwitch *)sender{
     
     
@@ -960,7 +796,7 @@
             
             if ([sender isOn]) {
                 
-                 _auditForm2.sd15_externaldoorinstall = @"Yes";
+                _auditForm2.sd15_externaldoorinstall = @"Yes";
                 
             }else{
                 
@@ -1081,7 +917,7 @@
                 
             }
             break;
-
+            
         case 13:
             
             if ([sender isOn]) {
@@ -1131,7 +967,7 @@
                 
             }
             break;
-
+            
             
         default:
             break;
@@ -1154,7 +990,6 @@
     [_auditForm3 removeFromSuperview];
     
 }
-
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
     
     DebugLog(@"CHECK--------> %@",_check);
@@ -1193,11 +1028,11 @@
         tempRect.origin.x       =   121.0f;
         tempRect.origin.y       =   103.0f;
         [_auditForm3 setFrame:tempRect];
-
-    [_imageTextArray removeObjectAtIndex:textField.tag];
-    [_imageTextArray insertObject:textField.text atIndex:textField.tag];
         
-    NSLog(@"imagetextarray--=-=-= %lu", (unsigned long)self.imageTextArray.count);
+        [_imageTextArray removeObjectAtIndex:textField.tag];
+        [_imageTextArray insertObject:textField.text atIndex:textField.tag];
+        
+        NSLog(@"imagetextarray--=-=-= %lu", (unsigned long)self.imageTextArray.count);
     }
 }
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
@@ -1236,7 +1071,7 @@
         tempRect.origin.x       =   121.0f;
         tempRect.origin.y       =   103.0f;
         [_auditForm setFrame:tempRect];
-
+        
     }else if ([_check isEqualToString:@"step2"]) {
         
         CGRect tempRect=[_auditForm2 frame];
@@ -1252,7 +1087,7 @@
         [_auditForm3 setFrame:tempRect];
         
     }
-   
+    
 }
 
 -(void)auditStatus:(UIButton *)sender{
@@ -1284,22 +1119,22 @@
     doneBtn.tag = sender.tag;
     
     UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-
-
+    
+    
     
     UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(categoryCancelButtonPressed)];
     
     [pickerToolbar setItems:@[cancelBtn,flexSpace, doneBtn] animated:YES];
-
-
+    
+    
     
     [_background addSubview:pickerToolbar];
     [_background addSubview:_categoryPickerView];
     
     
-
-   status = [pickerData objectAtIndex:[_categoryPickerView selectedRowInComponent:0]];
-
+    
+    status = [pickerData objectAtIndex:[_categoryPickerView selectedRowInComponent:0]];
+    
     NSLog(@"status-- %@", status);
     //-------------------------------------------------------
     
@@ -1326,13 +1161,6 @@
     return pickerData[row];
 }
 
-//- (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
-//{
-//    NSAttributedString *attString = [[NSAttributedString alloc] initWithString:pickerData[row] attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
-//    
-//    return attString;
-//    
-//}
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     DebugLog(@"did select-----> %@",pickerData[row]);
@@ -1355,7 +1183,7 @@
         [_auditForm2.auditStatus1 setTitle:status forState:UIControlStateNormal];
         
     }else if (sender.tag == 2) {
-     
+        
         [_auditForm2.auditStatus2 setTitle:status forState:UIControlStateNormal];
         
     }else if (sender.tag == 3) {
@@ -1392,12 +1220,6 @@
     
     
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
 -(void)submit
 {
     
@@ -1405,8 +1227,7 @@
     formatter.dateFormat = @"dd-MM-yyyy";
     NSString *string = [formatter stringFromDate:[NSDate date]];
     
-    NSDateFormatter *myXMLdateReader = [[NSDateFormatter alloc] init];
-    NSDate *dateformet = [myXMLdateReader dateFromString:string];
+    
     
     NSManagedObjectContext *manageobjectcon = [cyanergyAppdelegate managedObjectContext];
     auditFormDetails = [NSEntityDescription insertNewObjectForEntityForName:@"Auditformdetails" inManagedObjectContext:manageobjectcon];
@@ -1416,11 +1237,11 @@
     
     NSManagedObjectContext *manageobjectcon2 = [cyanergyAppdelegate managedObjectContext];
     Listed = [NSEntityDescription insertNewObjectForEntityForName:@"Listingtable" inManagedObjectContext:manageobjectcon2];
-
+    
     auditFormDetails.userid = [[NSUserDefaults standardUserDefaults]objectForKey:@"userid"];
     auditFormDetails.username = [[NSUserDefaults standardUserDefaults]objectForKey:@"username"];
     auditFormDetails.auditid = @"1";
-    auditFormDetails.auditdate = dateformet;
+    auditFormDetails.auditdate = string;
     auditFormDetails.formtype = @"Audit";
     auditFormDetails.consumer_fname = _auditForm.firstName.text;
     auditFormDetails.consumer_lname = _auditForm.lastName.text;
@@ -1487,7 +1308,7 @@
     auditFormDetails.sd21b_installheglobes = _auditForm2.numField13.text;
     auditFormDetails.sd21b_auditstatus = _auditForm2.auditStatus3.titleLabel.text;
     auditFormDetails.sd21b_comment = _auditForm2.commentBox16.text;
-
+    
     
     auditFormDetails.sd21c_totalnoglobes = _auditForm2.numField18.text;
     auditFormDetails.sd21c_sensorglobes = _auditForm2.sd21c_sensorglobes;
@@ -1515,16 +1336,20 @@
     auditImage.imagetext = arrayDatatext;
     
     Listed.formtype = @"Audit";
-    Listed.creationdate = dateformet;
+    Listed.creationdate = string;
     Listed.customer_fname =_auditForm.firstName.text;
     Listed.customer_lname = _auditForm.lastName.text;
+    
+    [self fillForm];
+    
+    Listed.pdfdata = pdfData;
     
     auditFormDetails.auditimage = auditImage;
     Listed.auditform = auditFormDetails;
     
     [cyanergyAppdelegate saveContext];
     
-    [self fillForm];
+    
     
     [self mainView];
     
@@ -1532,7 +1357,12 @@
 
 -(void)fillForm{
     
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"dd-MM-yyyy";
+    NSString *string = [formatter stringFromDate:[NSDate date]];
+    
     completeForm.auditor_name_lbl.text = [[NSUserDefaults standardUserDefaults]objectForKey:@"username"];
+    completeForm.date_lbl.text = string;
     completeForm.first_name_lbl.text = _auditForm.firstName.text;
     completeForm.last_name_lbl.text = _auditForm.lastName.text;
     completeForm.subrub_lbl.text = _auditForm.suburb.text;
@@ -1566,7 +1396,7 @@
     completeForm.schedule15_qus9_yesNo_lbl.text = _auditForm2.sd15_externaldoorinstall;
     completeForm.schedule15_qus9_comment_tview.text = _auditForm2.commentBox5.text;
     completeForm.schedule15_qus10_yesNo_lbl.text = _auditForm2.sd15_spareproduct;
-     completeForm.schedule15_qus10_comment_tview.text = _auditForm2.commentBox6.text;
+    completeForm.schedule15_qus10_comment_tview.text = _auditForm2.commentBox6.text;
     completeForm.schedule15_auditStatus_yesNo_lbl.text = _auditForm2.auditStatus1.titleLabel.text;
     completeForm.schedule15_auditStatus_comment_tview.text = _auditForm2.commentBox2.text;
     
@@ -1598,7 +1428,7 @@
     completeForm.schedule21B_qus9_yesNo_lbl.text = _auditForm2.numField13.text;
     completeForm.schedule21B_auditStatus_yesNo_lbl.text = _auditForm2.auditStatus3.titleLabel.text;
     completeForm.schedule21B_auditStatus_comment_tview.text = _auditForm2.commentBox16.text;
-
+    
     completeForm.schedule21C_qus1_yesNo_lbl.text = _auditForm2.numField8.text;
     completeForm.schedule21C_qus2_yesNo_lbl.text = _auditForm2.sd21c_sensorglobes;
     completeForm.schedule21C_qus2_comment_tview.text = _auditForm2.commentBox21.text;
@@ -1616,18 +1446,109 @@
     completeForm.schedule21C_auditStatus_comment_tview.text = _auditForm2.commentBox20.text;
     
     
+    
+    for (int k = 0; k < imgStoreArray.count; k++)
+    {
+        
+        NSLog(@"-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=%d",k);
+        
+        count = k % 2;
+        divide = k/ 2.0f;
+        
+        
+        
+        dynamicImageView = [[UIImageView alloc]init];
+        dynamicImageView.frame = CGRectMake((8+390)*count+8, (270*divide)+4416, 390, 225);
+        dynamicImageView.tag = k;
+        dynamicImageView.backgroundColor = [UIColor clearColor];
+        dynamicImageView.layer.borderWidth = 1.0f;
+        dynamicImageView.contentMode = UIViewContentModeScaleAspectFill;
+        dynamicImageView.clipsToBounds = YES;
+        dynamicImageView.layer.borderColor = [[UIColor grayColor]CGColor];
+        [completeForm.baseView addSubview:dynamicImageView];
+        DebugLog(@"DIVIDE--------> %@",[imgStoreArray objectAtIndex:k]);
+        dynamicImageView.image =[UIImage imageWithData:[imgStoreArray objectAtIndex:k]];
+        
+        
+        
+        
+        _imageText = [[UITextField alloc]initWithFrame:CGRectMake((8+390)*count+8, (270*divide)+225+4416, 440, 39)];
+        [self.imageText setTextAlignment:NSTextAlignmentCenter];
+        [self.imageText setTextColor:[UIColor blackColor]];
+        [self.imageText setFont:[UIFont imageTextFont]];
+        [self.imageText setDelegate:self];
+        self.imageText.text = [_imageTextArray objectAtIndex:k];
+        self.imageText.layer.borderWidth = 1.0f;
+        self.imageText.layer.borderColor = [[UIColor grayColor]CGColor];
+        [completeForm.baseView addSubview:_imageText];
+    }
+    
+    
+    DebugLog(@"FRAME-------->X= %f , Y= %f , WID= %f , HEI= %f",dynamicImageView.frame.origin.x, dynamicImageView.frame.origin.y,dynamicImageView.frame.size.width,dynamicImageView.frame.size.height);
+    DebugLog(@"COUNT--------> %d",count);
+    
+    
+    completeForm.baseView.frame = CGRectMake(0.0f, 0, 800.0f, (270*divide)+225+4416+80);
+    
+    
+    
+    [self createpdf];
+    
+}
+-(void)createpdf
+{
+    [self createPDFfromUIView:completeForm saveToDocumentsWithFileName:@"myPdf.pdf"];
+}
+
+-(NSMutableData *)createPDFDatafromUIView:(UIView*)aView
+{
+    // Creates a mutable data object for updating with binary data, like a byte array
+    pdfData = [NSMutableData data];
+    
+    // Points the pdf converter to the mutable data object and to the UIView to be converted
+    UIGraphicsBeginPDFContextToData(pdfData, aView.bounds, nil);
+    UIGraphicsBeginPDFPage();
+    CGContextRef pdfContext = UIGraphicsGetCurrentContext();
+    // draws rect to the view and thus this is captured by UIGraphicsBeginPDFContextToData
+    
+    [aView.layer renderInContext:pdfContext];
+    
+    // remove PDF rendering context
+    UIGraphicsEndPDFContext();
+    
+    return pdfData;
+}
+
+
+-(NSString*)createPDFfromUIView:(UIView*)aView saveToDocumentsWithFileName:(NSString*)aFilename
+{
+    // Creates a mutable data object for updating with binary data, like a byte array
+    pdfData = [self createPDFDatafromUIView:aView];
+    
+    // Retrieves the document directories from the iOS device
+    NSArray* documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
+    
+    NSString* documentDirectory = [documentDirectories objectAtIndex:0];
+    NSString* documentDirectoryFilename = [documentDirectory stringByAppendingPathComponent:aFilename];
+    
+    // instructs the mutable data object to write its context to a file on disk
+    
+    [pdfData writeToFile:documentDirectoryFilename atomically:YES];
+    NSLog(@"documentDirectoryFileName: %@",documentDirectoryFilename);
+    return documentDirectoryFilename;
 }
 
 -(void)mainView
 {
+    CGAuditViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"CGHomeViewController"];
+    [self.navigationController pushViewController:vc animated:YES];
     
-    [_auditForm removeFromSuperview];
-    [_auditForm2 removeFromSuperview];
-    [_auditForm3 removeFromSuperview];
-    [topbar removeFromSuperview];
-    [_formPopUp removeFromSuperview];
-    
-    [self datashow];
+}
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 /*

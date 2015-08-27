@@ -21,26 +21,14 @@
 #import "UIColor+CGColor.h"
 #import "mySmoothLineView.h"
 
-@interface CGHomeViewController : UIViewController<Homeviewcontroller,cgsidebar,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UITextViewDelegate,UIAlertViewDelegate,UIScrollViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UIPopoverControllerDelegate,CLLocationManagerDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
+@interface CGHomeViewController : UIViewController<Homeviewcontroller,cgsidebar,UIAlertViewDelegate,UIScrollViewDelegate,UINavigationControllerDelegate,CLLocationManagerDelegate,UITableViewDataSource,UITableViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UITableView *listingTable;
 @property (weak, nonatomic) IBOutlet UILabel *comingsoon;
-
-
 @property (nonatomic, strong) RightBar *homeNav;
 @property (nonatomic, strong) CGsidebar *sideBar;
 @property (nonatomic, strong) CGformpopup *formPopUp;
-@property (nonatomic, strong) CYAuditForm *auditForm;
-@property (nonatomic, strong) CYAuditForm2 *auditForm2;
-@property (nonatomic, strong) CYAuditForm3 *auditForm3;
 @property (weak, nonatomic) IBOutlet UIView *baseView;
-@property (nonatomic) UIAlertView *alertView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
-@property (strong, nonatomic) mySmoothLineView *auditorsignView;
-@property (strong, nonatomic) mySmoothLineView *cosumerSignView;
-@property (strong, nonatomic) UITextField *imageText;
-@property (nonatomic, strong) NSString *check;
-@property (nonatomic,strong) UIPickerView *categoryPickerView;
-@property (nonatomic, strong) UIView *background;
-@property (nonatomic, strong) NSMutableArray *imageTextArray;
 @property (nonatomic, strong) NSMutableArray *mainListedArray;
 @end

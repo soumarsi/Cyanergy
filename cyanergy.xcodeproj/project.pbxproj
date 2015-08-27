@@ -33,6 +33,7 @@
 		2C8B2F611B820C8600C06C43 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C8B2F5D1B820C8600C06C43 /* Lato-Regular.ttf */; };
 		2C8B2F621B820C8600C06C43 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C8B2F5E1B820C8600C06C43 /* Lato-Bold.ttf */; };
 		2C8B2F631B820C8600C06C43 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C8B2F5F1B820C8600C06C43 /* Lato-Light.ttf */; };
+		2C94149E1B8ECB3F002C118F /* CGAuditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C94149D1B8ECB3F002C118F /* CGAuditViewController.m */; };
 		2CCB19DA1B8D90AD00905B61 /* Listingtable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CCB19D91B8D90AD00905B61 /* Listingtable.m */; };
 		BEC37EF51B847DF7002339AC /* CYAuditForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC37EF41B847DF7002339AC /* CYAuditForm.m */; };
 		BEC37EF71B847E34002339AC /* CYAuditForm.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEC37EF61B847E34002339AC /* CYAuditForm.xib */; };
@@ -105,6 +106,8 @@
 		2C8B2F5E1B820C8600C06C43 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
 		2C8B2F5F1B820C8600C06C43 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
 		2C8B2F641B821A0C00C06C43 /* cyanergy-PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "cyanergy-PrefixHeader.pch"; sourceTree = "<group>"; };
+		2C94149C1B8ECB3F002C118F /* CGAuditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGAuditViewController.h; sourceTree = "<group>"; };
+		2C94149D1B8ECB3F002C118F /* CGAuditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGAuditViewController.m; sourceTree = "<group>"; };
 		2CCB19D81B8D90AD00905B61 /* Listingtable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Listingtable.h; sourceTree = "<group>"; };
 		2CCB19D91B8D90AD00905B61 /* Listingtable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Listingtable.m; sourceTree = "<group>"; };
 		BEC37EF31B847DF7002339AC /* CYAuditForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYAuditForm.h; sourceTree = "<group>"; };
@@ -205,6 +208,8 @@
 				2C5F8D7C1B82EB9D008DC61D /* CGHomeViewController.m */,
 				2C5F8D811B82EC5A008DC61D /* CGNavigationViewController.h */,
 				2C5F8D821B82EC5A008DC61D /* CGNavigationViewController.m */,
+				2C94149C1B8ECB3F002C118F /* CGAuditViewController.h */,
+				2C94149D1B8ECB3F002C118F /* CGAuditViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -451,6 +456,7 @@
 				2C5F8DAD1B8366A8008DC61D /* CGformpopup.m in Sources */,
 				2C5F8D8D1B82F498008DC61D /* RightBar.m in Sources */,
 				2C7DCB261B84424500EB92CA /* CGformpopupTableViewCell.m in Sources */,
+				2C94149E1B8ECB3F002C118F /* CGAuditViewController.m in Sources */,
 				2C8B2F381B81F4E500C06C43 /* CGAppDelegate.m in Sources */,
 				2C8B2F3B1B81F4E500C06C43 /* cyanergy.xcdatamodeld in Sources */,
 				2C5F8D831B82EC5A008DC61D /* CGNavigationViewController.m in Sources */,

@@ -87,7 +87,7 @@
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RM3-Eh-clg">
                             <rect key="frame" x="131" y="84" width="265" height="23"/>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="hxj-l4-por"/>
                             </connections>
@@ -95,7 +95,7 @@
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7YW-c8-ylE">
                             <rect key="frame" x="131" y="115" width="265" height="23"/>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
-                            <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="phonePad"/>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="yrG-vD-4ZZ"/>
                             </connections>
@@ -103,7 +103,7 @@
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sfh-Oo-msf">
                             <rect key="frame" x="131" y="146" width="265" height="23"/>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="QOQ-Ac-Zgl"/>
                             </connections>
@@ -111,7 +111,7 @@
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RzA-8h-AGQ">
                             <rect key="frame" x="131" y="177" width="265" height="23"/>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="ebA-Tl-X2S"/>
                             </connections>
@@ -149,7 +149,7 @@
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jSm-pB-TCw">
                             <rect key="frame" x="132" y="251" width="265" height="23"/>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="wnE-NC-Mgt"/>
                             </connections>
@@ -279,7 +279,7 @@
                             <rect key="frame" x="17" y="607" width="831" height="50"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="ZIK-qS-Q9l"/>
                             </connections>
@@ -293,7 +293,7 @@
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dL0-Tf-1Kn">
                             <rect key="frame" x="583" y="84" width="265" height="23"/>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="hwp-r3-7BW"/>
                             </connections>
@@ -301,7 +301,7 @@
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GaT-Si-Vtc">
                             <rect key="frame" x="583" y="115" width="265" height="23"/>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="lzA-9H-bfN"/>
                             </connections>
@@ -315,7 +315,7 @@
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KY7-93-PIR">
                             <rect key="frame" x="583" y="147" width="265" height="23"/>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="Lom-cZ-GWg"/>
                             </connections>
@@ -329,7 +329,7 @@
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ilr-3i-4hr">
                             <rect key="frame" x="583" y="251" width="265" height="23"/>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="NZK-l3-Wqg"/>
                             </connections>
@@ -343,7 +343,7 @@
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Ed-OP-XZf">
                             <rect key="frame" x="583" y="179" width="265" height="23"/>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="ySJ-4h-pZY"/>
                             </connections>

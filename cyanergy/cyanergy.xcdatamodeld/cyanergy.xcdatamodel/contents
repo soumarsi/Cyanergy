@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14C1514" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Auditformdetails" representedClassName="Auditformdetails" syncable="YES">
-        <attribute name="auditdate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="auditdate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="auditid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="consumer_addline1" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="consumer_addline2" optional="YES" attributeType="String" syncable="YES"/>
@@ -98,7 +98,7 @@
         <relationship name="auditform" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Auditformdetails" inverseName="auditimage" inverseEntity="Auditformdetails" syncable="YES"/>
     </entity>
     <entity name="Listingtable" representedClassName="Listingtable" syncable="YES">
-        <attribute name="creationdate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="creationdate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="customer_fname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="customer_lname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="formtype" optional="YES" attributeType="String" syncable="YES"/>
@@ -106,8 +106,8 @@
         <relationship name="auditform" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Auditformdetails" inverseName="listdetails" inverseEntity="Auditformdetails" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Auditformdetails" positionX="-63" positionY="-18" width="128" height="1305"/>
+        <element name="Auditformdetails" positionX="-63" positionY="-18" width="128" height="1303"/>
         <element name="AuditImage" positionX="-54" positionY="144" width="128" height="180"/>
-        <element name="Listingtable" positionX="-54" positionY="135" width="128" height="135"/>
+        <element name="Listingtable" positionX="-54" positionY="135" width="128" height="133"/>
     </elements>
 </model>
