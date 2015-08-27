@@ -27,6 +27,7 @@
 #import "Listingtable.h"
 #import "FormView.h"
 #import "CGHomeViewController.h"
+#import <CoreText/CoreText.h>
 @interface CGAuditViewController : UIViewController<Homeviewcontroller,cgsidebar,UITextFieldDelegate,UITextViewDelegate,UIAlertViewDelegate,UIScrollViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UIPopoverControllerDelegate,CLLocationManagerDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 {
     

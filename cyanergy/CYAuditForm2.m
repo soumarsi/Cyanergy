@@ -119,10 +119,92 @@
     
     _scrollV.delegate = self;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(myKeyboardWillHideHandler:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
 
+    
     return self;
+    
+    
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [UIView transitionWithView:_scrollV
+                      duration:0.75
+                       options:UIViewAnimationOptionTransitionNone
+                    animations:^{
+                        
+                        [_scrollV setContentOffset:CGPointMake(0, textField.frame.origin.y-textField.frame.size.height*2)];
+                    }
+                    completion:nil];
+
+}
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    [UIView transitionWithView:_scrollV
+                      duration:0.75
+                       options:UIViewAnimationOptionTransitionNone
+                    animations:^{
+                    
+                          [_scrollV setContentOffset:CGPointMake(0, textView.frame.origin.y-textView.frame.size.height+62)];
+                    }
+                    completion:nil];
+    
+  
+}
+
+- (void) myKeyboardWillHideHandler:(NSNotification *)notification
+{
+    
+    
+    [_numField1 resignFirstResponder];
+    [_numField2 resignFirstResponder];
+    [_numField3 resignFirstResponder];
+    [_numField4 resignFirstResponder];
+    [_numField5 resignFirstResponder];
+    [_numField6 resignFirstResponder];
+    [_numField7 resignFirstResponder];
+    [_numField8 resignFirstResponder];
+    [_numField9 resignFirstResponder];
+    [_numField10 resignFirstResponder];
+    [_numField11 resignFirstResponder];
+    [_numField12 resignFirstResponder];
+    [_numField13 resignFirstResponder];
+    [_numField14 resignFirstResponder];
+    [_numField15 resignFirstResponder];
+    [_numField16 resignFirstResponder];
+    [_numField17 resignFirstResponder];
+    [_numField18 resignFirstResponder];
+    
+    
+    [_commentBox1 resignFirstResponder];
+    [_commentBox2 resignFirstResponder];
+    [_commentBox3 resignFirstResponder];
+    [_commentBox4 resignFirstResponder];
+    [_commentBox5 resignFirstResponder];
+    [_commentBox6 resignFirstResponder];
+    [_commentBox7 resignFirstResponder];
+    [_commentBox8 resignFirstResponder];
+    [_commentBox9 resignFirstResponder];
+    [_commentBox10 resignFirstResponder];
+    [_commentBox11 resignFirstResponder];
+    [_commentBox12 resignFirstResponder];
+    [_commentBox13 resignFirstResponder];
+    [_commentBox14 resignFirstResponder];
+    [_commentBox15 resignFirstResponder];
+    [_commentBox16 resignFirstResponder];
+    [_commentBox17 resignFirstResponder];
+    [_commentBox18 resignFirstResponder];
+    [_commentBox19 resignFirstResponder];
+    [_commentBox20 resignFirstResponder];
+    [_commentBox21 resignFirstResponder];
+        
+    
+
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

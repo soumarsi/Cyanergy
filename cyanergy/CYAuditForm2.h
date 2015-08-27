@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface CYAuditForm2 : UIView<UITextViewDelegate,UIScrollViewDelegate,UITextFieldDelegate>
-
+{
+    CGFloat height;
+}
 
 @property (strong, nonatomic) IBOutlet UITextField *numField1;
 @property (strong, nonatomic) IBOutlet UITextField *numField2;

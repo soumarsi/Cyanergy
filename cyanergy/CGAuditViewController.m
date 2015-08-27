@@ -192,96 +192,97 @@
 }
 -(void)next{
     
-    if ([_auditForm.firstName.text isEqualToString:@""]) {
+//    if ([_auditForm.firstName.text isEqualToString:@""]) {
+//        
+//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter your first name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        
+//        [_alertView show];
+//        
+//    }else if ([_auditForm.lastName.text isEqualToString:@""]){
+//        
+//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter your last name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        
+//        [_alertView show];
+//        
+//    }else if ([_auditForm.suburb.text isEqualToString:@""]){
+//        
+//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter suburb" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        
+//        [_alertView show];
+//        
+//    }else if ([_auditForm.postcode.text isEqualToString:@""]){
+//        
+//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter postal code" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        
+//        [_alertView show];
+//        
+//    }else if ([_auditForm.address1.text isEqualToString:@""] && [_auditForm.address2.text isEqualToString:@""]){
+//        
+//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter address" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        
+//        [_alertView show];
+//        
+//    }else if ([_auditForm.state.text isEqualToString:@""]){
+//        
+//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter state" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        
+//        [_alertView show];
+//        
+//    }else if ([_auditForm.installFirstName.text isEqualToString:@""]){
+//        
+//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter installer first name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        
+//        [_alertView show];
+//        
+//    }else if ([_auditForm.installLastName.text isEqualToString:@""]){
+//        
+//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter installer last name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        
+//        [_alertView show];
+//        
+//    }else if ([_auditForm.comment.text isEqualToString:@""]){
+//        
+//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please give comment" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        
+//        [_alertView show];
+//        
+//    }else if ([_auditForm.comment.text isEqualToString:@"Give your comment here"]){
+//        
+//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please give comment" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        
+//        [_alertView show];
+//        
+//    }else if ([_auditForm.phone.text isEqualToString:@""]) {
+//        
+//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Phone number cannot be blank" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        
+//        [_alertView show];
+//        
+//    }else if(_auditForm.phone.text.length < 10 || _auditForm.phone.text.length >10){
+//        
+//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Phone number must be of 10 digits" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        
+//        [_alertView show];
+//        
+//    }else if ([_auditForm.phone.text rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location != NSNotFound){
+//        
+//        DebugLog(@"This field accepts only numeric entries.");
+//        
+//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please give only numeric value" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        
+     //   [_alertView show];
         
-        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter your first name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [_alertView show];
-        
-    }else if ([_auditForm.lastName.text isEqualToString:@""]){
-        
-        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter your last name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [_alertView show];
-        
-    }else if ([_auditForm.suburb.text isEqualToString:@""]){
-        
-        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter suburb" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [_alertView show];
-        
-    }else if ([_auditForm.postcode.text isEqualToString:@""]){
-        
-        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter postal code" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [_alertView show];
-        
-    }else if ([_auditForm.address1.text isEqualToString:@""] && [_auditForm.address2.text isEqualToString:@""]){
-        
-        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter address" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [_alertView show];
-        
-    }else if ([_auditForm.state.text isEqualToString:@""]){
-        
-        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter state" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [_alertView show];
-        
-    }else if ([_auditForm.installFirstName.text isEqualToString:@""]){
-        
-        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter installer first name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [_alertView show];
-        
-    }else if ([_auditForm.installLastName.text isEqualToString:@""]){
-        
-        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter installer last name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [_alertView show];
-        
-    }else if ([_auditForm.comment.text isEqualToString:@""]){
-        
-        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please give comment" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [_alertView show];
-        
-    }else if ([_auditForm.comment.text isEqualToString:@"Give your comment here"]){
-        
-        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please give comment" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [_alertView show];
-        
-    }else if ([_auditForm.phone.text isEqualToString:@""]) {
-        
-        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Phone number cannot be blank" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [_alertView show];
-        
-    }else if(_auditForm.phone.text.length < 10 || _auditForm.phone.text.length >10){
-        
-        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Phone number must be of 10 digits" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [_alertView show];
-        
-    }else if ([_auditForm.phone.text rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location != NSNotFound){
-        
-        DebugLog(@"This field accepts only numeric entries.");
-        
-        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please give only numeric value" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [_alertView show];
-        
-    }else{
-        
+ //   }else{
+  //
         [self form2];
         
-    }
+ //   }
     
 }
 //------------------------FORM 2-------------------//
 
--(void)form2{
+-(void)form2
+{
     
     //        [_auditForm removeFromSuperview];  // Not removing bcoz it will be overlapped by form 2
     
@@ -1090,7 +1091,51 @@
     
 }
 
--(void)auditStatus:(UIButton *)sender{
+-(void)auditStatus:(UIButton *)sender
+{
+    
+    [_auditForm2.numField1 resignFirstResponder];
+    [_auditForm2.numField2 resignFirstResponder];
+    [_auditForm2.numField3 resignFirstResponder];
+    [_auditForm2.numField4 resignFirstResponder];
+    [_auditForm2.numField5 resignFirstResponder];
+    [_auditForm2.numField6 resignFirstResponder];
+    [_auditForm2.numField7 resignFirstResponder];
+    [_auditForm2.numField8 resignFirstResponder];
+    [_auditForm2.numField9 resignFirstResponder];
+    [_auditForm2.numField10 resignFirstResponder];
+    [_auditForm2.numField11 resignFirstResponder];
+    [_auditForm2.numField12 resignFirstResponder];
+    [_auditForm2.numField13 resignFirstResponder];
+    [_auditForm2.numField14 resignFirstResponder];
+    [_auditForm2.numField15 resignFirstResponder];
+    [_auditForm2.numField16 resignFirstResponder];
+    [_auditForm2.numField17 resignFirstResponder];
+    [_auditForm2.numField18 resignFirstResponder];
+
+    
+    [_auditForm2.commentBox1 resignFirstResponder];
+    [_auditForm2.commentBox2 resignFirstResponder];
+    [_auditForm2.commentBox3 resignFirstResponder];
+    [_auditForm2.commentBox4 resignFirstResponder];
+    [_auditForm2.commentBox5 resignFirstResponder];
+    [_auditForm2.commentBox6 resignFirstResponder];
+    [_auditForm2.commentBox7 resignFirstResponder];
+    [_auditForm2.commentBox8 resignFirstResponder];
+    [_auditForm2.commentBox9 resignFirstResponder];
+    [_auditForm2.commentBox10 resignFirstResponder];
+    [_auditForm2.commentBox11 resignFirstResponder];
+    [_auditForm2.commentBox12 resignFirstResponder];
+    [_auditForm2.commentBox13 resignFirstResponder];
+    [_auditForm2.commentBox14 resignFirstResponder];
+    [_auditForm2.commentBox15 resignFirstResponder];
+    [_auditForm2.commentBox16 resignFirstResponder];
+    [_auditForm2.commentBox17 resignFirstResponder];
+    [_auditForm2.commentBox18 resignFirstResponder];
+    [_auditForm2.commentBox19 resignFirstResponder];
+    [_auditForm2.commentBox20 resignFirstResponder];
+    [_auditForm2.commentBox21 resignFirstResponder];
+
     
     //---------Picker---------//
     
