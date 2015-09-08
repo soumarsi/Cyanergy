@@ -21,7 +21,7 @@
 #import "UIColor+CGColor.h"
 #import "mySmoothLineView.h"
 
-@interface CGHomeViewController : UIViewController<Homeviewcontroller,cgsidebar,UIAlertViewDelegate,UIScrollViewDelegate,UINavigationControllerDelegate,CLLocationManagerDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface CGHomeViewController : UIViewController<Homeviewcontroller,cgsidebar,UIAlertViewDelegate,UIScrollViewDelegate,UINavigationControllerDelegate,CLLocationManagerDelegate,UITableViewDataSource,UITableViewDelegate,UIWebViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *listingTable;
 @property (weak, nonatomic) IBOutlet UILabel *comingsoon;
@@ -31,4 +31,5 @@
 @property (weak, nonatomic) IBOutlet UIView *baseView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (nonatomic, strong) NSMutableArray *mainListedArray;
+@property (nonatomic, retain) UIWebView *webView;
 @end

@@ -48,6 +48,8 @@
     Listingtable *Listed;
     FormView *completeForm;
     NSMutableData *pdfData;
+    UIScrollView *scview;
+    UIView *lineview1;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *baseview;

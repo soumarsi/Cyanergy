@@ -10,12 +10,14 @@
 #import "UIFont+CGFont.h"
 #import "CGAuditViewController.h"
 #import "CGAppDelegate.h"
-
+#import "UYLGenericPrintPageRenderer.h"
 @interface CGHomeViewController (){
     
-
+    UIView *lView;
    CGFloat latitude,longitude;
     CGAppDelegate *cyanergyAppdelegate;
+    NSMutableData *pdfData;
+    Listingtable *list;
 }
 
 @end
@@ -66,8 +68,7 @@
     self.mainListedArray = matchingNames;
     
     NSLog(@"-=-=-=-- %lu", (unsigned long)self.mainListedArray.count);
-    
-    if (self.mainListedArray.count == 0)
+       if (self.mainListedArray.count == 0)
     {
         _comingsoon.hidden = NO;
         _listingTable.hidden = YES;
@@ -220,7 +221,7 @@
         
     CGhomelistTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CGhomelistTableViewCell" forIndexPath:indexPath];
         
-        Listingtable *list = [self.mainListedArray objectAtIndex:indexPath.row];
+        list = [self.mainListedArray objectAtIndex:indexPath.row];
         
         cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@",list.customer_fname,list.customer_lname];
         cell.creationdate.text = [NSString stringWithFormat:@"Created on : %@",list.auditform.auditdate];
@@ -251,8 +252,40 @@
     }
     else
     {
+        list = [self.mainListedArray objectAtIndex:indexPath.row];
         
-    }
+        _webView = [[UIWebView alloc] init];
+        _webView.delegate = self;
+        NSArray* documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
+        
+        NSString* documentDirectory = [documentDirectories objectAtIndex:0];
+        NSString* documentDirectoryFilename = [documentDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",list.pdffilename]];
+        
+        //NSString *path = [[NSBundle mainBundle] pathForResource:@"document" ofType:@"pdf"];
+        NSLog(@"pdfstr-=-=-= %@", documentDirectoryFilename);
+        NSURL *targetURL = [NSURL fileURLWithPath:documentDirectoryFilename];
+        NSURLRequest *request = [NSURLRequest requestWithURL:targetURL];
+        [_webView loadRequest:request];
+        
+        [self.view addSubview:_webView];
+
+        double delayInSeconds = 2.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            
+            NSString *pdfstr = [self createPDFfromUIView:_webView saveToDocumentsWithFileName:[NSString stringWithFormat:@"%@",list.pdffilename]];
+            NSLog(@"pdfstr-=-=-= %@", pdfstr);
+            
+            UIWebView *wbView = [[UIWebView alloc] initWithFrame:CGRectMake(0.0f, 70.0f, self.view.frame.size.width, self.view.frame.size.height-70)];
+            NSURL *targetURL1 = [NSURL fileURLWithPath:pdfstr];
+            NSURLRequest *request1 = [NSURLRequest requestWithURL:targetURL1];
+            [wbView loadRequest:request1];
+            
+            [self.view addSubview:wbView];
+
+        });
+        
+        }
     
 }
 
@@ -260,8 +293,113 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(void)webViewDidStartLoad:(UIWebView *)webView {
+    NSLog(@"start");
+}
 
+-(void)webViewDidFinishLoad:(UIWebView *)webView {
+    NSLog(@"finish");
+   
+}
 
+-(NSString*)createPDFfromUIView:(UIView*)aView saveToDocumentsWithFileName:(NSString*)aFilename
+{
+    // Creates a mutable data object for updating with binary data, like a byte array
+    // pdfData = [self createPDFDatafromUIView:aView];
+    
+    int height, width, header, sidespace;
+    
+    height = 842;
+    width = 595;
+    header = 15;
+    sidespace = 30;
+    
+    // set header and footer spaces
+    UIEdgeInsets pageMargins = UIEdgeInsetsMake(header, sidespace, header, sidespace);
+    
+    _webView.viewPrintFormatter.contentInsets = pageMargins;
+    
+    //Now create an object of UIPrintPageRenderer that is used to draw pages of content that are to be printed, with or without the assistance of print formatters.
+    
+    
+    UYLGenericPrintPageRenderer *renderer = [[UYLGenericPrintPageRenderer alloc] init];
+    NSString *str1 = [NSString stringWithFormat:@"\nSubmitted by Benjamin Przywolnllfet 03/08/2015 11:24 EST, ceptured et 29/07/2015 22:51 EST \n"
+                      "Submission ID: C6sA2o3D-4sF5-43c7-M63-D87AAC32F396 \n"
+                      "Mobile Apps For How You Do Business - powered by cenves (nmugggmnggm)"
+                      ];
+    renderer.footerText = str1;
+    
+    NSString *str =[NSString stringWithFormat:@"\nCYANERGY PTY LTD\nUnit 30 (Ground Floor) \n"
+                    "22-30 Wallace Avenue  \n"
+                    "Point Cook VIC 3030 \n"
+                    "PH: 1300 198 955 "
+                    ];
+    renderer.headerText = str;
+    
+    NSLog(@"-=-=-=- %@", str1);
+    
+    renderer.headerHeight = 70.0f;
+    renderer.footerHeight = 70.0f;
+    
+    [renderer addPrintFormatter:_webView.viewPrintFormatter startingAtPageAtIndex:0];
+    
+    CGSize pageSize = CGSizeMake(width, height);
+    CGRect printableRect = CGRectMake(pageMargins.left,
+                                      pageMargins.top,
+                                      pageSize.width - pageMargins.left - pageMargins.right,
+                                      pageSize.height - pageMargins.top - pageMargins.bottom);
+    
+    CGRect paperRect = CGRectMake(0, 0, pageSize.width, pageSize.height);
+    
+    [renderer setValue:[NSValue valueWithCGRect:paperRect] forKey:@"paperRect"];
+    [renderer setValue:[NSValue valueWithCGRect:printableRect] forKey:@"printableRect"];
+    
+    
+    //Now get an NSData object from UIPrintPageRenderer object with specified paper size.
+    NSData *pdfData1 = [self printToPDFWithRenderer: renderer paperRect:paperRect];
+    //  NSData *pdfData1 = [renderer printToPDF];
+    // save PDF file
+    NSString *saveFileName = [NSString stringWithFormat:@"%@%dx%d.pdf", aFilename, (int)pageSize.width, (int)pageSize.height];
+    NSLog(@"savefilename-=-=-= %@",saveFileName);
+    
+    NSArray* documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
+    
+    NSString* documentDirectory = [documentDirectories objectAtIndex:0];
+    NSString* savePath = [documentDirectory stringByAppendingPathComponent:saveFileName];
+    
+    if([[NSFileManager defaultManager] fileExistsAtPath:savePath])
+    {
+        [[NSFileManager defaultManager] removeItemAtPath:savePath error:nil];
+    }
+    [pdfData1 writeToFile: savePath atomically: YES];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"PDF File created and saved successfully." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//    [alert show];
+
+    return savePath;
+}
+
+- (NSData*) printToPDFWithRenderer:(UIPrintPageRenderer*)renderer paperRect:(CGRect)paperRect
+{
+    pdfData = [NSMutableData data];
+    
+    NSLog(@"paperrect-=-=-=- %f-=-=-=- %f", paperRect.size.height,paperRect.size.width);
+    
+    UIGraphicsBeginPDFContextToData(pdfData, paperRect, nil );
+    [renderer prepareForDrawingPages: NSMakeRange(0, renderer.numberOfPages)];
+    CGRect bounds = UIGraphicsGetPDFContextBounds();
+    //    CGContextRef pdfContext = UIGraphicsGetCurrentContext();
+    //     [aview.layer drawInContext:pdfContext];
+    for ( int i = 0 ; i < renderer.numberOfPages ; i++ )
+    {
+        UIGraphicsBeginPDFPage();
+        
+        [renderer drawPageAtIndex:i inRect: bounds];
+        
+    }
+    UIGraphicsEndPDFContext();
+    return pdfData;
+    
+}
 
 
 /*

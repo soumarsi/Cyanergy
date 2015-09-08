@@ -21,6 +21,8 @@
 		2C7DCB281B84536200EB92CA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C7DCB271B84536200EB92CA /* QuartzCore.framework */; };
 		2C7FC1AC1B8C6CB800E20070 /* Auditformdetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FC1AB1B8C6CB800E20070 /* Auditformdetails.m */; };
 		2C7FC1AF1B8C6CB900E20070 /* AuditImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7FC1AE1B8C6CB900E20070 /* AuditImage.m */; };
+		2C8608E41B9DAE8400A5A704 /* CGglobalfunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8608E31B9DAE8400A5A704 /* CGglobalfunction.m */; };
+		2C8608E91B9DB29000A5A704 /* NSString+TGGlobalString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8608E81B9DB29000A5A704 /* NSString+TGGlobalString.m */; };
 		2C8B2F351B81F4E500C06C43 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8B2F341B81F4E500C06C43 /* main.m */; };
 		2C8B2F381B81F4E500C06C43 /* CGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8B2F371B81F4E500C06C43 /* CGAppDelegate.m */; };
 		2C8B2F3B1B81F4E500C06C43 /* cyanergy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C8B2F391B81F4E500C06C43 /* cyanergy.xcdatamodeld */; };
@@ -34,6 +36,9 @@
 		2C8B2F621B820C8600C06C43 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C8B2F5E1B820C8600C06C43 /* Lato-Bold.ttf */; };
 		2C8B2F631B820C8600C06C43 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C8B2F5F1B820C8600C06C43 /* Lato-Light.ttf */; };
 		2C94149E1B8ECB3F002C118F /* CGAuditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C94149D1B8ECB3F002C118F /* CGAuditViewController.m */; };
+		2CAADFAE1B9D5CF100EDAF03 /* FormView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CAADFAD1B9D5CF100EDAF03 /* FormView.xib */; };
+		2CAADFB31B9D90BE00EDAF03 /* UYLGenericPrintPageRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CAADFB11B9D90BE00EDAF03 /* UYLGenericPrintPageRenderer.m */; };
+		2CAADFB51B9D940700EDAF03 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CAADFB41B9D940700EDAF03 /* CoreText.framework */; };
 		2CCB19DA1B8D90AD00905B61 /* Listingtable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CCB19D91B8D90AD00905B61 /* Listingtable.m */; };
 		BEC37EF51B847DF7002339AC /* CYAuditForm.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC37EF41B847DF7002339AC /* CYAuditForm.m */; };
 		BEC37EF71B847E34002339AC /* CYAuditForm.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEC37EF61B847E34002339AC /* CYAuditForm.xib */; };
@@ -43,7 +48,6 @@
 		BEDD0F5E1B85B97900782509 /* CYAuditForm2.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDD0F5D1B85B97900782509 /* CYAuditForm2.m */; };
 		BEDD0F601B85BA1500782509 /* CYAuditForm2.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEDD0F5F1B85BA1500782509 /* CYAuditForm2.xib */; };
 		BEDECD781B8DC565009B8020 /* FormView.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDECD761B8DC565009B8020 /* FormView.m */; };
-		BEDECD791B8DC565009B8020 /* FormView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEDECD771B8DC565009B8020 /* FormView.xib */; };
 		BEE96AB31B872DCA00AE2688 /* CYAuditTopbar.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEE96AB21B872DCA00AE2688 /* CYAuditTopbar.xib */; };
 		BEE96AB61B872DEB00AE2688 /* CYAuditTopbar.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE96AB51B872DEB00AE2688 /* CYAuditTopbar.m */; };
 		BEF5C2DD1B8ADB5300CE4CDA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEF5C2DC1B8ADB5300CE4CDA /* CoreLocation.framework */; };
@@ -87,6 +91,11 @@
 		2C7FC1AB1B8C6CB800E20070 /* Auditformdetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Auditformdetails.m; sourceTree = "<group>"; };
 		2C7FC1AD1B8C6CB900E20070 /* AuditImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuditImage.h; sourceTree = "<group>"; };
 		2C7FC1AE1B8C6CB900E20070 /* AuditImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuditImage.m; sourceTree = "<group>"; };
+		2C8608E21B9DAE8400A5A704 /* CGglobalfunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGglobalfunction.h; sourceTree = "<group>"; };
+		2C8608E31B9DAE8400A5A704 /* CGglobalfunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGglobalfunction.m; sourceTree = "<group>"; };
+		2C8608E61B9DAF2C00A5A704 /* CGglobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGglobal.h; sourceTree = "<group>"; };
+		2C8608E71B9DB29000A5A704 /* NSString+TGGlobalString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TGGlobalString.h"; sourceTree = "<group>"; };
+		2C8608E81B9DB29000A5A704 /* NSString+TGGlobalString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TGGlobalString.m"; sourceTree = "<group>"; };
 		2C8B2F2F1B81F4E500C06C43 /* cyanergy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cyanergy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C8B2F331B81F4E500C06C43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C8B2F341B81F4E500C06C43 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -108,6 +117,10 @@
 		2C8B2F641B821A0C00C06C43 /* cyanergy-PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "cyanergy-PrefixHeader.pch"; sourceTree = "<group>"; };
 		2C94149C1B8ECB3F002C118F /* CGAuditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGAuditViewController.h; sourceTree = "<group>"; };
 		2C94149D1B8ECB3F002C118F /* CGAuditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGAuditViewController.m; sourceTree = "<group>"; };
+		2CAADFAD1B9D5CF100EDAF03 /* FormView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormView.xib; sourceTree = "<group>"; };
+		2CAADFB11B9D90BE00EDAF03 /* UYLGenericPrintPageRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UYLGenericPrintPageRenderer.m; sourceTree = "<group>"; };
+		2CAADFB21B9D90BE00EDAF03 /* UYLGenericPrintPageRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UYLGenericPrintPageRenderer.h; sourceTree = "<group>"; };
+		2CAADFB41B9D940700EDAF03 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		2CCB19D81B8D90AD00905B61 /* Listingtable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Listingtable.h; sourceTree = "<group>"; };
 		2CCB19D91B8D90AD00905B61 /* Listingtable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Listingtable.m; sourceTree = "<group>"; };
 		BEC37EF31B847DF7002339AC /* CYAuditForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYAuditForm.h; sourceTree = "<group>"; };
@@ -123,7 +136,6 @@
 		BEDD0F5F1B85BA1500782509 /* CYAuditForm2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CYAuditForm2.xib; sourceTree = "<group>"; };
 		BEDECD751B8DC565009B8020 /* FormView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormView.h; sourceTree = "<group>"; };
 		BEDECD761B8DC565009B8020 /* FormView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormView.m; sourceTree = "<group>"; };
-		BEDECD771B8DC565009B8020 /* FormView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormView.xib; sourceTree = "<group>"; };
 		BEE96AB21B872DCA00AE2688 /* CYAuditTopbar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CYAuditTopbar.xib; sourceTree = "<group>"; };
 		BEE96AB41B872DEB00AE2688 /* CYAuditTopbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYAuditTopbar.h; sourceTree = "<group>"; };
 		BEE96AB51B872DEB00AE2688 /* CYAuditTopbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYAuditTopbar.m; sourceTree = "<group>"; };
@@ -139,6 +151,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CAADFB51B9D940700EDAF03 /* CoreText.framework in Frameworks */,
 				BEF5C2DD1B8ADB5300CE4CDA /* CoreLocation.framework in Frameworks */,
 				2C7DCB281B84536200EB92CA /* QuartzCore.framework in Frameworks */,
 			);
@@ -163,6 +176,8 @@
 				2C5F8D8F1B82F94C008DC61D /* UIFont+CGFont.m */,
 				BEDD0F591B85987400782509 /* UIColor+CGColor.h */,
 				BEDD0F5A1B85987400782509 /* UIColor+CGColor.m */,
+				2C8608E71B9DB29000A5A704 /* NSString+TGGlobalString.h */,
+				2C8608E81B9DB29000A5A704 /* NSString+TGGlobalString.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -170,9 +185,11 @@
 		2C5F8D881B82F41E008DC61D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2CAADFB11B9D90BE00EDAF03 /* UYLGenericPrintPageRenderer.m */,
+				2CAADFB21B9D90BE00EDAF03 /* UYLGenericPrintPageRenderer.h */,
 				BEDECD751B8DC565009B8020 /* FormView.h */,
 				BEDECD761B8DC565009B8020 /* FormView.m */,
-				BEDECD771B8DC565009B8020 /* FormView.xib */,
+				2CAADFAD1B9D5CF100EDAF03 /* FormView.xib */,
 				2C5F8DA31B836411008DC61D /* Formpopup.xib */,
 				2C5F8DAB1B8366A8008DC61D /* CGformpopup.h */,
 				2C5F8DAC1B8366A8008DC61D /* CGformpopup.m */,
@@ -246,9 +263,20 @@
 			name = NSManageObject;
 			sourceTree = "<group>";
 		};
+		2C8608E11B9DAE3700A5A704 /* GlobalClass */ = {
+			isa = PBXGroup;
+			children = (
+				2C8608E21B9DAE8400A5A704 /* CGglobalfunction.h */,
+				2C8608E31B9DAE8400A5A704 /* CGglobalfunction.m */,
+				2C8608E61B9DAF2C00A5A704 /* CGglobal.h */,
+			);
+			name = GlobalClass;
+			sourceTree = "<group>";
+		};
 		2C8B2F261B81F4E500C06C43 = {
 			isa = PBXGroup;
 			children = (
+				2CAADFB41B9D940700EDAF03 /* CoreText.framework */,
 				BEF5C2DC1B8ADB5300CE4CDA /* CoreLocation.framework */,
 				2C7DCB271B84536200EB92CA /* QuartzCore.framework */,
 				2C8B2F311B81F4E500C06C43 /* cyanergy */,
@@ -269,6 +297,7 @@
 		2C8B2F311B81F4E500C06C43 /* cyanergy */ = {
 			isa = PBXGroup;
 			children = (
+				2C8608E11B9DAE3700A5A704 /* GlobalClass */,
 				2C7FC1A91B8C6B1100E20070 /* NSManageObject */,
 				BEF5C3121B8B26AB00CE4CDA /* SignatureFunc */,
 				2C5F8D9C1B835D78008DC61D /* Cell */,
@@ -426,7 +455,7 @@
 				BEDB17DE1B8834AA0045BCEC /* CYAuditForm3.xib in Resources */,
 				2C8B2F431B81F4E500C06C43 /* Images.xcassets in Resources */,
 				2C5F8D921B830173008DC61D /* Sidebar.xib in Resources */,
-				BEDECD791B8DC565009B8020 /* FormView.xib in Resources */,
+				2CAADFAE1B9D5CF100EDAF03 /* FormView.xib in Resources */,
 				2C8B2F631B820C8600C06C43 /* Lato-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -447,15 +476,18 @@
 			files = (
 				BEF5C3181B8B26DA00CE4CDA /* SmoothLineView.m in Sources */,
 				2C5F8D9B1B832E86008DC61D /* CGsidebar.m in Sources */,
+				2CAADFB31B9D90BE00EDAF03 /* UYLGenericPrintPageRenderer.m in Sources */,
 				BEDB17DC1B8834940045BCEC /* CYAuditForm3.m in Sources */,
 				2C7FC1AF1B8C6CB900E20070 /* AuditImage.m in Sources */,
 				BEDECD781B8DC565009B8020 /* FormView.m in Sources */,
+				2C8608E91B9DB29000A5A704 /* NSString+TGGlobalString.m in Sources */,
 				2C5F8D901B82F94C008DC61D /* UIFont+CGFont.m in Sources */,
 				BEDD0F5E1B85B97900782509 /* CYAuditForm2.m in Sources */,
 				2C7FC1AC1B8C6CB800E20070 /* Auditformdetails.m in Sources */,
 				2C5F8DAD1B8366A8008DC61D /* CGformpopup.m in Sources */,
 				2C5F8D8D1B82F498008DC61D /* RightBar.m in Sources */,
 				2C7DCB261B84424500EB92CA /* CGformpopupTableViewCell.m in Sources */,
+				2C8608E41B9DAE8400A5A704 /* CGglobalfunction.m in Sources */,
 				2C94149E1B8ECB3F002C118F /* CGAuditViewController.m in Sources */,
 				2C8B2F381B81F4E500C06C43 /* CGAppDelegate.m in Sources */,
 				2C8B2F3B1B81F4E500C06C43 /* cyanergy.xcdatamodeld in Sources */,

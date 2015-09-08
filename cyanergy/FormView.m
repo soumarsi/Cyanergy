@@ -17,5 +17,10 @@
     // Drawing code
 }
 */
-
+-(id)initWithFrame:(CGRect)frame
+{
+    
+    self = [[[NSBundle mainBundle]loadNibNamed:@"FormView" owner:self options:nil] objectAtIndex:0];
+    return self;
+}
 @end

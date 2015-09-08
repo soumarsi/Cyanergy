@@ -18,5 +18,5 @@
 @dynamic customer_fname;
 @dynamic customer_lname;
 @dynamic auditform;
-
+@dynamic pdffilename;
 @end

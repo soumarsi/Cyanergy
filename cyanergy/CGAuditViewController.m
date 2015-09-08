@@ -302,8 +302,6 @@
     _auditForm2.scrollV.delegate = self;
     [_auditForm2.scrollV setContentSize:CGSizeMake(0, _auditForm2.scrollV.frame.origin.y+_auditForm2.scrollV.frame.size.height+4000)];
     [_auditForm2.scrollV setUserInteractionEnabled:YES];
-    
-    
     _auditForm2.numField1.layer.borderColor = [[UIColor uniGrayColor] CGColor];
     _auditForm2.numField2.layer.borderColor = [[UIColor uniGrayColor] CGColor];
     _auditForm2.numField3.layer.borderColor = [[UIColor uniGrayColor] CGColor];
@@ -1113,7 +1111,6 @@
     [_auditForm2.numField17 resignFirstResponder];
     [_auditForm2.numField18 resignFirstResponder];
 
-    
     [_auditForm2.commentBox1 resignFirstResponder];
     [_auditForm2.commentBox2 resignFirstResponder];
     [_auditForm2.commentBox3 resignFirstResponder];
@@ -1354,7 +1351,6 @@
     auditFormDetails.sd21b_auditstatus = _auditForm2.auditStatus3.titleLabel.text;
     auditFormDetails.sd21b_comment = _auditForm2.commentBox16.text;
     
-    
     auditFormDetails.sd21c_totalnoglobes = _auditForm2.numField18.text;
     auditFormDetails.sd21c_sensorglobes = _auditForm2.sd21c_sensorglobes;
     auditFormDetails.sd21c_sensorglobescom = _auditForm2.commentBox21.text;
@@ -1388,14 +1384,13 @@
     [self fillForm];
     
     Listed.pdfdata = pdfData;
+    Listed.pdffilename = [NSString stringWithFormat:@"audit%@%@.pdf",string,_auditForm.firstName.text];
     
     auditFormDetails.auditimage = auditImage;
     Listed.auditform = auditFormDetails;
     
     [cyanergyAppdelegate saveContext];
-    
-    
-    
+ 
     [self mainView];
     
 }
@@ -1405,6 +1400,16 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"dd-MM-yyyy";
     NSString *string = [formatter stringFromDate:[NSDate date]];
+    
+    completeForm = [[FormView alloc]init];
+    [completeForm setFrame:CGRectMake(0.0f, 0.0f, 800, 4000)];
+    
+    NSLog(@"-=-=-= %f", completeForm.frame.size.height);
+    
+    
+    scview = [[UIScrollView alloc]init];
+    [scview setBackgroundColor:[UIColor clearColor]];
+    [self.view addSubview:scview];
     
     completeForm.auditor_name_lbl.text = [[NSUserDefaults standardUserDefaults]objectForKey:@"username"];
     completeForm.date_lbl.text = string;
@@ -1489,60 +1494,100 @@
     completeForm.schedule21C_qus9_yesNo_lbl.text = _auditForm2.numField17.text;
     completeForm.schedule21C_auditStatus_yesNo_lbl.text = _auditForm2.auditStatus4.titleLabel.text;
     completeForm.schedule21C_auditStatus_comment_tview.text = _auditForm2.commentBox20.text;
-    
-    
-    
-    for (int k = 0; k < imgStoreArray.count; k++)
+
+    int k ;
+    for (k= 0; k < imgStoreArray.count; k++)
     {
-        
-        NSLog(@"-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=%d",k);
-        
         count = k % 2;
         divide = k/ 2.0f;
         
+        NSLog(@"divide-=-= %d-=-=-%d",divide,count);
         
+        UIView *lineview = [[UIView alloc]initWithFrame:CGRectMake(0.0f, (1000*divide)+completeForm.frame.size.height+30, 800.0f, 2.0f)];
+        [lineview setBackgroundColor:[UIColor blackColor]];
+        [scview addSubview:lineview];
         
-        dynamicImageView = [[UIImageView alloc]init];
-        dynamicImageView.frame = CGRectMake((8+390)*count+8, (270*divide)+4416, 390, 225);
-        dynamicImageView.tag = k;
-        dynamicImageView.backgroundColor = [UIColor clearColor];
-        dynamicImageView.layer.borderWidth = 1.0f;
-        dynamicImageView.contentMode = UIViewContentModeScaleAspectFill;
-        dynamicImageView.clipsToBounds = YES;
-        dynamicImageView.layer.borderColor = [[UIColor grayColor]CGColor];
-        [completeForm.baseView addSubview:dynamicImageView];
-        DebugLog(@"DIVIDE--------> %@",[imgStoreArray objectAtIndex:k]);
-        dynamicImageView.image =[UIImage imageWithData:[imgStoreArray objectAtIndex:k]];
+        UILabel *addimage = [[UILabel alloc]initWithFrame:CGRectMake(40.f,(k*500)+completeForm.frame.size.height+50, 200.0f, 50.0f)];
+        [addimage setBackgroundColor:[UIColor clearColor]];
+        [addimage setText:@"Capture Image"];
+        [addimage setTextAlignment:NSTextAlignmentLeft];
+        //[addimage setTextColor:[UIColor blackColor]];
+        [addimage setFont:[UIFont systemFontOfSize:20]];
+        [scview addSubview:addimage];
+        NSLog(@"divideview-=-= %f",addimage.frame.origin.y);
         
+        UIImageView *imageview1 = [[UIImageView alloc]initWithFrame:CGRectMake(450.0f, (k*500)+completeForm.frame.size.height+105, 300.0f, 350.0f)];
+        imageview1.image =[UIImage imageWithData:[imgStoreArray objectAtIndex:k]];
+        [scview addSubview:imageview1];
         
+        UILabel *addimage1 = [[UILabel alloc]initWithFrame:CGRectMake(20.f, completeForm.frame.size.height+470+(k*500), 600.0f, 50.0f)];
+        [addimage1 setBackgroundColor:[UIColor clearColor]];
+        [addimage1 setText:[NSString stringWithFormat:@"Add Image for:           %@                                                        Globes",[_imageTextArray objectAtIndex:k]]];
+        [addimage1 setTextAlignment:NSTextAlignmentLeft];
+        [addimage1 setTextColor:[UIColor blackColor]];
+        [addimage1 setFont:[UIFont systemFontOfSize:20]];
+        [scview addSubview:addimage1];
         
-        
-        _imageText = [[UITextField alloc]initWithFrame:CGRectMake((8+390)*count+8, (270*divide)+225+4416, 440, 39)];
-        [self.imageText setTextAlignment:NSTextAlignmentCenter];
-        [self.imageText setTextColor:[UIColor blackColor]];
-        [self.imageText setFont:[UIFont imageTextFont]];
-        [self.imageText setDelegate:self];
-        self.imageText.text = [_imageTextArray objectAtIndex:k];
-        self.imageText.layer.borderWidth = 1.0f;
-        self.imageText.layer.borderColor = [[UIColor grayColor]CGColor];
-        [completeForm.baseView addSubview:_imageText];
+        lineview1 = [[UIView alloc]initWithFrame:CGRectMake(0.0f, completeForm.frame.size.height+1020+(divide*1000), 800.0f, 2.0f)];
+        [lineview1 setBackgroundColor:[UIColor blackColor]];
+        [scview addSubview:lineview1];
     }
+    UIView *lineview = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 5000+60+(divide*1000), 800.0f, 2.0f)];
+    [lineview setBackgroundColor:[UIColor blackColor]];
+    [scview addSubview:lineview];
+    
+    UILabel *addimage = [[UILabel alloc]initWithFrame:CGRectMake(40.f,5000+100+(divide*1000), 200.0f, 50.0f)];
+    [addimage setBackgroundColor:[UIColor clearColor]];
+    [addimage setText:@"GPS capture"];
+    [addimage setTextAlignment:NSTextAlignmentLeft];
+    [addimage setTextColor:[UIColor blackColor]];
+    [addimage setFont:[UIFont systemFontOfSize:20]];
+    [scview addSubview:addimage];
+    NSLog(@"divideview-=-= %f",addimage.frame.origin.y);
+    
+    UILabel *gps = [[UILabel alloc]initWithFrame:CGRectMake(450.0f, 5000+170+(divide*1000), 300.0f, 50)];
+    [gps setBackgroundColor:[UIColor clearColor]];
+    gps.text = [NSString stringWithFormat:@"%f  ,  %f",latitude,longitude];
+    [gps setTextAlignment:NSTextAlignmentLeft];
+    [gps setTextColor:[UIColor blackColor]];
+    [gps setFont:[UIFont systemFontOfSize:20]];
+    [scview addSubview:gps];
+    
+    UILabel *addimage1 = [[UILabel alloc]initWithFrame:CGRectMake(20.f, 5000+240+(divide*1000), 600.0f, 50.0f)];
+    [addimage1 setBackgroundColor:[UIColor clearColor]];
+    [addimage1 setText:@"Signed by Auditor"];
+    [addimage1 setTextAlignment:NSTextAlignmentLeft];
+    [addimage1 setTextColor:[UIColor blackColor]];
+    [addimage1 setFont:[UIFont systemFontOfSize:20]];
+    [scview addSubview:addimage1];
+    
+    UILabel *addimage2 = [[UILabel alloc]initWithFrame:CGRectMake(20.f, 5000+400+(divide*1000), 600.0f, 50.0f)];
+    [addimage2 setBackgroundColor:[UIColor clearColor]];
+    [addimage2 setText:@"Signed by Customer"];
+    [addimage2 setTextAlignment:NSTextAlignmentLeft];
+    [addimage2 setTextColor:[UIColor blackColor]];
+    [addimage2 setFont:[UIFont systemFontOfSize:20]];
+    [scview addSubview:addimage2];
+    
+    lineview1 = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 6000+40+(divide*1000), 800.0f, 2.0f)];
+    [lineview1 setBackgroundColor:[UIColor blackColor]];
+    [scview addSubview:lineview1];
     
     
-    DebugLog(@"FRAME-------->X= %f , Y= %f , WID= %f , HEI= %f",dynamicImageView.frame.origin.x, dynamicImageView.frame.origin.y,dynamicImageView.frame.size.width,dynamicImageView.frame.size.height);
-    DebugLog(@"COUNT--------> %d",count);
+    scview.frame = CGRectMake(3100.0f, 0.0f, 800.0f, 6000+10+(divide*1000));
+
     
-    
-    completeForm.baseView.frame = CGRectMake(0.0f, 0, 800.0f, (270*divide)+225+4416+80);
-    
-    
+    [scview addSubview:completeForm];
     
     [self createpdf];
     
 }
 -(void)createpdf
 {
-    [self createPDFfromUIView:completeForm saveToDocumentsWithFileName:@"myPdf.pdf"];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"dd-MM-yyyy";
+    NSString *string = [formatter stringFromDate:[NSDate date]];
+    [self createPDFfromUIView:scview saveToDocumentsWithFileName:[NSString stringWithFormat:@"audit%@%@.pdf",string,_auditForm.firstName.text]];
 }
 
 -(NSMutableData *)createPDFDatafromUIView:(UIView*)aView
@@ -1563,7 +1608,6 @@
     
     return pdfData;
 }
-
 
 -(NSString*)createPDFfromUIView:(UIView*)aView saveToDocumentsWithFileName:(NSString*)aFilename
 {
