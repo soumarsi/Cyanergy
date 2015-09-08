@@ -9,6 +9,8 @@
 #import "CGglobalfunction.h"
 
 #define App_Domain_Url @"http://esolz.co.in/lab6/cyanergy/webservice/"
+#define saveurl @"action.php?mode=save"
+
 @implementation CGglobalfunction
 -(void)Userdict:(NSDictionary *)userdetails
 {
@@ -45,6 +47,7 @@
     return (isReachable && !needsConnection) ? YES : NO;
 }
 
+
 -(void)parameterstring:(NSString *)parameter withblock:(Urlresponceblock)responce
 {
     NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -64,7 +67,31 @@
     
     [dataTask resume];
     
-    
 }
 
+//save data to server
+-(void)saveparameterstr:(NSString *)savestring withblock:(Urlresponceblock) responce
+{
+    
+    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: nil delegateQueue: [NSOperationQueue mainQueue]];
+    
+    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",App_Domain_Url,saveurl]];
+    NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
+ 
+    [urlRequest setHTTPMethod:@"POST"];
+    [urlRequest setHTTPBody:[savestring dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSURLSessionDataTask * dataTask =[defaultSession dataTaskWithRequest:urlRequest
+                                                       completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+//                                                           NSLog(@"Response:%@ %@\n", response, error);
+                                                           if(error == nil)
+                                                           {
+                                                              NSDictionary *saveresult = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                                                               responce(saveresult,nil);
+                                                           }
+                                                           
+                                                       }];
+    [dataTask resume];
+}
 @end

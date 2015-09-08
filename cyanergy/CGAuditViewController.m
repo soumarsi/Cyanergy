@@ -64,7 +64,9 @@
 }
 -(void)logout
 {
-    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    CGAuditViewController *vc = [sb instantiateViewControllerWithIdentifier:@"CGLoginViewController"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 //--------- Location Manager Delegate Methods
 
@@ -192,91 +194,90 @@
 }
 -(void)next{
     
-//    if ([_auditForm.firstName.text isEqualToString:@""]) {
-//        
-//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter your first name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//        
-//        [_alertView show];
-//        
-//    }else if ([_auditForm.lastName.text isEqualToString:@""]){
-//        
-//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter your last name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//        
-//        [_alertView show];
-//        
-//    }else if ([_auditForm.suburb.text isEqualToString:@""]){
-//        
-//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter suburb" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//        
-//        [_alertView show];
-//        
-//    }else if ([_auditForm.postcode.text isEqualToString:@""]){
-//        
-//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter postal code" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//        
-//        [_alertView show];
-//        
-//    }else if ([_auditForm.address1.text isEqualToString:@""] && [_auditForm.address2.text isEqualToString:@""]){
-//        
-//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter address" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//        
-//        [_alertView show];
-//        
-//    }else if ([_auditForm.state.text isEqualToString:@""]){
-//        
-//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter state" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//        
-//        [_alertView show];
-//        
-//    }else if ([_auditForm.installFirstName.text isEqualToString:@""]){
-//        
-//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter installer first name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//        
-//        [_alertView show];
-//        
-//    }else if ([_auditForm.installLastName.text isEqualToString:@""]){
-//        
-//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter installer last name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//        
-//        [_alertView show];
-//        
-//    }else if ([_auditForm.comment.text isEqualToString:@""]){
-//        
-//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please give comment" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//        
-//        [_alertView show];
-//        
-//    }else if ([_auditForm.comment.text isEqualToString:@"Give your comment here"]){
-//        
-//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please give comment" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//        
-//        [_alertView show];
-//        
-//    }else if ([_auditForm.phone.text isEqualToString:@""]) {
-//        
-//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Phone number cannot be blank" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//        
-//        [_alertView show];
-//        
-//    }else if(_auditForm.phone.text.length < 10 || _auditForm.phone.text.length >10){
-//        
-//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Phone number must be of 10 digits" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//        
-//        [_alertView show];
-//        
-//    }else if ([_auditForm.phone.text rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location != NSNotFound){
-//        
-//        DebugLog(@"This field accepts only numeric entries.");
-//        
-//        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please give only numeric value" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//        
-     //   [_alertView show];
+    if ([_auditForm.firstName.text isEqualToString:@""]) {
         
- //   }else{
-  //
+        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter your first name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [_alertView show];
+        
+    }else if ([_auditForm.lastName.text isEqualToString:@""]){
+        
+        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter your last name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [_alertView show];
+        
+    }else if ([_auditForm.suburb.text isEqualToString:@""]){
+        
+        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter suburb" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [_alertView show];
+        
+    }else if ([_auditForm.postcode.text isEqualToString:@""]){
+        
+        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter postal code" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [_alertView show];
+        
+    }else if ([_auditForm.address1.text isEqualToString:@""] && [_auditForm.address2.text isEqualToString:@""]){
+        
+        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter address" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [_alertView show];
+        
+    }else if ([_auditForm.state.text isEqualToString:@""]){
+        
+        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter state" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [_alertView show];
+        
+    }else if ([_auditForm.installFirstName.text isEqualToString:@""]){
+        
+        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter installer first name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [_alertView show];
+        
+    }else if ([_auditForm.installLastName.text isEqualToString:@""]){
+        
+        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter installer last name" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [_alertView show];
+        
+    }else if ([_auditForm.comment.text isEqualToString:@""]){
+        
+        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please give comment" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [_alertView show];
+        
+    }else if ([_auditForm.comment.text isEqualToString:@"Give your comment here"]){
+        
+        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please give comment" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [_alertView show];
+        
+    }else if ([_auditForm.phone.text isEqualToString:@""]) {
+        
+        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Phone number cannot be blank" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [_alertView show];
+        
+    }else if(_auditForm.phone.text.length < 10 || _auditForm.phone.text.length >10){
+        
+        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Phone number must be of 10 digits" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [_alertView show];
+        
+    }else if ([_auditForm.phone.text rangeOfCharacterFromSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]].location != NSNotFound){
+        
+        DebugLog(@"This field accepts only numeric entries.");
+        
+        _alertView = [[UIAlertView alloc]initWithTitle:nil message:@"Please give only numeric value" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [_alertView show];
+        
+    }else{
         [self form2];
         
- //   }
+    }
     
 }
 //------------------------FORM 2-------------------//
@@ -1319,7 +1320,14 @@
     auditFormDetails.sd15_externaldoorinstallcom = _auditForm2.commentBox5.text;
     auditFormDetails.sd15_spareproduct = _auditForm2.sd15_spareproduct;
     auditFormDetails.sd15_spareproductcom = _auditForm2.commentBox6.text;
+    if ([_auditForm2.auditStatus1.titleLabel.text isEqualToString:@"Select a status"])
+    {
+      auditFormDetails.sd15_auditstatus = @"";
+    }
+    else
+    {
     auditFormDetails.sd15_auditstatus = _auditForm2.auditStatus1.titleLabel.text;
+    }
     auditFormDetails.sd15_comment = _auditForm2.commentBox2.text;
     
     auditFormDetails.sd17_totalnoshower = _auditForm2.numField7.text;
@@ -1332,7 +1340,14 @@
     auditFormDetails.sd17_spareshowercom = _auditForm2.commentBox9.text;
     auditFormDetails.sd17_installbucket = _auditForm2.sd17_installbucket;
     auditFormDetails.sd17_installbucketcom = _auditForm2.commentBox10.text;
-    auditFormDetails.sd17_auditstatus = _auditForm2.auditStatus2.titleLabel.text;
+    if ([_auditForm2.auditStatus2.titleLabel.text isEqualToString:@"Select a status"])
+    {
+        auditFormDetails.sd17_auditstatus = @"";
+    }
+    else
+    {
+        auditFormDetails.sd17_auditstatus = _auditForm2.auditStatus2.titleLabel.text;
+    }
     auditFormDetails.sd17_comment = _auditForm2.commentBox11.text;
     
     auditFormDetails.sd21b_totalnoglobes = _auditForm2.numField9.text;
@@ -1348,7 +1363,14 @@
     auditFormDetails.sd21b_otherglobes = _auditForm2.numField11.text;
     auditFormDetails.sd21b_emptysocket = _auditForm2.numField12.text;
     auditFormDetails.sd21b_installheglobes = _auditForm2.numField13.text;
-    auditFormDetails.sd21b_auditstatus = _auditForm2.auditStatus3.titleLabel.text;
+    if ([_auditForm2.auditStatus3.titleLabel.text isEqualToString:@"Select a status"])
+    {
+        auditFormDetails.sd21b_auditstatus = @"";
+    }
+    else
+    {
+        auditFormDetails.sd21b_auditstatus = _auditForm2.auditStatus3.titleLabel.text;
+    }
     auditFormDetails.sd21b_comment = _auditForm2.commentBox16.text;
     
     auditFormDetails.sd21c_totalnoglobes = _auditForm2.numField18.text;
@@ -1364,7 +1386,14 @@
     auditFormDetails.sd21c_otherglobe = _auditForm2.numField15.text;
     auditFormDetails.sd21c_emptysocket = _auditForm2.numField14.text;
     auditFormDetails.sd21c_installHEglobe = _auditForm2.numField17.text;
-    auditFormDetails.sd21c_auditstatus = _auditForm2.auditStatus4.titleLabel.text;
+    if ([_auditForm2.auditStatus4.titleLabel.text isEqualToString:@"Select a status"])
+    {
+        auditFormDetails.sd21c_auditstatus = @"";
+    }
+    else
+    {
+        auditFormDetails.sd21c_auditstatus = _auditForm2.auditStatus4.titleLabel.text;
+    }
     auditFormDetails.sd21c_comment = _auditForm2.commentBox20.text;
     
     auditImage.formtype = @"Audit";
@@ -1447,7 +1476,14 @@
     completeForm.schedule15_qus9_comment_tview.text = _auditForm2.commentBox5.text;
     completeForm.schedule15_qus10_yesNo_lbl.text = _auditForm2.sd15_spareproduct;
     completeForm.schedule15_qus10_comment_tview.text = _auditForm2.commentBox6.text;
-    completeForm.schedule15_auditStatus_yesNo_lbl.text = _auditForm2.auditStatus1.titleLabel.text;
+    if ([_auditForm2.auditStatus1.titleLabel.text isEqualToString:@"Select a status"])
+    {
+     completeForm.schedule15_auditStatus_yesNo_lbl.text = @"";
+    }
+   else
+   {
+        completeForm.schedule15_auditStatus_yesNo_lbl.text = _auditForm2.auditStatus1.titleLabel.text;
+   }
     completeForm.schedule15_auditStatus_comment_tview.text = _auditForm2.commentBox2.text;
     
     completeForm.schedule17_qus1_yesNo_lbl.text = _auditForm2.numField7.text;
@@ -1460,7 +1496,14 @@
     completeForm.schedule17_qus5_comment_tview.text = _auditForm2.commentBox9.text;
     completeForm.schedule17_qus6_yesNo_lbl.text = _auditForm2.sd17_installbucket;
     completeForm.schedule17_qus6_comment_tview.text = _auditForm2.commentBox10.text;
-    completeForm.schedule17_auditStatus_yesNo_lbl.text = _auditForm2.auditStatus2.titleLabel.text;
+    if ([_auditForm2.auditStatus2.titleLabel.text isEqualToString:@"Select a status"])
+    {
+        completeForm.schedule17_auditStatus_yesNo_lbl.text = @"";
+    }
+    else
+    {
+        completeForm.schedule17_auditStatus_yesNo_lbl.text = _auditForm2.auditStatus2.titleLabel.text;
+    }
     completeForm.schedule17_auditStatus_comment_tview.text = _auditForm2.commentBox11.text;
     
     completeForm.schedule21B_qus1_yesNo_lbl.text = _auditForm2.numField9.text;
@@ -1476,10 +1519,17 @@
     completeForm.schedule21B_qus7_yesNo_lbl.text = _auditForm2.numField11.text;
     completeForm.schedule21B_qus8_yesNo_lbl.text = _auditForm2.numField12.text;
     completeForm.schedule21B_qus9_yesNo_lbl.text = _auditForm2.numField13.text;
-    completeForm.schedule21B_auditStatus_yesNo_lbl.text = _auditForm2.auditStatus3.titleLabel.text;
+    if ([_auditForm2.auditStatus3.titleLabel.text isEqualToString:@"Select a status"])
+    {
+        completeForm.schedule21B_auditStatus_yesNo_lbl.text = @"";
+    }
+    else
+    {
+        completeForm.schedule21B_auditStatus_yesNo_lbl.text = _auditForm2.auditStatus3.titleLabel.text;
+    }
     completeForm.schedule21B_auditStatus_comment_tview.text = _auditForm2.commentBox16.text;
     
-    completeForm.schedule21C_qus1_yesNo_lbl.text = _auditForm2.numField8.text;
+    completeForm.schedule21C_qus1_yesNo_lbl.text = _auditForm2.numField18.text;
     completeForm.schedule21C_qus2_yesNo_lbl.text = _auditForm2.sd21c_sensorglobes;
     completeForm.schedule21C_qus2_comment_tview.text = _auditForm2.commentBox21.text;
     completeForm.schedule21C_qus3_yesNo_lbl.text = _auditForm2.sd21c_emptyglobe;
@@ -1492,7 +1542,14 @@
     completeForm.schedule21C_qus7_yesNo_lbl.text = _auditForm2.numField15.text;
     completeForm.schedule21C_qus8_yesNo_lbl.text = _auditForm2.numField14.text;
     completeForm.schedule21C_qus9_yesNo_lbl.text = _auditForm2.numField17.text;
-    completeForm.schedule21C_auditStatus_yesNo_lbl.text = _auditForm2.auditStatus4.titleLabel.text;
+    if ([_auditForm2.auditStatus4.titleLabel.text isEqualToString:@"Select a status"])
+    {
+        completeForm.schedule21C_auditStatus_yesNo_lbl.text = @"";
+    }
+    else
+    {
+        completeForm.schedule21C_auditStatus_yesNo_lbl.text = _auditForm2.auditStatus4.titleLabel.text;
+    }
     completeForm.schedule21C_auditStatus_comment_tview.text = _auditForm2.commentBox20.text;
 
     int k ;
@@ -1503,7 +1560,7 @@
         
         NSLog(@"divide-=-= %d-=-=-%d",divide,count);
         
-        UIView *lineview = [[UIView alloc]initWithFrame:CGRectMake(0.0f, (1000*divide)+completeForm.frame.size.height+30, 800.0f, 2.0f)];
+        UIView *lineview = [[UIView alloc]initWithFrame:CGRectMake(0.0f, (1000*divide)+completeForm.frame.size.height+20, 800.0f, 2.0f)];
         [lineview setBackgroundColor:[UIColor blackColor]];
         [scview addSubview:lineview];
         
@@ -1522,13 +1579,13 @@
         
         UILabel *addimage1 = [[UILabel alloc]initWithFrame:CGRectMake(20.f, completeForm.frame.size.height+470+(k*500), 600.0f, 50.0f)];
         [addimage1 setBackgroundColor:[UIColor clearColor]];
-        [addimage1 setText:[NSString stringWithFormat:@"Add Image for:           %@                                                        Globes",[_imageTextArray objectAtIndex:k]]];
+        [addimage1 setText:[NSString stringWithFormat:@"Add Image for:  %@       Globes",[_imageTextArray objectAtIndex:k]]];
         [addimage1 setTextAlignment:NSTextAlignmentLeft];
         [addimage1 setTextColor:[UIColor blackColor]];
         [addimage1 setFont:[UIFont systemFontOfSize:20]];
         [scview addSubview:addimage1];
         
-        lineview1 = [[UIView alloc]initWithFrame:CGRectMake(0.0f, completeForm.frame.size.height+1020+(divide*1000), 800.0f, 2.0f)];
+        lineview1 = [[UIView alloc]initWithFrame:CGRectMake(0.0f, completeForm.frame.size.height+1004+(divide*1000), 800.0f, 2.0f)];
         [lineview1 setBackgroundColor:[UIColor blackColor]];
         [scview addSubview:lineview1];
     }

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSString (TGGlobalString)
+@interface NSString (CGGlobalString)
 
 +(NSString *)check_username;
 +(NSString *)check_password;

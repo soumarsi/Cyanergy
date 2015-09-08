@@ -20,16 +20,22 @@
 #import "CYAuditTopbar.h"
 #import "UIColor+CGColor.h"
 #import "mySmoothLineView.h"
+#import "saveparameter.h"
+#import "CGglobalfunction.h"
 
 @interface CGHomeViewController : UIViewController<Homeviewcontroller,cgsidebar,UIAlertViewDelegate,UIScrollViewDelegate,UINavigationControllerDelegate,CLLocationManagerDelegate,UITableViewDataSource,UITableViewDelegate,UIWebViewDelegate>
-
+{
+    UIWebView *wbView;
+}
 @property (weak, nonatomic) IBOutlet UITableView *listingTable;
 @property (weak, nonatomic) IBOutlet UILabel *comingsoon;
 @property (nonatomic, strong) RightBar *homeNav;
+@property (nonatomic, strong) saveparameter *saveClass;
 @property (nonatomic, strong) CGsidebar *sideBar;
 @property (nonatomic, strong) CGformpopup *formPopUp;
 @property (weak, nonatomic) IBOutlet UIView *baseView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (nonatomic, strong) NSMutableArray *mainListedArray;
 @property (nonatomic, retain) UIWebView *webView;
+@property (nonatomic, strong) CGglobalfunction *globalClass;
 @end

@@ -8,7 +8,7 @@
 
 #import "NSString+TGGlobalString.h"
 
-@implementation NSString (TGGlobalString)
+@implementation NSString (CGGlobalString)
 
 +(NSString *)check_username
 {

@@ -15,5 +15,4 @@
 @property (weak, nonatomic) id <Homeviewcontroller> delegate;
 @property (strong, nonatomic) UILabel *userName;
 @property (strong, nonatomic) UIButton *logoutButton;
-
 @end

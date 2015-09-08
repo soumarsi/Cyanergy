@@ -32,6 +32,8 @@
     [self.view addSubview:_sideBar];
     
     
+    _saveClass = [[saveparameter alloc]init];
+    _globalClass = [[CGglobalfunction alloc]init];
     
     //------------CORE LOCATION FOR LAT LONG-------------//
     
@@ -130,7 +132,11 @@
 
 -(void)logout
 {
+    DebugLog(@"logout");
     
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    CGHomeViewController *vc = [sb instantiateViewControllerWithIdentifier:@"CGLoginViewController"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //sidebar delegate method called
@@ -179,7 +185,53 @@
 }
 -(void)syncfunction
 {
-    
+
+    if (self.mainListedArray.count != 0)
+    {
+        Listingtable *listArray = [self.mainListedArray objectAtIndex:0];
+        
+        NSString * params = [_saveClass savestring:listArray];
+        
+       // DebugLog(@"-=-=-=-=sync data-=-=-=- : %@", params);
+        
+        [_globalClass saveparameterstr:params withblock:^(id result, NSError *error) {
+            
+            NSLog(@"-=-=-=-%@ ", result);
+           
+            if ([[result objectForKey:@"message"] isEqualToString:@"success"])
+            {
+                NSIndexPath *myIP = [NSIndexPath indexPathForRow:0 inSection:0];
+                [self.mainListedArray removeObjectAtIndex:0];
+                [self.listingTable beginUpdates];
+                [self.listingTable deleteRowsAtIndexPaths:[NSArray arrayWithObject:myIP] withRowAnimation:UITableViewRowAnimationLeft];
+                [self.listingTable endUpdates];
+                
+                
+                [self performSelector:@selector(syncfunction) withObject:nil afterDelay:1.0f];
+            }
+        }];
+        
+    }
+    else
+    {
+        NSManagedObjectContext *context3=[cyanergyAppdelegate managedObjectContext];
+        NSFetchRequest *allCars = [[NSFetchRequest alloc] init];
+        [allCars setEntity:[NSEntityDescription entityForName:@"Listingtable" inManagedObjectContext:context3]];
+        [allCars setIncludesPropertyValues:NO]; //only fetch the managedObjectID
+        
+        NSError *error = nil;
+        NSArray *cars = [context3 executeFetchRequest:allCars error:&error];
+        //error handling goes here
+        for (NSManagedObject *car in cars) {
+            [context3 deleteObject:car];
+        }
+        NSError *saveError = nil;
+        [context3 save:&saveError];
+        
+        _comingsoon.hidden = NO;
+        _listingTable.hidden = YES;
+        //more error handling here
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -255,14 +307,11 @@
         list = [self.mainListedArray objectAtIndex:indexPath.row];
         
         _webView = [[UIWebView alloc] init];
-        _webView.delegate = self;
         NSArray* documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
         
         NSString* documentDirectory = [documentDirectories objectAtIndex:0];
         NSString* documentDirectoryFilename = [documentDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@",list.pdffilename]];
-        
-        //NSString *path = [[NSBundle mainBundle] pathForResource:@"document" ofType:@"pdf"];
-        NSLog(@"pdfstr-=-=-= %@", documentDirectoryFilename);
+
         NSURL *targetURL = [NSURL fileURLWithPath:documentDirectoryFilename];
         NSURLRequest *request = [NSURLRequest requestWithURL:targetURL];
         [_webView loadRequest:request];
@@ -274,33 +323,36 @@
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             
             NSString *pdfstr = [self createPDFfromUIView:_webView saveToDocumentsWithFileName:[NSString stringWithFormat:@"%@",list.pdffilename]];
-            NSLog(@"pdfstr-=-=-= %@", pdfstr);
             
-            UIWebView *wbView = [[UIWebView alloc] initWithFrame:CGRectMake(0.0f, 70.0f, self.view.frame.size.width, self.view.frame.size.height-70)];
+            wbView = [[UIWebView alloc] initWithFrame:CGRectMake(0.0f, 70.0f, self.view.frame.size.width, self.view.frame.size.height-70)];
             NSURL *targetURL1 = [NSURL fileURLWithPath:pdfstr];
             NSURLRequest *request1 = [NSURLRequest requestWithURL:targetURL1];
             [wbView loadRequest:request1];
             
             [self.view addSubview:wbView];
 
+            UIButton *cros = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width-80, 20, 50, 50)];
+            [cros setBackgroundImage:[UIImage imageNamed:@"cros"] forState:UIControlStateNormal];
+            [cros addTarget:self action:@selector(cross) forControlEvents:UIControlEventTouchUpInside];
+            [wbView addSubview:cros];
+            
         });
         
         }
     
+}
+-(void)cross
+{
+    [wbView removeFromSuperview];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void)webViewDidStartLoad:(UIWebView *)webView {
-    NSLog(@"start");
-}
 
--(void)webViewDidFinishLoad:(UIWebView *)webView {
-    NSLog(@"finish");
-   
-}
+
+// pdf create function...
 
 -(NSString*)createPDFfromUIView:(UIView*)aView saveToDocumentsWithFileName:(NSString*)aFilename
 {
@@ -325,7 +377,7 @@
     UYLGenericPrintPageRenderer *renderer = [[UYLGenericPrintPageRenderer alloc] init];
     NSString *str1 = [NSString stringWithFormat:@"\nSubmitted by Benjamin Przywolnllfet 03/08/2015 11:24 EST, ceptured et 29/07/2015 22:51 EST \n"
                       "Submission ID: C6sA2o3D-4sF5-43c7-M63-D87AAC32F396 \n"
-                      "Mobile Apps For How You Do Business - powered by cenves (nmugggmnggm)"
+                      "Mobile Apps For How You Do Business - powered by canvas (www,gocanvas.com)"
                       ];
     renderer.footerText = str1;
     
@@ -372,8 +424,6 @@
         [[NSFileManager defaultManager] removeItemAtPath:savePath error:nil];
     }
     [pdfData1 writeToFile: savePath atomically: YES];
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"PDF File created and saved successfully." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//    [alert show];
 
     return savePath;
 }
@@ -381,14 +431,10 @@
 - (NSData*) printToPDFWithRenderer:(UIPrintPageRenderer*)renderer paperRect:(CGRect)paperRect
 {
     pdfData = [NSMutableData data];
-    
-    NSLog(@"paperrect-=-=-=- %f-=-=-=- %f", paperRect.size.height,paperRect.size.width);
-    
     UIGraphicsBeginPDFContextToData(pdfData, paperRect, nil );
     [renderer prepareForDrawingPages: NSMakeRange(0, renderer.numberOfPages)];
     CGRect bounds = UIGraphicsGetPDFContextBounds();
-    //    CGContextRef pdfContext = UIGraphicsGetCurrentContext();
-    //     [aview.layer drawInContext:pdfContext];
+
     for ( int i = 0 ; i < renderer.numberOfPages ; i++ )
     {
         UIGraphicsBeginPDFPage();
