@@ -138,6 +138,23 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    if(self.userName.tag == 1)
+    {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.view.frame = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, self.view.frame.size.height);
+        } completion:^(BOOL finished) {
+            
+        }];
+    }
+    else if (self.password.tag == 2)
+    {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.view.frame = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, self.view.frame.size.height);
+        } completion:^(BOOL finished) {
+            
+        }];
+    }
+
     return YES;
 }
 - (void)textFieldDidBeginEditing:(UITextField *)textField
@@ -163,18 +180,18 @@
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     
-    if(textField.tag == 1)
+    if(self.userName.tag == 1)
     {
     [UIView animateWithDuration:0.3 animations:^{
-        self.baseView.frame = CGRectMake(0.0f, 0.0f, self.baseView.frame.size.width, self.baseView.frame.size.height);
+        self.view.frame = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, self.view.frame.size.height);
     } completion:^(BOOL finished) {
         
     }];
     }
-    else if (textField.tag == 2)
+    else if (self.password.tag == 2)
     {
         [UIView animateWithDuration:0.3 animations:^{
-            self.baseView.frame = CGRectMake(0.0f, 0.0f, self.baseView.frame.size.width, self.baseView.frame.size.height);
+            self.view.frame = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, self.view.frame.size.height);
         } completion:^(BOOL finished) {
             
         }];

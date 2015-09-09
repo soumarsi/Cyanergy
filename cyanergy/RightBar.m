@@ -28,7 +28,6 @@
         _logoutButton = [[UIButton alloc]initWithFrame:CGRectMake(_userName.frame.size.width, 0, 56, 44)];
         [_logoutButton setImage:[UIImage logoutImage] forState:UIControlStateNormal];
         [_logoutButton.imageView setContentMode:UIViewContentModeScaleAspectFit];
-        [_logoutButton addTarget:self.delegate action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_logoutButton];
         
     }

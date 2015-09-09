@@ -112,7 +112,7 @@
     
     //UIFont *font = [UIFont fontWithName:@"Helvetica" size:FOOTER_FONT_SIZE];
 
-    NSString *pageNumber = [NSString stringWithFormat:@"Page- %d", pageIndex+1];
+    NSString *pageNumber = [NSString stringWithFormat:@"Page- %ld", pageIndex+1];
     CGSize size = [pageNumber sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Helvetica" size:FOOTER_FONT_SIZE]}];
     CGFloat drawX = CGRectGetMaxX(footerRect)/2 - size.width/2;
     NSLog(@"=-=-= %f", drawX);

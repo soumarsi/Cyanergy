@@ -123,6 +123,8 @@
     
     self.homeNav.userName.text = @"Jhon Curter";
     
+     [self.homeNav.logoutButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
+    
     _sideBar = [[CGsidebar alloc]init];
     _sideBar.delegate = self;
     [self.view addSubview:_sideBar];
@@ -1396,6 +1398,12 @@
     }
     auditFormDetails.sd21c_comment = _auditForm2.commentBox20.text;
     
+    UIImage *auditsignimage = [self imageWithView:_auditorsignView];
+    UIImage *customersignimage = [self imageWithView:_cosumerSignView];
+    
+    NSData *dataAuditSign = UIImageJPEGRepresentation(auditsignimage, 1.0f);
+    NSData *dataConsumerSign = UIImageJPEGRepresentation(customersignimage, 1.0f);
+    
     auditImage.formtype = @"Audit";
     auditImage.auditid = @"1";
     auditImage.gpslatitude = latitude;
@@ -1404,6 +1412,8 @@
     auditImage.image = arrayData;
     NSData *arrayDatatext = [NSKeyedArchiver archivedDataWithRootObject:_imageTextArray];
     auditImage.imagetext = arrayDatatext;
+    auditImage.auditorsignature = dataAuditSign;
+    auditImage.customersignature = dataConsumerSign;
     
     Listed.formtype = @"Audit";
     Listed.creationdate = string;
@@ -1618,13 +1628,21 @@
     [addimage1 setFont:[UIFont systemFontOfSize:20]];
     [scview addSubview:addimage1];
     
-    UILabel *addimage2 = [[UILabel alloc]initWithFrame:CGRectMake(20.f, 5000+400+(divide*1000), 600.0f, 50.0f)];
+    UIImageView *auditsign = [[UIImageView alloc]initWithFrame:CGRectMake(450.0f, 5000+300+(divide*1000), 300, 100)];
+    [auditsign setImage:[self imageWithView:_auditorsignView]];
+    [scview addSubview:auditsign];
+    
+    UILabel *addimage2 = [[UILabel alloc]initWithFrame:CGRectMake(20.f, 5000+420+(divide*1000), 600.0f, 50.0f)];
     [addimage2 setBackgroundColor:[UIColor clearColor]];
     [addimage2 setText:@"Signed by Customer"];
     [addimage2 setTextAlignment:NSTextAlignmentLeft];
     [addimage2 setTextColor:[UIColor blackColor]];
     [addimage2 setFont:[UIFont systemFontOfSize:20]];
     [scview addSubview:addimage2];
+    
+    UIImageView *auditsign1 = [[UIImageView alloc]initWithFrame:CGRectMake(450.0f, 5000+490+(divide*1000), 300, 100)];
+    [auditsign1 setImage:[self imageWithView:_cosumerSignView]];
+    [scview addSubview:auditsign1];
     
     lineview1 = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 6000+40+(divide*1000), 800.0f, 2.0f)];
     [lineview1 setBackgroundColor:[UIColor blackColor]];
@@ -1690,7 +1708,19 @@
     [self.navigationController pushViewController:vc animated:YES];
     
 }
-
+- (UIImage *) imageWithView:(UIView *)view
+{
+    UIGraphicsBeginImageContext(view.bounds.size);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    
+   UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    
+    DebugLog(@"image---: %@",img);
+    
+    UIGraphicsEndImageContext();
+    
+    return img;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -46,6 +46,8 @@
     
     [self.locationManager startUpdatingLocation];
     
+    
+    
     //-----------------------------------------------PK--//
     
     cyanergyAppdelegate = (CGAppDelegate *)[[UIApplication sharedApplication]delegate];
@@ -100,8 +102,6 @@
     [self.locationManager stopUpdatingLocation];
     
 }
-
-
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -127,6 +127,8 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.homeNav];
    
     self.homeNav.userName.text = @"Jhon Curter";
+    
+    [self.homeNav.logoutButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
     
 }
 
@@ -190,9 +192,10 @@
     {
         Listingtable *listArray = [self.mainListedArray objectAtIndex:0];
         
-        NSString * params = [_saveClass savestring:listArray];
+      // NSString *base64String = [listArray.auditform.auditimage.auditorsignature base64EncodedStringWithOptions:0];
+
         
-       // DebugLog(@"-=-=-=-=sync data-=-=-=- : %@", params);
+        NSString * params = [_saveClass savestring:listArray];
         
         [_globalClass saveparameterstr:params withblock:^(id result, NSError *error) {
             
