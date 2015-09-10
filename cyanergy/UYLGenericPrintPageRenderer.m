@@ -93,7 +93,6 @@
     CGPoint drawPoint1 = CGPointMake(480, 60);
     [headertextdate drawAtPoint:drawPoint1 withAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Helvetica" size:HEADER_FONT_SIZE]}];
     
-   
     
     if (self.headerText) {
         //UIFont *font = [UIFont fontWithName:@"Helvetica" size:HEADER_FONT_SIZE];

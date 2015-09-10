@@ -548,6 +548,7 @@
                 [self.imageText setFont:[UIFont imageTextFont]];
                 [self.imageText setDelegate:self];
                 self.imageText.tag = k;
+                [_imageText setAutocorrectionType:UITextAutocorrectionTypeNo];
                 self.imageText.layer.borderWidth = 1.0f;
                 self.imageText.layer.borderColor = [[UIColor grayColor]CGColor];
                 [_auditForm3.scrollV addSubview:_imageText];
@@ -1034,7 +1035,7 @@
         [_imageTextArray removeObjectAtIndex:textField.tag];
         [_imageTextArray insertObject:textField.text atIndex:textField.tag];
         
-        NSLog(@"imagetextarray--=-=-= %lu", (unsigned long)self.imageTextArray.count);
+        NSLog(@"imagetextarray--=-=-= %lu", (unsigned long)self.imageTextArray);
     }
 }
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
@@ -1053,6 +1054,14 @@
     
     return YES;
     
+}
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [_imageTextArray removeObjectAtIndex:textField.tag];
+    [_imageTextArray insertObject:textField.text atIndex:textField.tag];
+    
+    NSLog(@"imagetextarray--=-=-= %lu", (unsigned long)self.imageTextArray);
+    return YES;
 }
 -(void)textViewDidBeginEditing:(UITextView *)textView{
     
@@ -1713,7 +1722,7 @@
     UIGraphicsBeginImageContext(view.bounds.size);
     [view.layer renderInContext:UIGraphicsGetCurrentContext()];
     
-   UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
     
     DebugLog(@"image---: %@",img);
     
