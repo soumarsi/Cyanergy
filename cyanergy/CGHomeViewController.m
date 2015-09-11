@@ -192,12 +192,7 @@
     {
         Listingtable *listArray = [self.mainListedArray objectAtIndex:0];
         
-      // NSString *base64String = [listArray.auditform.auditimage.auditorsignature base64EncodedStringWithOptions:0];
-
-        
-        NSString * params = [_saveClass savestring:listArray];
-        
-        [_globalClass saveparameterstr:params withblock:^(id result, NSError *error) {
+        [_saveClass saveparameterstr:listArray withblock:^(id result, NSError *error) {
             
             NSLog(@"-=-=-=-%@ ", result);
            

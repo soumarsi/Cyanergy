@@ -1035,8 +1035,8 @@
         [_imageTextArray removeObjectAtIndex:textField.tag];
         [_imageTextArray insertObject:textField.text atIndex:textField.tag];
         
-        NSLog(@"imagetextarray--=-=-= %lu", (unsigned long)self.imageTextArray);
-    }
+        NSLog(@"imagetextarray--=-=-= %@", self.imageTextArray);
+   }
 }
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     
@@ -1092,15 +1092,17 @@
         
     }else if ([_check isEqualToString:@"step3"]) {
         
+        
+        NSDictionary *dict = [notification userInfo];
+        
+        NSLog(@"-=-=- %@", dict);
+        
         CGRect tempRect=[_auditForm3 frame];
         tempRect.origin.x       =   121.0f;
         tempRect.origin.y       =   103.0f;
         [_auditForm3 setFrame:tempRect];
-        
     }
-    
 }
-
 -(void)auditStatus:(UIButton *)sender
 {
     

@@ -14,15 +14,17 @@
 #import <netdb.h>
 #import "CGglobal.h"
 
+
+
 @interface CGglobalfunction : NSObject<NSURLSessionTaskDelegate>
 {
     NSUserDefaults *UserData;
     NSDictionary * text;
+  
 }
 
 - (BOOL)connectedToNetwork;
 -(void)parameterstring:(NSString *)parameter withblock:(Urlresponceblock)responce;
--(void)saveparameterstr:(NSString *)savestring withblock:(Urlresponceblock) responce;
 -(void)Userdict:(NSDictionary *)userdetails;
 
 @end

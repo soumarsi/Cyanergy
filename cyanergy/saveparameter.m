@@ -7,22 +7,140 @@
 //
 
 #import "saveparameter.h"
-
+#define App_Domain_Url @"http://esolz.co.in/lab6/cyanergy/webservice/"
+#define saveurl @"action.php?mode=save"
 @implementation saveparameter
 
 -(NSString *)savestring:(Listingtable *)saveArray
 {
-     NSString *params = [NSString stringWithFormat:@"userid=%@&username=%@&auditid=%@&auditdate=%@&formtype=%@&consumer_fname=%@&consumer_lname=%@&consumer_phno=%@&consumer_pstcode=%@&consumer_state=%@&consumer_suburb=%@&consumer_addline1=%@&consumer_addline2=%@&installer_fname=%@&installer_lname=%@&generalquestion1=%@&generalquestion2=%@&generalquestion3=%@&generalquestion4=%@&generalquestion5=%@&generalquestion6=%@&generalquestion7=%@&generalquestion8=%@&generalcomment=%@&sd15_tnodoorseal=%@&sd15_tnochimneyseal=%@&sd15_externamdoors=%@&sd15_externalchimney=%@&sd15_doorinstall=%@&sd15_doorinstallcom=%@&sd15_chimneyinstall=%@&sd15_chimneyinstallcom=%@&sd15_doorsealremov=%@&sd15_externaldoorinstall=%@&sd15_externaldoorinstallcom=%@&sd15_spareproduct=%@&sd15_spareproductcom=%@&sd15_auditstatus=%@&sd15_comment=%@&",saveArray.auditform.userid,saveArray.auditform.username,saveArray.auditform.auditid,saveArray.auditform.auditdate,saveArray.auditform.formtype,saveArray.auditform.consumer_fname,saveArray.auditform.consumer_lname,saveArray.auditform.consumer_phno,saveArray.auditform.consumer_pstcode,saveArray.auditform.consumer_state,saveArray.auditform.consumer_suburb,saveArray.auditform.consumer_addline1,saveArray.auditform.consumer_addline2,saveArray.auditform.installer_fname,saveArray.auditform.installer_lname,saveArray.auditform.generalquestion1,saveArray.auditform.generalquestion2,saveArray.auditform.generalquestion3,saveArray.auditform.generalquestion4,saveArray.auditform.generalquestion5,saveArray.auditform.generalquestion6,saveArray.auditform.generalquestion7,saveArray.auditform.generalquestion8,saveArray.auditform.generalcomment,saveArray.auditform.sd15_tnodoorseal,saveArray.auditform.sd15_tnochimneyseal,saveArray.auditform.sd15_externamdoors,saveArray.auditform.sd15_externalchimney,saveArray.auditform.sd15_doorinstall,saveArray.auditform.sd15_doorinstallcom,saveArray.auditform.sd15_chimneyinstall,saveArray.auditform.sd15_chimneyinstallcom,saveArray.auditform.sd15_doorsealremov,saveArray.auditform.sd15_externaldoorinstall,saveArray.auditform.sd15_externaldoorinstallcom,saveArray.auditform.sd15_spareproduct,saveArray.auditform.sd15_spareproductcom,saveArray.auditform.sd15_auditstatus,saveArray.auditform.sd15_comment];
-    
-    NSString *parames1 = [NSString stringWithFormat:@"sd17_totalnoshower=%@&sd17_totalnobathroom=%@&sd17_showerenergysaving=%@&sd17_showerenergycom=%@&sd17_previousshower=%@&sd17_previousshowercom=%@&sd17_spareshower=%@&sd17_spareshowercom=%@&sd17_installbucket=%@&sd17_installbucketcom=%@&sd17_auditstatus=%@&sd17_comment=%@&",saveArray.auditform.sd17_totalnoshower,saveArray.auditform.sd17_totalnobathroom,saveArray.auditform.sd17_showerenergysaving,saveArray.auditform.sd17_showerenergycom,saveArray.auditform.sd17_previousshower,saveArray.auditform.sd17_previousshowercom,saveArray.auditform.sd17_spareshower,saveArray.auditform.sd17_spareshowercom,saveArray.auditform.sd17_installbucket,saveArray.auditform.sd17_installbucketcom,saveArray.auditform.sd17_auditstatus,saveArray.auditform.sd17_comment];
-    
-    NSString *parames2 = [NSString stringWithFormat:@"sd21b_totalnoglobes=%@&sd21b_sensorglobes=%@&sd21b_sensorglobescom=%@&sd21b_emptyglobes=%@&sd21b_emptyglobescom=%@&sd21b_HEglobes=%@&sd21b_HEglobescom=%@&sd21b_customerglobes=%@&sd21b_customerglobescom=%@&sd21b_confirmglobe=%@&sd21b_otherglobes=%@&sd21b_emptysocket=%@&sd21b_installheglobes=%@&sd21b_auditstatus=%@&sd21b_comment=%@&",saveArray.auditform.sd21b_totalnoglobes,saveArray.auditform.sd21b_sensorglobes,saveArray.auditform.sd21b_sensorglobescom,saveArray.auditform.sd21b_emptyglobes,saveArray.auditform.sd21b_emptyglobescom,saveArray.auditform.sd21b_HEglobes,saveArray.auditform.sd21b_HEglobescom,saveArray.auditform.sd21b_customerglobes,saveArray.auditform.sd21b_customerglobescom,saveArray.auditform.sd21b_confirmglobe,saveArray.auditform.sd21b_otherglobes,saveArray.auditform.sd21b_emptysocket,saveArray.auditform.sd21b_installheglobes,saveArray.auditform.sd21b_auditstatus,saveArray.auditform.sd21b_comment];
-    
-    NSString *parames3 = [NSString stringWithFormat:@"sd21c_totalnoglobes=%@&sd21c_sensorglobes=%@&sd21c_sensorglobescom=%@&sd21c_emptyglobe=%@&sd21c_emptyglobecom=%@&sd21c_heglobes=%@&sd21c_hEglobescom=%@&sd21c_customerglobe=%@&sd21c_customerglobecom=%@&sd21c_confirmglobe=%@&sd21c_otherglobe=%@&sd21c_emptysocket=%@&sd21c_installHEglobe=%@&sd21c_auditstatus=%@&sd21c_comment=%@&gpslatitude=%f&gpslongitude=%f&auditorsignature=%@&customersignature=%@&image=%@&imagetext=%@&pdfdata=%@",saveArray.auditform.sd21c_totalnoglobes,saveArray.auditform.sd21c_sensorglobes,saveArray.auditform.sd21c_sensorglobescom,saveArray.auditform.sd21c_emptyglobe,saveArray.auditform.sd21c_emptyglobecom,saveArray.auditform.sd21c_heglobes,saveArray.auditform.sd21c_hEglobescom,saveArray.auditform.sd21c_customerglobe,saveArray.auditform.sd21c_customerglobecom,saveArray.auditform.sd21c_confirmglobe,saveArray.auditform.sd21c_otherglobe,saveArray.auditform.sd21c_emptysocket,saveArray.auditform.sd21c_installHEglobe,saveArray.auditform.sd21c_auditstatus,saveArray.auditform.sd21c_comment,saveArray.auditform.auditimage.gpslatitude,saveArray.auditform.auditimage.gpslongitude,[saveArray.auditform.auditimage.auditorsignature base64EncodedStringWithOptions:0],[saveArray.auditform.auditimage.customersignature base64EncodedStringWithOptions:0],[saveArray.auditform.auditimage.image base64EncodedStringWithOptions:0],[saveArray.auditform.auditimage.imagetext base64EncodedStringWithOptions:0],[saveArray.pdfdata base64EncodedStringWithOptions:0]];
-    
-    
-    _returnString = [NSString stringWithFormat:@"%@%@%@%@",params,parames1,parames2,parames3];
-    
     return _returnString;
 }
+
+//save data to server
+-(void)saveparameterstr:(Listingtable *)saveArray withblock:(Urlresponceblock) responce
+{
+    
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",App_Domain_Url,saveurl]]];
+    [request setRequestMethod:@"POST"];
+   //general details//
+    [request addPostValue:saveArray.auditform.userid forKey:@"userid"];
+    [request addPostValue:saveArray.auditform.username forKey:@"username"];
+    [request addPostValue:saveArray.auditform.auditid forKey:@"auditid"];
+    [request addPostValue:saveArray.auditform.auditdate forKey:@"auditdate"];
+    [request addPostValue:saveArray.auditform.formtype forKey:@"formtype"];
+    [request addPostValue:saveArray.auditform.consumer_fname forKey:@"consumer_fname"];
+    [request addPostValue:saveArray.auditform.consumer_lname forKey:@"consumer_lname"];
+    [request addPostValue:saveArray.auditform.consumer_phno forKey:@"consumer_phno"];
+    [request addPostValue:saveArray.auditform.consumer_pstcode forKey:@"consumer_pstcode"];
+    [request addPostValue:saveArray.auditform.consumer_state forKey:@"consumer_state"];
+    [request addPostValue:saveArray.auditform.consumer_suburb forKey:@"consumer_suburb"];
+    [request addPostValue:saveArray.auditform.consumer_addline1 forKey:@"consumer_addline1"];
+    [request addPostValue:saveArray.auditform.consumer_addline2 forKey:@"consumer_addline2"];
+    [request addPostValue:saveArray.auditform.installer_fname forKey:@"installer_fname"];
+    [request addPostValue:saveArray.auditform.installer_lname forKey:@"installer_lname"];
+    [request addPostValue:saveArray.auditform.generalquestion1 forKey:@"generalquestion1"];
+    [request addPostValue:saveArray.auditform.generalquestion2 forKey:@"generalquestion2"];
+    [request addPostValue:saveArray.auditform.generalquestion3 forKey:@"generalquestion3"];
+    [request addPostValue:saveArray.auditform.generalquestion4 forKey:@"generalquestion4"];
+    [request addPostValue:saveArray.auditform.generalquestion5 forKey:@"generalquestion5"];
+    [request addPostValue:saveArray.auditform.generalquestion6 forKey:@"generalquestion6"];
+    [request addPostValue:saveArray.auditform.generalquestion7 forKey:@"generalquestion7"];
+    [request addPostValue:saveArray.auditform.generalquestion8 forKey:@"generalquestion8"];
+    [request addPostValue:saveArray.auditform.generalcomment forKey:@"generalcomment"];
+//sedule 15//
+    [request addPostValue:saveArray.auditform.sd15_tnodoorseal forKey:@"sd15_tnodoorseal"];
+    [request addPostValue:saveArray.auditform.sd15_tnochimneyseal forKey:@"sd15_tnochimneyseal"];
+    [request addPostValue:saveArray.auditform.sd15_externamdoors forKey:@"sd15_externamdoors"];
+    [request addPostValue:saveArray.auditform.sd15_externalchimney forKey:@"sd15_externalchimney"];
+    [request addPostValue:saveArray.auditform.sd15_doorinstall forKey:@"sd15_doorinstall"];
+    [request addPostValue:saveArray.auditform.sd15_doorinstallcom forKey:@"sd15_doorinstallcom"];
+    [request addPostValue:saveArray.auditform.sd15_chimneyinstall forKey:@"sd15_chimneyinstall"];
+    [request addPostValue:saveArray.auditform.sd15_chimneyinstallcom forKey:@"sd15_chimneyinstallcom"];
+    [request addPostValue:saveArray.auditform.sd15_doorsealremov forKey:@"sd15_doorsealremov"];
+    [request addPostValue:saveArray.auditform.sd15_externaldoorinstall forKey:@"sd15_externaldoorinstall"];
+    [request addPostValue:saveArray.auditform.sd15_externaldoorinstallcom forKey:@"sd15_externaldoorinstallcom"];
+    [request addPostValue:saveArray.auditform.sd15_spareproduct forKey:@"sd15_spareproduct"];
+    [request addPostValue:saveArray.auditform.sd15_spareproductcom forKey:@"sd15_spareproductcom"];
+    [request addPostValue:saveArray.auditform.sd15_auditstatus forKey:@"sd15_auditstatus"];
+    [request addPostValue:saveArray.auditform.sd15_comment forKey:@"sd15_comment"];
+//sedule 17//
+    [request addPostValue:saveArray.auditform.sd17_totalnoshower forKey:@"sd17_totalnoshower"];
+    [request addPostValue:saveArray.auditform.sd17_totalnobathroom forKey:@"sd17_totalnobathroom"];
+    [request addPostValue:saveArray.auditform.sd17_showerenergysaving forKey:@"sd17_showerenergysaving"];
+    [request addPostValue:saveArray.auditform.sd17_showerenergycom forKey:@"sd17_showerenergycom"];
+    [request addPostValue:saveArray.auditform.sd17_previousshower forKey:@"sd17_previousshower"];
+    [request addPostValue:saveArray.auditform.sd17_previousshowercom forKey:@"sd17_previousshowercom"];
+    [request addPostValue:saveArray.auditform.sd17_spareshower forKey:@"sd17_spareshower"];
+    [request addPostValue:saveArray.auditform.sd17_installbucket forKey:@"sd17_installbucket"];
+    [request addPostValue:saveArray.auditform.sd17_installbucketcom forKey:@"sd17_installbucketcom"];
+    [request addPostValue:saveArray.auditform.sd17_auditstatus forKey:@"sd17_auditstatus"];
+    [request addPostValue:saveArray.auditform.sd17_comment forKey:@"sd17_comment"];
+//sedule 21b//
+    [request addPostValue:saveArray.auditform.sd21b_totalnoglobes forKey:@"sd21b_totalnoglobes"];
+    [request addPostValue:saveArray.auditform.sd21b_sensorglobes forKey:@"sd21b_sensorglobes"];
+    [request addPostValue:saveArray.auditform.sd21b_sensorglobescom forKey:@"sd21b_sensorglobescom"];
+    [request addPostValue:saveArray.auditform.sd21b_emptyglobes forKey:@"sd21b_emptyglobes"];
+    [request addPostValue:saveArray.auditform.sd21b_emptyglobescom forKey:@"sd21b_emptyglobescom"];
+    [request addPostValue:saveArray.auditform.sd21b_HEglobes forKey:@"sd21b_HEglobes"];
+    [request addPostValue:saveArray.auditform.sd21b_HEglobescom forKey:@"sd21b_HEglobescom"];
+    [request addPostValue:saveArray.auditform.sd21b_customerglobes forKey:@"sd21b_customerglobes"];
+    [request addPostValue:saveArray.auditform.sd21b_customerglobescom forKey:@"sd21b_customerglobescom"];
+    [request addPostValue:saveArray.auditform.sd21b_confirmglobe forKey:@"sd21b_confirmglobe"];
+    [request addPostValue:saveArray.auditform.sd21b_otherglobes forKey:@"sd21b_otherglobes"];
+    [request addPostValue:saveArray.auditform.sd21b_emptysocket forKey:@"sd21b_emptysocket"];
+    [request addPostValue:saveArray.auditform.sd21b_installheglobes forKey:@"sd21b_installheglobes"];
+    [request addPostValue:saveArray.auditform.sd21b_auditstatus forKey:@"sd21b_auditstatus"];
+    [request addPostValue:saveArray.auditform.sd21b_comment forKey:@"sd21b_comment"];
+    //sedule 21c//
+    [request addPostValue:saveArray.auditform.sd21b_totalnoglobes forKey:@"sd21c_totalnoglobes"];
+    [request addPostValue:saveArray.auditform.sd21b_sensorglobes forKey:@"sd21c_sensorglobes"];
+    [request addPostValue:saveArray.auditform.sd21b_sensorglobescom forKey:@"sd21c_sensorglobescom"];
+    [request addPostValue:saveArray.auditform.sd21b_emptyglobes forKey:@"sd21c_emptyglobe"];
+    [request addPostValue:saveArray.auditform.sd21b_emptyglobescom forKey:@"sd21c_emptyglobecom"];
+    [request addPostValue:saveArray.auditform.sd21b_HEglobes forKey:@"sd21c_heglobes"];
+    [request addPostValue:saveArray.auditform.sd21b_HEglobescom forKey:@"sd21c_hEglobescom"];
+    [request addPostValue:saveArray.auditform.sd21b_customerglobes forKey:@"sd21c_customerglobe"];
+    [request addPostValue:saveArray.auditform.sd21b_customerglobescom forKey:@"sd21c_customerglobecom"];
+    [request addPostValue:saveArray.auditform.sd21b_confirmglobe forKey:@"sd21c_confirmglobe"];
+    [request addPostValue:saveArray.auditform.sd21b_otherglobes forKey:@"sd21c_otherglobe"];
+    [request addPostValue:saveArray.auditform.sd21b_emptysocket forKey:@"sd21c_emptysocket"];
+    [request addPostValue:saveArray.auditform.sd21b_installheglobes forKey:@"sd21c_installHEglobe"];
+    [request addPostValue:saveArray.auditform.sd21b_auditstatus forKey:@"sd21c_auditstatus"];
+    [request addPostValue:saveArray.auditform.sd21b_comment forKey:@"sd21c_comment"];
+    
+    //imagedetails//
+    [request addPostValue:[NSString stringWithFormat:@"%f",saveArray.auditform.auditimage.gpslatitude] forKey:@"gpslatitude"];
+    [request addPostValue:[NSString stringWithFormat:@"%f",saveArray.auditform.auditimage.gpslongitude] forKey:@"gpslongitude"];
+    
+    //post image data//
+    [request addData:saveArray.auditform.auditimage.auditorsignature withFileName:@"signature.jpg" andContentType:@"signature/jpeg" forKey:@"auditorsignature"];
+    [request addData:saveArray.auditform.auditimage.customersignature withFileName:@"customersignature.jpg" andContentType:@"customersignature/jpeg" forKey:@"customersignature"];
+    [request addData:saveArray.pdfdata withFileName:@"auditpdf.pdf" andContentType:@"audit/pdf" forKey:@"pdfdata"];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    _responce=[responce copy];
+//    NSString *response = [NSString stringWithContentsOfFile: [request downloadDestinationPath] encoding:[request responseEncoding] error:nil];
+//    DebugLog(@"-=-=: %@",response);
+    
+}
+- (void) requestFinished:(ASIHTTPRequest *)request
+{
+    NSError *error;
+    NSDictionary *saveresult = [NSJSONSerialization JSONObjectWithData:[request responseData] options:kNilOptions error:&error];
+    _responce (saveresult,nil);
+    
+    NSLog(@"Response %d : %@ : %@", request.responseStatusCode, [request responseData],saveresult);
+}
+
+- (void) requestStarted:(ASIHTTPRequest *) request
+{
+    NSLog(@"request started...");
+}
+
+- (void) requestFailed:(ASIHTTPRequest *) request
+{
+    NSError *error = [request error];
+    NSLog(@"%@", error);
+}
+
 @end

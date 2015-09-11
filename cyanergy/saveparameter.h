@@ -11,12 +11,16 @@
 #import "Listingtable.h"
 #import "Auditformdetails.h"
 #import "AuditImage.h"
-@interface saveparameter : NSObject
+#import "CGglobal.h"
+#import "ASIFormDataRequest.h"
+@interface saveparameter : NSObject<ASIHTTPRequestDelegate>
 {
     CGAppDelegate *cyanergyAppdelegate;
     Listingtable *list;
+    Urlresponceblock _responce;
 }
 
 @property (nonatomic, strong) NSString *returnString;
 -(NSString *)savestring:(Listingtable *)saveArray;
+-(void)saveparameterstr:(Listingtable *)saveArray withblock:(Urlresponceblock) responce;
 @end
