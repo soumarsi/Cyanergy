@@ -28,7 +28,10 @@
 #import "FormView.h"
 #import "CGHomeViewController.h"
 #import <CoreText/CoreText.h>
-@interface CGAuditViewController : UIViewController<Homeviewcontroller,cgsidebar,UITextFieldDelegate,UITextViewDelegate,UIAlertViewDelegate,UIScrollViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UIPopoverControllerDelegate,CLLocationManagerDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
+#import "CGseduledropdown.h"
+#import <MobileCoreServices/MobileCoreServices.h>
+
+@interface CGAuditViewController : UIViewController<Homeviewcontroller,cgsidebar,UITextFieldDelegate,UITextViewDelegate,UIAlertViewDelegate,UIScrollViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,UIPopoverControllerDelegate,CLLocationManagerDelegate,UIPickerViewDataSource,UIPickerViewDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     
     CYAuditTopbar *topbar;
@@ -51,7 +54,8 @@
     UIScrollView *scview;
     UIView *lineview1;
 }
-
+@property (nonatomic, strong) UIPopoverController *popoverController;
+@property (nonatomic) BOOL newMedia;
 @property (weak, nonatomic) IBOutlet UIView *baseview;
 @property (nonatomic, strong) RightBar *homeNav;
 @property (nonatomic, strong) CGsidebar *sideBar;
@@ -69,4 +73,7 @@
 @property (nonatomic, strong) UIView *background;
 @property (nonatomic, strong) NSMutableArray *imageTextArray;
 @property (nonatomic, strong) NSMutableArray *mainListedArray;
+
+@property (nonatomic, strong) CGseduledropdown *CGseduleDropDownView;
+
 @end

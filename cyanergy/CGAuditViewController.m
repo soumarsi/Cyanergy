@@ -7,17 +7,43 @@
 //
 
 #import "CGAuditViewController.h"
+#import "schedule15View.h"
+#import "schedule17View.h"
+#import "schedule21BView.h"
+#import "schedule21CView.h"
+#import "formListDropdownView.h"
 
 @interface CGAuditViewController ()
+
+{
+
+    NSMutableArray *dropDownItems;
+    formListDropdownView *listDropDown;
+    UILabel *noFormsLabel;
+    BOOL dropDownCreated;
+    
+    UIButton *statusButton;
+    
+    //form views
+    
+    schedule21CView *twentyOneCView;
+    schedule21BView *twentyOneBView;
+    schedule17View *form17View;
+    schedule15View *form15View;
+    
+
+}
 
 @end
 
 @implementation CGAuditViewController
 
+@synthesize popoverController;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-
+    dropDownCreated=NO;
     
     //------------CORE LOCATION FOR LAT LONG-------------//
     
@@ -44,22 +70,23 @@
     _auditForm.generalQuestion6 = @"No";
     _auditForm.generalQuestion7 = @"No";
     _auditForm.generalQuestion8 = @"No";
-    _auditForm2.sd15_doorinstall = @"No";
-    _auditForm2.sd15_chimneyinstall = @"No";
-    _auditForm2.sd15_externaldoorinstall = @"No";
-    _auditForm2.sd15_spareproduct = @"No";
-    _auditForm2.sd17_showerenergysaving = @"No";
-    _auditForm2.sd17_previousshower = @"No";
-    _auditForm2.sd17_spareshower = @"No";
-    _auditForm2.sd17_installbucket = @"No";
-    _auditForm2.sd21b_sensorglobes = @"No";
-    _auditForm2.sd21b_emptyglobes = @"No";
-    _auditForm2.sd21b_HEglobes = @"No";
-    _auditForm2.sd21b_customerglobes = @"No";
-    _auditForm2.sd21c_sensorglobes = @"No";
-    _auditForm2.sd21c_emptyglobe = @"No";
-    _auditForm2.sd21c_heglobes = @"No";
-    _auditForm2.sd21c_customerglobe = @"No";
+    
+    form15View.sd15_doorinstall = @"No";
+    form15View.sd15_chimneyinstall = @"No";
+    form15View.sd15_externaldoorinstall = @"No";
+    form15View.sd15_spareproduct = @"No";
+    form17View.sd17_showerenergysaving = @"No";
+    form17View.sd17_previousshower = @"No";
+    form17View.sd17_spareshower = @"No";
+    form17View.sd17_installbucket = @"No";
+    twentyOneBView.sd21b_sensorglobes = @"No";
+    twentyOneBView.sd21b_emptyglobes = @"No";
+    twentyOneBView.sd21b_HEglobes = @"No";
+    twentyOneBView.sd21b_customerglobes = @"No";
+    twentyOneCView.sd21c_sensorglobes = @"No";
+    twentyOneCView.sd21c_emptyglobe = @"No";
+    twentyOneCView.sd21c_heglobes = @"No";
+    twentyOneCView.sd21c_customerglobe = @"No";
     // Do any additional setup after loading the view.
 }
 -(void)logout
@@ -180,7 +207,6 @@
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
     
-    
     [_auditForm.yesNo1 addTarget:self action:@selector(onoff:) forControlEvents:UIControlEventTouchUpInside];
     [_auditForm.yesNo2 addTarget:self action:@selector(onoff:) forControlEvents:UIControlEventTouchUpInside];
     [_auditForm.yesNo3 addTarget:self action:@selector(onoff:) forControlEvents:UIControlEventTouchUpInside];
@@ -192,7 +218,6 @@
     
     
     [_auditForm.next addTarget:self action:@selector(next) forControlEvents:UIControlEventTouchUpInside];
-    
 }
 -(void)next{
     
@@ -276,12 +301,82 @@
         
         [_alertView show];
         
-    }else{
+    }
+    else
+    {
+    
         [self form2];
         
+   }
+}
+
+
+#pragma mark - Select form from dropdown Function
+
+-(void)formListDropDown:(UIButton *)sender
+{
+ 
+    NSLog(@"Schedule list tapped...");
+    
+   if(dropDownCreated==NO)
+   {
+    CGRect tempRect3=CGRectMake(121.0f, (self.CGseduleDropDownView.frame.origin.y+self.CGseduleDropDownView.frame.size.height), 250, 300);
+ //   tempRect3.origin.x       =   121.0f;
+   // tempRect3.origin.y       =   self.CGseduleDropDownView.frame.origin.y+self.CGseduleDropDownView.frame.size.height;
+   
+   
+    listDropDown=[[formListDropdownView alloc]initWithFrame:tempRect3];
+    
+    tempRect3.size.height=listDropDown.dropDownTable.bounds.size.height;
+    tempRect3.size.width=listDropDown.dropDownTable.bounds.size.width;
+    
+    dropDownItems=[[NSMutableArray alloc]init];
+    [dropDownItems addObjectsFromArray:@[@"Form 15",@"Form 17",@"Form 21B",@"Form 21C"]];
+     listDropDown.dropDownTable.delegate=self;
+     listDropDown.dropDownTable.dataSource=self;
+     listDropDown.dropDownTable.backgroundColor=[UIColor clearColor];
+    
+    //Creating shadow and border for dropDown Table
+    listDropDown.layer.shadowOffset=CGSizeMake(0, 1);
+    listDropDown.layer.shadowRadius=3.5;
+    listDropDown.layer.shadowColor=[UIColor blackColor].CGColor;
+    listDropDown.layer.shadowOpacity=0.4;
+
+    
+     listDropDown.frame=tempRect3;
+     [self.baseview addSubview:listDropDown];
+       dropDownCreated=YES;
+   }
+    
+    
+    else if(dropDownCreated==YES)
+    {
+    
+        [listDropDown removeFromSuperview];
+        dropDownCreated=NO;
+    
     }
     
+    
 }
+
+#pragma mark - Form Update Function
+
+-(void)updateForm:(UIButton *)sender
+{
+
+    twentyOneCView.hidden=YES;
+    twentyOneBView.hidden=YES;
+    form17View.hidden=YES;
+    form15View.hidden=YES;
+    
+    _CGseduleDropDownView.dropdownListBtn.enabled=YES;
+
+}
+
+
+
+
 //------------------------FORM 2-------------------//
 
 -(void)form2
@@ -289,18 +384,168 @@
     
     //        [_auditForm removeFromSuperview];  // Not removing bcoz it will be overlapped by form 2
     
+    
+    _auditForm.hidden = YES;
+    
     _check = @"step2";
+
+    self.CGseduleDropDownView = [[CGseduledropdown alloc] init];
+    CGRect tempRect1=[self.CGseduleDropDownView frame];
+    tempRect1.origin.x       =   121.0f;
+    tempRect1.origin.y       =   103.0f;
+    tempRect1.size.width     =   903.0f;
+    [self.CGseduleDropDownView setFrame:tempRect1];
+    [_CGseduleDropDownView.updateBtn setEnabled:NO];
+    [_CGseduleDropDownView.dropdownListBtn addTarget:self action:@selector(formListDropDown:) forControlEvents:UIControlEventTouchUpInside];
+    [_CGseduleDropDownView.backBtn addTarget:self action:@selector(back1) forControlEvents:UIControlEventTouchUpInside];
+    [_CGseduleDropDownView.nextBtn addTarget:self action:@selector(next2) forControlEvents:UIControlEventTouchUpInside];
+    [_CGseduleDropDownView.updateBtn addTarget:self action:@selector(updateForm:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.baseview addSubview:self.CGseduleDropDownView];
+    
+ 
+    
+//    [self.CGseduleDropDownView.CGdropDownButton setTitle:@"Select schedule" forState:UIControlStateNormal];
+//    [self.CGseduleDropDownView.CGdropDownButton addTarget:self action:@selector(CGdropDownAction:) forControlEvents:UIControlEventTouchUpInside];
+    
     
     
     //------Setting to set view frame------//
     
     _auditForm2 = [[CYAuditForm2 alloc]init];
     
-    CGRect tempRect1=[_auditForm2 frame];
-    tempRect1.origin.x       =   121.0f;
-    tempRect1.origin.y       =   103.0f;
-    [_auditForm2 setFrame:tempRect1];
-    [self.baseview addSubview:_auditForm2];
+    CGRect tempRect2=[_auditForm2 frame];
+    tempRect2.origin.x       =   121.0f;
+   // tempRect2.origin.y       =   153.0f;
+    tempRect2.origin.y       =   self.CGseduleDropDownView.frame.origin.y+self.CGseduleDropDownView.frame.size.height;
+    
+    [_auditForm2 setFrame:tempRect2];
+    
+//    noFormsLabel=[[UILabel alloc]init];
+//    noFormsLabel.frame=CGRectMake((self.baseview.frame.size.width-200)/2, (self.baseview.frame.size.height-40)/2, 200, 40);
+//    noFormsLabel.text=[NSString stringWithFormat:@"No forms selected."];
+//    [self.baseview addSubview:noFormsLabel];
+    
+    CGRect tempRect3=[_auditForm2 frame];
+    
+    #pragma mark - form 21C
+    
+    if(twentyOneCView==nil)
+    {
+    
+    twentyOneCView = [[[NSBundle mainBundle] loadNibNamed:@"schedule21CView" owner:self options:nil] lastObject];
+    
+    
+    tempRect3.origin.x       =   121.0f;
+    tempRect3.origin.y       =   self.CGseduleDropDownView.frame.origin.y+self.CGseduleDropDownView.frame.size.height;
+    
+    [twentyOneCView setFrame:tempRect3];
+    //twentyOneCView.frame=self.baseview.frame;
+    twentyOneCView.scrollView.delegate=self;
+    twentyOneCView.scrollView.userInteractionEnabled=YES;
+    twentyOneCView.scrollView.contentSize=CGSizeMake(903, 1230+100);
+     [twentyOneCView.auditStatus4 addTarget:self action:@selector(auditStatus:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [twentyOneCView.yesNo13 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    [twentyOneCView.yesNo14 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    [twentyOneCView.yesNo15 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    [twentyOneCView.yesNo16 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.baseview addSubview:twentyOneCView];
+    twentyOneCView.hidden=YES;
+    }
+    
+    #pragma mark - form 21B
+    
+    if(twentyOneBView==nil)
+    {
+
+    
+    twentyOneBView = [[[NSBundle mainBundle] loadNibNamed:@"schedule21BView" owner:self options:nil] lastObject];
+    
+    tempRect3=[_auditForm2 frame];
+    tempRect3.origin.x       =   121.0f;
+    tempRect3.origin.y       =   self.CGseduleDropDownView.frame.origin.y+self.CGseduleDropDownView.frame.size.height;
+    
+    [twentyOneBView setFrame:tempRect3];
+    //twentyOneCView.frame=self.baseview.frame;
+    twentyOneBView.scrollView.delegate=self;
+    twentyOneBView.scrollView.userInteractionEnabled=YES;
+    twentyOneBView.scrollView.contentSize=CGSizeMake(903, 1344);
+    [twentyOneBView.auditStatus3 addTarget:self action:@selector(auditStatus:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    [twentyOneBView.yesNo9 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    [twentyOneBView.yesNo10 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    [twentyOneBView.yesNo11 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    [twentyOneBView.yesNo12 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    [self.baseview addSubview:twentyOneBView];
+    twentyOneBView.hidden=YES;
+        
+    }
+
+      #pragma mark - form 15
+    
+    if(form15View==nil)
+    {
+
+    
+    form15View = [[[NSBundle mainBundle] loadNibNamed:@"schedule15View" owner:self options:nil] lastObject];
+    
+    tempRect3=[_auditForm2 frame];
+    tempRect3.origin.x       =   121.0f;
+    tempRect3.origin.y       =   self.CGseduleDropDownView.frame.origin.y+self.CGseduleDropDownView.frame.size.height;
+    
+    [form15View setFrame:tempRect3];
+    //twentyOneCView.frame=self.baseview.frame;
+    form15View.scrollView.delegate=self;
+    form15View.scrollView.userInteractionEnabled=YES;
+    form15View.scrollView.contentSize=CGSizeMake(903, 1222+200);
+    [form15View.auditStatus1 addTarget:self action:@selector(auditStatus:) forControlEvents:UIControlEventTouchUpInside];
+    [form15View.yesNo1 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    [form15View.yesNo2 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    [form15View.yesNo3 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    [form15View.yesNo4 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    [self.baseview addSubview:form15View];
+    form15View.hidden=YES;
+    
+    }
+    
+    #pragma mark - form 17
+    
+    if(form17View==nil)
+    {
+
+    
+    form17View = [[[NSBundle mainBundle] loadNibNamed:@"schedule17View" owner:self options:nil] lastObject];
+    
+    tempRect3=[_auditForm2 frame];
+    tempRect3.origin.x       =   121.0f;
+    tempRect3.origin.y       =   self.CGseduleDropDownView.frame.origin.y+self.CGseduleDropDownView.frame.size.height;
+    
+    [form17View setFrame:tempRect3];
+    //twentyOneCView.frame=self.baseview.frame;
+    form17View.scrollView.delegate=self;
+    form17View.scrollView.userInteractionEnabled=YES;
+    form17View.scrollView.contentSize=CGSizeMake(903, 1222+200);
+     [form17View.auditStatus2 addTarget:self action:@selector(auditStatus:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [form17View.yesNo5 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    [form17View.yesNo6 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    [form17View.yesNo7 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    [form17View.yesNo8 addTarget:self action:@selector(yesno:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.baseview addSubview:form17View];
+    form17View.hidden=YES;
+
+    }
+    
+ /*
+        //[self.baseview addSubview:_auditForm2];
     
     _auditForm2.scrollV.delegate = self;
     [_auditForm2.scrollV setContentSize:CGSizeMake(0, _auditForm2.scrollV.frame.origin.y+_auditForm2.scrollV.frame.size.height+4000)];
@@ -373,22 +618,17 @@
     
     [_auditForm2.back1 addTarget:self action:@selector(back1) forControlEvents:UIControlEventTouchUpInside];
     [_auditForm2.next2 addTarget:self action:@selector(next2) forControlEvents:UIControlEventTouchUpInside];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(myKeyboardWillHideHandler:)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
-    
+   */ 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(myKeyboardWillHideHandler:)  name:UIKeyboardWillHideNotification object:nil];
+
 }
 -(void)next2{
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(myKeyboardWillHideHandler:)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(myKeyboardWillHideHandler:) name:UIKeyboardWillHideNotification object:nil];
     
     _imageTextArray = [[NSMutableArray alloc]init];
     imgStoreArray = [[NSMutableArray alloc]init];
+   // [_CGseduleDropDownView removeFromSuperview];
     
     [self form3];
     [self tileFunc];
@@ -582,7 +822,25 @@
     
     
     
-    [self startMediaBrowserFromViewController:self usingDelegate:self];
+    //[self startMediaBrowserFromViewController:self usingDelegate:self];
+    
+    if ([UIImagePickerController isSourceTypeAvailable:
+         UIImagePickerControllerSourceTypeCamera])
+    {
+        UIImagePickerController *imagePicker =
+        [[UIImagePickerController alloc] init];
+        imagePicker.delegate = self;
+        imagePicker.sourceType =
+        UIImagePickerControllerSourceTypeCamera;
+        imagePicker.mediaTypes = [NSArray arrayWithObjects:
+                                  (NSString *) kUTTypeImage,
+                                  nil];
+        imagePicker.allowsEditing = NO;
+        [self presentModalViewController:imagePicker
+                                animated:YES];
+        
+        _newMedia = YES;
+    }
     
     
 }
@@ -617,8 +875,10 @@
     //    }
     
 }
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    
+ 
+     [self.popoverController dismissPopoverAnimated:true];
     MainImage= info[UIImagePickerControllerEditedImage];
     
     
@@ -652,6 +912,8 @@
     
     return YES;
 }
+
+
 -(void)onoff:(UISwitch *)sender{
     
     
@@ -772,12 +1034,14 @@
         case 1:
             
             if ([sender isOn]) {
-                
-                _auditForm2.sd15_doorinstall = @"Yes";
+              
+                form15View.sd15_doorinstall = @"Yes";
+                DebugLog(@"Form 15 doorinstall yes");
                 
             }else{
                 
-                _auditForm2.sd15_doorinstall = @"No";
+                form15View.sd15_doorinstall = @"No";
+                DebugLog(@"Form 15 doorinstall no");
             }
             
             break;
@@ -786,11 +1050,13 @@
             
             if ([sender isOn]) {
                 
-                _auditForm2.sd15_chimneyinstall = @"Yes";
+                form15View.sd15_chimneyinstall = @"Yes";
+                DebugLog(@"Form 15 chimneyinstall yes");
                 
             }else{
                 
-                _auditForm2.sd15_chimneyinstall = @"No";
+                form15View.sd15_chimneyinstall = @"No";
+                DebugLog(@"Form 15 chimneyinstall no");
                 
             }
             break;
@@ -799,11 +1065,13 @@
             
             if ([sender isOn]) {
                 
-                _auditForm2.sd15_externaldoorinstall = @"Yes";
+                form15View.sd15_externaldoorinstall = @"Yes";
+                DebugLog(@"Form 15 externalDoorinstall yes");
                 
             }else{
                 
-                _auditForm2.sd15_externaldoorinstall = @"No";
+                form15View.sd15_externaldoorinstall = @"No";
+                DebugLog(@"Form 15 externalDoorinstall no");
             }
             break;
             
@@ -811,11 +1079,14 @@
             
             if ([sender isOn]) {
                 
-                _auditForm2.sd15_spareproduct = @"Yes";
+                form15View.sd15_spareproduct = @"Yes";
+                DebugLog(@"Form 15 spare product yes");
                 
             }else{
                 
-                _auditForm2.sd15_spareproduct = @"No";
+                form15View.sd15_spareproduct = @"No";
+                DebugLog(@"Form 15 spare product no");
+
                 
             }
             break;
@@ -824,11 +1095,15 @@
             
             if ([sender isOn]) {
                 
-                _auditForm2.sd17_showerenergysaving = @"Yes";
+                form17View.sd17_showerenergysaving = @"Yes";
+                DebugLog(@"Form 17 showerenergysaving yes");
+
                 
             }else{
                 
-                _auditForm2.sd17_showerenergysaving = @"No";
+                form17View.sd17_showerenergysaving = @"No";
+                DebugLog(@"Form 17 showerenergysaving no");
+
                 
             }
             break;
@@ -837,11 +1112,15 @@
             
             if ([sender isOn]) {
                 
-                _auditForm2.sd17_previousshower = @"Yes";
+                form17View.sd17_previousshower = @"Yes";
+                DebugLog(@"Form 17 previous shower yes");
+
                 
             }else{
                 
-                _auditForm2.sd17_previousshower = @"No";
+                form17View.sd17_previousshower = @"No";
+                DebugLog(@"Form 17 previous shower no");
+
                 
             }
             break;
@@ -850,11 +1129,15 @@
             
             if ([sender isOn]) {
                 
-                _auditForm2.sd17_spareshower = @"Yes";
+                form17View.sd17_spareshower = @"Yes";
+                DebugLog(@"Form 17 spare shower yes");
+
                 
             }else{
                 
-                _auditForm2.sd17_spareshower = @"No";
+                form17View.sd17_spareshower = @"No";
+                DebugLog(@"Form 17 spare shower no");
+
             }
             break;
             
@@ -862,11 +1145,15 @@
             
             if ([sender isOn]) {
                 
-                _auditForm2.sd17_installbucket = @"Yes";
+                form17View.sd17_installbucket = @"Yes";
+                DebugLog(@"Form 17 installbucket yes");
+
                 
             }else{
                 
-                _auditForm2.sd17_installbucket = @"No";
+                form17View.sd17_installbucket = @"No";
+                DebugLog(@"Form 17 installbucket no");
+
                 
             }
             break;
@@ -875,11 +1162,15 @@
             
             if ([sender isOn]) {
                 
-                _auditForm2.sd21b_sensorglobes = @"Yes";
+                twentyOneBView.sd21b_sensorglobes = @"Yes";
+                DebugLog(@"Form 21-b sensor globes yes");
+
                 
             }else{
                 
-                _auditForm2.sd21b_sensorglobes = @"No";
+                twentyOneBView.sd21b_sensorglobes = @"No";
+                DebugLog(@"Form 21-b sensor globes no");
+
             }
             
             break;
@@ -888,11 +1179,15 @@
             
             if ([sender isOn]) {
                 
-                _auditForm2.sd21b_emptyglobes = @"Yes";
+                twentyOneBView.sd21b_emptyglobes = @"Yes";
+                DebugLog(@"Form 21-b empty globes yes");
+
                 
             }else{
                 
-                _auditForm2.sd21b_emptyglobes = @"No";
+                twentyOneBView.sd21b_emptyglobes = @"No";
+                DebugLog(@"Form 21-b empty globes no");
+
             }
             break;
             
@@ -900,11 +1195,15 @@
             
             if ([sender isOn]) {
                 
-                _auditForm2.sd21b_HEglobes = @"Yes";
+                twentyOneBView.sd21b_HEglobes = @"Yes";
+                DebugLog(@"Form 21-b he globes yes");
+
                 
             }else{
                 
-                _auditForm2.sd21b_HEglobes = @"No";
+                twentyOneBView.sd21b_HEglobes = @"No";
+                DebugLog(@"Form 21-b he globes no");
+
             }
             break;
             
@@ -912,11 +1211,15 @@
             
             if ([sender isOn]) {
                 
-                _auditForm2.sd21b_customerglobes = @"Yes";
+                twentyOneBView.sd21b_customerglobes = @"Yes";
+                DebugLog(@"Form 21-b customer globes yes");
+
                 
             }else{
                 
-                _auditForm2.sd21b_customerglobes = @"No";
+                twentyOneBView.sd21b_customerglobes = @"No";
+                DebugLog(@"Form 21-b customer globes no");
+
                 
             }
             break;
@@ -925,11 +1228,15 @@
             
             if ([sender isOn]) {
                 
-                _auditForm2.sd21c_sensorglobes = @"Yes";
+                twentyOneCView.sd21c_sensorglobes = @"Yes";
+                DebugLog(@"Form 21-c sensor globes yes");
+
                 
             }else{
                 
-                _auditForm2.sd21c_sensorglobes = @"No";
+                twentyOneCView.sd21c_sensorglobes = @"No";
+                DebugLog(@"Form 21-c sensor globes no");
+
             }
             break;
             
@@ -937,10 +1244,14 @@
             
             if ([sender isOn]) {
                 
-                _auditForm2.sd21c_emptyglobe = @"Yes";
+                twentyOneCView.sd21c_emptyglobe = @"Yes";
+                DebugLog(@"Form 21-c empty globes yes");
+
             }else{
                 
-                _auditForm2.sd21c_emptyglobe = @"No";
+                twentyOneCView.sd21c_emptyglobe = @"No";
+                DebugLog(@"Form 21-c empty globes no");
+
                 
             }
             break;
@@ -949,11 +1260,15 @@
             
             if ([sender isOn]) {
                 
-                _auditForm2.sd21c_heglobes = @"Yes";
+                twentyOneCView.sd21c_heglobes = @"Yes";
+                DebugLog(@"Form 21-c he globes yes");
+
                 
             }else{
                 
-                _auditForm2.sd21c_heglobes = @"No";
+                twentyOneCView.sd21c_heglobes = @"No";
+                DebugLog(@"Form 21-c he globes no");
+
                 
             }
             break;
@@ -962,11 +1277,15 @@
             
             if ([sender isOn]) {
                 
-                _auditForm2.sd21c_customerglobe = @"Yes";
+                twentyOneCView.sd21c_customerglobe = @"Yes";
+                DebugLog(@"Form 21-c customer globes yes");
+
                 
             }else{
                 
-                _auditForm2.sd21c_customerglobe = @"No";
+                twentyOneCView.sd21c_customerglobe = @"No";
+                DebugLog(@"Form 21-c customer globes no");
+
                 
             }
             break;
@@ -982,8 +1301,20 @@
     
     _check  = @"step1";
     
-    [_auditForm2 removeFromSuperview];
+  //  [_auditForm2 removeFromSuperview];
     
+    self.CGseduleDropDownView.hidden=YES;
+    twentyOneCView.hidden=YES;
+    twentyOneBView.hidden=YES;
+    form17View.hidden=YES;
+    form15View.hidden=YES;
+    [noFormsLabel removeFromSuperview];
+    [listDropDown removeFromSuperview];
+    dropDownCreated=NO;
+    
+    _CGseduleDropDownView.dropdownListBtn.enabled=YES;
+    
+    _auditForm.hidden = NO;
     
 }
 -(void)back3{
@@ -1103,10 +1434,13 @@
         [_auditForm3 setFrame:tempRect];
     }
 }
+
+#pragma mark - Audit Status Button Function for all form
+
 -(void)auditStatus:(UIButton *)sender
 {
     
-    [_auditForm2.numField1 resignFirstResponder];
+  /*  [_auditForm2.numField1 resignFirstResponder];
     [_auditForm2.numField2 resignFirstResponder];
     [_auditForm2.numField3 resignFirstResponder];
     [_auditForm2.numField4 resignFirstResponder];
@@ -1145,7 +1479,11 @@
     [_auditForm2.commentBox18 resignFirstResponder];
     [_auditForm2.commentBox19 resignFirstResponder];
     [_auditForm2.commentBox20 resignFirstResponder];
-    [_auditForm2.commentBox21 resignFirstResponder];
+    [_auditForm2.commentBox21 resignFirstResponder]; */
+    
+    [self.view endEditing:TRUE];
+    
+    statusButton=sender;
 
     
     //---------Picker---------//
@@ -1234,7 +1572,7 @@
     
     NSLog(@"-=-=-=- Tag %ld", (long)sender.tag);
     
-    if (sender.tag == 1) {
+   /* if (sender.tag == 1) {
         
         [_auditForm2.auditStatus1 setTitle:status forState:UIControlStateNormal];
         
@@ -1270,7 +1608,12 @@
             
         }
         
-    }
+    }*/
+    
+   if(status.length>0)
+   [statusButton setTitle:status forState:UIControlStateNormal];
+    else
+       [statusButton setTitle:[NSString stringWithFormat:@"Select a status"] forState:UIControlStateNormal];
     
     [_background removeFromSuperview];
     
@@ -1319,95 +1662,95 @@
     auditFormDetails.generalquestion8 = _auditForm.generalQuestion8;
     auditFormDetails.generalcomment = _auditForm.comment.text;
     
-    auditFormDetails.sd15_tnodoorseal = _auditForm2.numField1.text;
-    auditFormDetails.sd15_tnochimneyseal = _auditForm2.numField2.text;
-    auditFormDetails.sd15_externamdoors = _auditForm2.numField3.text;
-    auditFormDetails.sd15_externalchimney = _auditForm2.numField4.text;
-    auditFormDetails.sd15_doorinstall = _auditForm2.sd15_doorinstall;
-    auditFormDetails.sd15_doorinstallcom = _auditForm2.commentBox3.text;
-    auditFormDetails.sd15_chimneyinstall = _auditForm2.sd15_chimneyinstall;
-    auditFormDetails.sd15_chimneyinstallcom = _auditForm2.commentBox4.text;
-    auditFormDetails.sd15_doorsealremov = _auditForm2.numField5.text;
-    auditFormDetails.sd15_chimneysealremov = _auditForm2.numField6.text;
-    auditFormDetails.sd15_externaldoorinstall = _auditForm2.sd15_externaldoorinstall;
-    auditFormDetails.sd15_externaldoorinstallcom = _auditForm2.commentBox5.text;
-    auditFormDetails.sd15_spareproduct = _auditForm2.sd15_spareproduct;
-    auditFormDetails.sd15_spareproductcom = _auditForm2.commentBox6.text;
-    if ([_auditForm2.auditStatus1.titleLabel.text isEqualToString:@"Select a status"])
+    auditFormDetails.sd15_tnodoorseal = form15View.numField1.text;
+    auditFormDetails.sd15_tnochimneyseal = form15View.numField2.text;
+    auditFormDetails.sd15_externamdoors = form15View.numField3.text;
+    auditFormDetails.sd15_externalchimney = form15View.numField4.text;
+    auditFormDetails.sd15_doorinstall = form15View.sd15_doorinstall;
+    auditFormDetails.sd15_doorinstallcom = form15View.commentBox3.text;
+    auditFormDetails.sd15_chimneyinstall = form15View.sd15_chimneyinstall;
+    auditFormDetails.sd15_chimneyinstallcom = form15View.commentBox4.text;
+    auditFormDetails.sd15_doorsealremov = form15View.numField5.text;
+    auditFormDetails.sd15_chimneysealremov = form15View.numField6.text;
+    auditFormDetails.sd15_externaldoorinstall = form15View.sd15_externaldoorinstall;
+    auditFormDetails.sd15_externaldoorinstallcom = form15View.commentBox5.text;
+    auditFormDetails.sd15_spareproduct = form15View.sd15_spareproduct;
+    auditFormDetails.sd15_spareproductcom = form15View.commentBox6.text;
+    if ([form15View.auditStatus1.titleLabel.text isEqualToString:@"Select a status"])
     {
       auditFormDetails.sd15_auditstatus = @"";
     }
     else
     {
-    auditFormDetails.sd15_auditstatus = _auditForm2.auditStatus1.titleLabel.text;
+    auditFormDetails.sd15_auditstatus = form15View.auditStatus1.titleLabel.text;
     }
-    auditFormDetails.sd15_comment = _auditForm2.commentBox2.text;
+    auditFormDetails.sd15_comment = form15View.commentBox2.text;
     
-    auditFormDetails.sd17_totalnoshower = _auditForm2.numField7.text;
-    auditFormDetails.sd17_totalnobathroom = _auditForm2.numField8.text;
-    auditFormDetails.sd17_showerenergysaving = _auditForm2.sd17_showerenergysaving;
-    auditFormDetails.sd17_showerenergycom = _auditForm2.commentBox7.text;
-    auditFormDetails.sd17_previousshower = _auditForm2.sd17_previousshower;
-    auditFormDetails.sd17_previousshowercom = _auditForm2.commentBox8.text;
-    auditFormDetails.sd17_spareshower = _auditForm2.sd17_spareshower;
-    auditFormDetails.sd17_spareshowercom = _auditForm2.commentBox9.text;
-    auditFormDetails.sd17_installbucket = _auditForm2.sd17_installbucket;
-    auditFormDetails.sd17_installbucketcom = _auditForm2.commentBox10.text;
-    if ([_auditForm2.auditStatus2.titleLabel.text isEqualToString:@"Select a status"])
+    auditFormDetails.sd17_totalnoshower = form17View.numField7.text;
+    auditFormDetails.sd17_totalnobathroom = form17View.numField8.text;
+    auditFormDetails.sd17_showerenergysaving = form17View.sd17_showerenergysaving;
+    auditFormDetails.sd17_showerenergycom = form17View.commentBox7.text;
+    auditFormDetails.sd17_previousshower = form17View.sd17_previousshower;
+    auditFormDetails.sd17_previousshowercom = form17View.commentBox8.text;
+    auditFormDetails.sd17_spareshower = form17View.sd17_spareshower;
+    auditFormDetails.sd17_spareshowercom = form17View.commentBox9.text;
+    auditFormDetails.sd17_installbucket = form17View.sd17_installbucket;
+    auditFormDetails.sd17_installbucketcom = form17View.commentBox10.text;
+    if ([form17View.auditStatus2.titleLabel.text isEqualToString:@"Select a status"])
     {
         auditFormDetails.sd17_auditstatus = @"";
     }
     else
     {
-        auditFormDetails.sd17_auditstatus = _auditForm2.auditStatus2.titleLabel.text;
+        auditFormDetails.sd17_auditstatus = form17View.auditStatus2.titleLabel.text;
     }
-    auditFormDetails.sd17_comment = _auditForm2.commentBox11.text;
+    auditFormDetails.sd17_comment = form17View.commentBox11.text;
     
-    auditFormDetails.sd21b_totalnoglobes = _auditForm2.numField9.text;
-    auditFormDetails.sd21b_sensorglobes = _auditForm2.sd21b_sensorglobes;
-    auditFormDetails.sd21b_sensorglobescom = _auditForm2.commentBox12.text;
-    auditFormDetails.sd21b_emptyglobes = _auditForm2.sd21b_emptyglobes;
-    auditFormDetails.sd21b_emptyglobescom = _auditForm2.commentBox13.text;
-    auditFormDetails.sd21b_HEglobes = _auditForm2.sd21b_HEglobes;
-    auditFormDetails.sd21b_HEglobescom = _auditForm2.commentBox14.text;
-    auditFormDetails.sd21b_customerglobes = _auditForm2.sd21b_customerglobes;
-    auditFormDetails.sd21b_customerglobescom = _auditForm2.commentBox15.text;
-    auditFormDetails.sd21b_confirmglobe = _auditForm2.numField10.text;
-    auditFormDetails.sd21b_otherglobes = _auditForm2.numField11.text;
-    auditFormDetails.sd21b_emptysocket = _auditForm2.numField12.text;
-    auditFormDetails.sd21b_installheglobes = _auditForm2.numField13.text;
-    if ([_auditForm2.auditStatus3.titleLabel.text isEqualToString:@"Select a status"])
+    auditFormDetails.sd21b_totalnoglobes = twentyOneBView.numField9.text;
+    auditFormDetails.sd21b_sensorglobes = twentyOneBView.sd21b_sensorglobes;
+    auditFormDetails.sd21b_sensorglobescom = twentyOneBView.commentBox12.text;
+    auditFormDetails.sd21b_emptyglobes = twentyOneBView.sd21b_emptyglobes;
+    auditFormDetails.sd21b_emptyglobescom = twentyOneBView.commentBox13.text;
+    auditFormDetails.sd21b_HEglobes = twentyOneBView.sd21b_HEglobes;
+    auditFormDetails.sd21b_HEglobescom = twentyOneBView.commentBox14.text;
+    auditFormDetails.sd21b_customerglobes = twentyOneBView.sd21b_customerglobes;
+    auditFormDetails.sd21b_customerglobescom = twentyOneBView.commentBox15.text;
+    auditFormDetails.sd21b_confirmglobe = twentyOneBView.numField10.text;
+    auditFormDetails.sd21b_otherglobes = twentyOneBView.numField11.text;
+    auditFormDetails.sd21b_emptysocket = twentyOneBView.numField12.text;
+    auditFormDetails.sd21b_installheglobes = twentyOneBView.numField13.text;
+    if ([twentyOneBView.auditStatus3.titleLabel.text isEqualToString:@"Select a status"])
     {
         auditFormDetails.sd21b_auditstatus = @"";
     }
     else
     {
-        auditFormDetails.sd21b_auditstatus = _auditForm2.auditStatus3.titleLabel.text;
+        auditFormDetails.sd21b_auditstatus = twentyOneBView.auditStatus3.titleLabel.text;
     }
-    auditFormDetails.sd21b_comment = _auditForm2.commentBox16.text;
+    auditFormDetails.sd21b_comment = twentyOneBView.commentBox16.text;
     
-    auditFormDetails.sd21c_totalnoglobes = _auditForm2.numField18.text;
-    auditFormDetails.sd21c_sensorglobes = _auditForm2.sd21c_sensorglobes;
-    auditFormDetails.sd21c_sensorglobescom = _auditForm2.commentBox21.text;
-    auditFormDetails.sd21c_emptyglobe = _auditForm2.sd21c_emptyglobe;
-    auditFormDetails.sd21c_emptyglobecom = _auditForm2.commentBox17.text;
-    auditFormDetails.sd21c_heglobes = _auditForm2.sd21c_heglobes;
-    auditFormDetails.sd21c_hEglobescom = _auditForm2.commentBox18.text;
-    auditFormDetails.sd21c_customerglobe = _auditForm2.sd21c_customerglobe;
-    auditFormDetails.sd21c_customerglobecom = _auditForm2.commentBox19.text;
-    auditFormDetails.sd21c_confirmglobe = _auditForm2.numField16.text;
-    auditFormDetails.sd21c_otherglobe = _auditForm2.numField15.text;
-    auditFormDetails.sd21c_emptysocket = _auditForm2.numField14.text;
-    auditFormDetails.sd21c_installHEglobe = _auditForm2.numField17.text;
-    if ([_auditForm2.auditStatus4.titleLabel.text isEqualToString:@"Select a status"])
+    auditFormDetails.sd21c_totalnoglobes = twentyOneCView.numField18.text;
+    auditFormDetails.sd21c_sensorglobes = twentyOneCView.sd21c_sensorglobes;
+    auditFormDetails.sd21c_sensorglobescom = twentyOneCView.commentBox21.text;
+    auditFormDetails.sd21c_emptyglobe = twentyOneCView.sd21c_emptyglobe;
+    auditFormDetails.sd21c_emptyglobecom = twentyOneCView.commentBox17.text;
+    auditFormDetails.sd21c_heglobes = twentyOneCView.sd21c_heglobes;
+    auditFormDetails.sd21c_hEglobescom = twentyOneCView.commentBox18.text;
+    auditFormDetails.sd21c_customerglobe = twentyOneCView.sd21c_customerglobe;
+    auditFormDetails.sd21c_customerglobecom = twentyOneCView.commentBox19.text;
+    auditFormDetails.sd21c_confirmglobe = twentyOneCView.numField16.text;
+    auditFormDetails.sd21c_otherglobe = twentyOneCView.numField15.text;
+    auditFormDetails.sd21c_emptysocket = twentyOneCView.numField14.text;
+    auditFormDetails.sd21c_installHEglobe = twentyOneCView.numField17.text;
+    if ([twentyOneCView.auditStatus4.titleLabel.text isEqualToString:@"Select a status"])
     {
         auditFormDetails.sd21c_auditstatus = @"";
     }
     else
     {
-        auditFormDetails.sd21c_auditstatus = _auditForm2.auditStatus4.titleLabel.text;
+        auditFormDetails.sd21c_auditstatus = twentyOneCView.auditStatus4.titleLabel.text;
     }
-    auditFormDetails.sd21c_comment = _auditForm2.commentBox20.text;
+    auditFormDetails.sd21c_comment = twentyOneCView.commentBox20.text;
     
     UIImage *auditsignimage = [self imageWithView:_auditorsignView];
     UIImage *customersignimage = [self imageWithView:_cosumerSignView];
@@ -1483,95 +1826,95 @@
     completeForm.gen_qus8_yesNo_lbl.text = _auditForm.generalQuestion8;
     completeForm.gen_qus_comment_tview.text = _auditForm.comment.text;
     
-    completeForm.schedule15_qus1_yesNo_lbl.text = _auditForm2.numField1.text;
-    completeForm.schedule15_qus2_yesNo_lbl.text = _auditForm2.numField2.text;
-    completeForm.schedule15_qus3_yesNo_lbl.text = _auditForm2.numField3.text;
-    completeForm.schedule15_qus4_yesNo_lbl.text = _auditForm2.numField4.text;
-    completeForm.schedule15_qus5_yesNo_lbl.text = _auditForm2.sd15_doorinstall;
-    completeForm.schedule15_qus5_comment_tview.text = _auditForm2.commentBox3.text;
-    completeForm.schedule15_qus6_yesNo_lbl.text = _auditForm2.sd15_chimneyinstall;
-    completeForm.schedule15_qus6_comment_tview.text = _auditForm2.commentBox4.text;
-    completeForm.schedule15_qus7_yesNo_lbl.text = _auditForm2.numField5.text;
-    completeForm.schedule15_qus8_yesNo_lbl.text = _auditForm2.numField6.text;
-    completeForm.schedule15_qus9_yesNo_lbl.text = _auditForm2.sd15_externaldoorinstall;
-    completeForm.schedule15_qus9_comment_tview.text = _auditForm2.commentBox5.text;
-    completeForm.schedule15_qus10_yesNo_lbl.text = _auditForm2.sd15_spareproduct;
-    completeForm.schedule15_qus10_comment_tview.text = _auditForm2.commentBox6.text;
-    if ([_auditForm2.auditStatus1.titleLabel.text isEqualToString:@"Select a status"])
+    completeForm.schedule15_qus1_yesNo_lbl.text = form15View.numField1.text;
+    completeForm.schedule15_qus2_yesNo_lbl.text = form15View.numField2.text;
+    completeForm.schedule15_qus3_yesNo_lbl.text = form15View.numField3.text;
+    completeForm.schedule15_qus4_yesNo_lbl.text = form15View.numField4.text;
+    completeForm.schedule15_qus5_yesNo_lbl.text = form15View.sd15_doorinstall;
+    completeForm.schedule15_qus5_comment_tview.text = form15View.commentBox3.text;
+    completeForm.schedule15_qus6_yesNo_lbl.text = form15View.sd15_chimneyinstall;
+    completeForm.schedule15_qus6_comment_tview.text = form15View.commentBox4.text;
+    completeForm.schedule15_qus7_yesNo_lbl.text = form15View.numField5.text;
+    completeForm.schedule15_qus8_yesNo_lbl.text = form15View.numField6.text;
+    completeForm.schedule15_qus9_yesNo_lbl.text = form15View.sd15_externaldoorinstall;
+    completeForm.schedule15_qus9_comment_tview.text = form15View.commentBox5.text;
+    completeForm.schedule15_qus10_yesNo_lbl.text = form15View.sd15_spareproduct;
+    completeForm.schedule15_qus10_comment_tview.text = form15View.commentBox6.text;
+    if ([form15View.auditStatus1.titleLabel.text isEqualToString:@"Select a status"])
     {
      completeForm.schedule15_auditStatus_yesNo_lbl.text = @"";
     }
    else
    {
-        completeForm.schedule15_auditStatus_yesNo_lbl.text = _auditForm2.auditStatus1.titleLabel.text;
+        completeForm.schedule15_auditStatus_yesNo_lbl.text = form15View.auditStatus1.titleLabel.text;
    }
-    completeForm.schedule15_auditStatus_comment_tview.text = _auditForm2.commentBox2.text;
+    completeForm.schedule15_auditStatus_comment_tview.text = form15View.commentBox2.text;
     
-    completeForm.schedule17_qus1_yesNo_lbl.text = _auditForm2.numField7.text;
-    completeForm.schedule17_qus2_yesNo_lbl.text = _auditForm2.numField8.text;
-    completeForm.schedule17_qus3_yesNo_lbl.text = _auditForm2.sd17_showerenergysaving;
-    completeForm.schedule17_qus3_comment_tview.text = _auditForm2.commentBox7.text;
-    completeForm.schedule17_qus4_yesNo_lbl.text = _auditForm2.sd17_previousshower;
-    completeForm.schedule17_qus4_comment_tview.text = _auditForm2.commentBox8.text;
-    completeForm.schedule17_qus25_yesNo_lbl.text = _auditForm2.sd17_spareshower;
-    completeForm.schedule17_qus5_comment_tview.text = _auditForm2.commentBox9.text;
-    completeForm.schedule17_qus6_yesNo_lbl.text = _auditForm2.sd17_installbucket;
-    completeForm.schedule17_qus6_comment_tview.text = _auditForm2.commentBox10.text;
-    if ([_auditForm2.auditStatus2.titleLabel.text isEqualToString:@"Select a status"])
+    completeForm.schedule17_qus1_yesNo_lbl.text = form17View.numField7.text;
+    completeForm.schedule17_qus2_yesNo_lbl.text = form17View.numField8.text;
+    completeForm.schedule17_qus3_yesNo_lbl.text = form17View.sd17_showerenergysaving;
+    completeForm.schedule17_qus3_comment_tview.text = form17View.commentBox7.text;
+    completeForm.schedule17_qus4_yesNo_lbl.text = form17View.sd17_previousshower;
+    completeForm.schedule17_qus4_comment_tview.text = form17View.commentBox8.text;
+    completeForm.schedule17_qus25_yesNo_lbl.text = form17View.sd17_spareshower;
+    completeForm.schedule17_qus5_comment_tview.text = form17View.commentBox9.text;
+    completeForm.schedule17_qus6_yesNo_lbl.text = form17View.sd17_installbucket;
+    completeForm.schedule17_qus6_comment_tview.text = form17View.commentBox10.text;
+    if ([form17View.auditStatus2.titleLabel.text isEqualToString:@"Select a status"])
     {
         completeForm.schedule17_auditStatus_yesNo_lbl.text = @"";
     }
     else
     {
-        completeForm.schedule17_auditStatus_yesNo_lbl.text = _auditForm2.auditStatus2.titleLabel.text;
+        completeForm.schedule17_auditStatus_yesNo_lbl.text = form17View.auditStatus2.titleLabel.text;
     }
-    completeForm.schedule17_auditStatus_comment_tview.text = _auditForm2.commentBox11.text;
+    completeForm.schedule17_auditStatus_comment_tview.text = form17View.commentBox11.text;
     
-    completeForm.schedule21B_qus1_yesNo_lbl.text = _auditForm2.numField9.text;
-    completeForm.schedule21B_qus2_yesNo_lbl.text = _auditForm2.sd21b_sensorglobes;
-    completeForm.schedule21B_qus2_comment_tview.text = _auditForm2.commentBox12.text;
-    completeForm.schedule21B_qus3_yesNo_lbl.text = _auditForm2.sd21b_emptyglobes;
-    completeForm.schedule21B_qus3_comment_tview.text = _auditForm2.commentBox13.text;
-    completeForm.schedule21B_qus4_yesNo_lbl.text = _auditForm2.sd21b_HEglobes;
-    completeForm.schedule21B_qus4_comment_tview.text = _auditForm2.commentBox14.text;
-    completeForm.schedule21B_qus5_yesNo_lbl.text = _auditForm2.sd21b_customerglobes;;
-    completeForm.schedule21B_qus5_comment_tview.text = _auditForm2.commentBox15.text;
-    completeForm.schedule21B_qus6_yesNo_lbl.text = _auditForm2.numField10.text;
-    completeForm.schedule21B_qus7_yesNo_lbl.text = _auditForm2.numField11.text;
-    completeForm.schedule21B_qus8_yesNo_lbl.text = _auditForm2.numField12.text;
-    completeForm.schedule21B_qus9_yesNo_lbl.text = _auditForm2.numField13.text;
-    if ([_auditForm2.auditStatus3.titleLabel.text isEqualToString:@"Select a status"])
+    completeForm.schedule21B_qus1_yesNo_lbl.text = twentyOneBView.numField9.text;
+    completeForm.schedule21B_qus2_yesNo_lbl.text = twentyOneBView.sd21b_sensorglobes;
+    completeForm.schedule21B_qus2_comment_tview.text = twentyOneBView.commentBox12.text;
+    completeForm.schedule21B_qus3_yesNo_lbl.text = twentyOneBView.sd21b_emptyglobes;
+    completeForm.schedule21B_qus3_comment_tview.text = twentyOneBView.commentBox13.text;
+    completeForm.schedule21B_qus4_yesNo_lbl.text = twentyOneBView.sd21b_HEglobes;
+    completeForm.schedule21B_qus4_comment_tview.text = twentyOneBView.commentBox14.text;
+    completeForm.schedule21B_qus5_yesNo_lbl.text = twentyOneBView.sd21b_customerglobes;;
+    completeForm.schedule21B_qus5_comment_tview.text = twentyOneBView.commentBox15.text;
+    completeForm.schedule21B_qus6_yesNo_lbl.text = twentyOneBView.numField10.text;
+    completeForm.schedule21B_qus7_yesNo_lbl.text = twentyOneBView.numField11.text;
+    completeForm.schedule21B_qus8_yesNo_lbl.text = twentyOneBView.numField12.text;
+    completeForm.schedule21B_qus9_yesNo_lbl.text = twentyOneBView.numField13.text;
+    if ([twentyOneBView.auditStatus3.titleLabel.text isEqualToString:@"Select a status"])
     {
         completeForm.schedule21B_auditStatus_yesNo_lbl.text = @"";
     }
     else
     {
-        completeForm.schedule21B_auditStatus_yesNo_lbl.text = _auditForm2.auditStatus3.titleLabel.text;
+        completeForm.schedule21B_auditStatus_yesNo_lbl.text = twentyOneBView.auditStatus3.titleLabel.text;
     }
-    completeForm.schedule21B_auditStatus_comment_tview.text = _auditForm2.commentBox16.text;
+    completeForm.schedule21B_auditStatus_comment_tview.text = twentyOneBView.commentBox16.text;
     
-    completeForm.schedule21C_qus1_yesNo_lbl.text = _auditForm2.numField18.text;
-    completeForm.schedule21C_qus2_yesNo_lbl.text = _auditForm2.sd21c_sensorglobes;
-    completeForm.schedule21C_qus2_comment_tview.text = _auditForm2.commentBox21.text;
-    completeForm.schedule21C_qus3_yesNo_lbl.text = _auditForm2.sd21c_emptyglobe;
-    completeForm.schedule21C_qus3_comment_tview.text = _auditForm2.commentBox17.text;
-    completeForm.schedule21C_qus4_yesNo_lbl.text = _auditForm2.sd21c_heglobes;
-    completeForm.schedule21C_qus4_comment_tview.text = _auditForm2.commentBox18.text;
-    completeForm.schedule21C_qus5_yesNo_lbl.text = _auditForm2.sd21c_customerglobe;
-    completeForm.schedule21C_qus5_comment_tview.text = _auditForm2.commentBox19.text;
-    completeForm.schedule21C_qus6_yesNo_lbl.text = _auditForm2.numField16.text;
-    completeForm.schedule21C_qus7_yesNo_lbl.text = _auditForm2.numField15.text;
-    completeForm.schedule21C_qus8_yesNo_lbl.text = _auditForm2.numField14.text;
-    completeForm.schedule21C_qus9_yesNo_lbl.text = _auditForm2.numField17.text;
-    if ([_auditForm2.auditStatus4.titleLabel.text isEqualToString:@"Select a status"])
+    completeForm.schedule21C_qus1_yesNo_lbl.text = twentyOneCView.numField18.text;
+    completeForm.schedule21C_qus2_yesNo_lbl.text = twentyOneCView.sd21c_sensorglobes;
+    completeForm.schedule21C_qus2_comment_tview.text = twentyOneCView.commentBox21.text;
+    completeForm.schedule21C_qus3_yesNo_lbl.text = twentyOneCView.sd21c_emptyglobe;
+    completeForm.schedule21C_qus3_comment_tview.text = twentyOneCView.commentBox17.text;
+    completeForm.schedule21C_qus4_yesNo_lbl.text = twentyOneCView.sd21c_heglobes;
+    completeForm.schedule21C_qus4_comment_tview.text = twentyOneCView.commentBox18.text;
+    completeForm.schedule21C_qus5_yesNo_lbl.text = twentyOneCView.sd21c_customerglobe;
+    completeForm.schedule21C_qus5_comment_tview.text = twentyOneCView.commentBox19.text;
+    completeForm.schedule21C_qus6_yesNo_lbl.text = twentyOneCView.numField16.text;
+    completeForm.schedule21C_qus7_yesNo_lbl.text = twentyOneCView.numField15.text;
+    completeForm.schedule21C_qus8_yesNo_lbl.text = twentyOneCView.numField14.text;
+    completeForm.schedule21C_qus9_yesNo_lbl.text = twentyOneCView.numField17.text;
+    if ([twentyOneCView.auditStatus4.titleLabel.text isEqualToString:@"Select a status"])
     {
         completeForm.schedule21C_auditStatus_yesNo_lbl.text = @"";
     }
     else
     {
-        completeForm.schedule21C_auditStatus_yesNo_lbl.text = _auditForm2.auditStatus4.titleLabel.text;
+        completeForm.schedule21C_auditStatus_yesNo_lbl.text = twentyOneCView.auditStatus4.titleLabel.text;
     }
-    completeForm.schedule21C_auditStatus_comment_tview.text = _auditForm2.commentBox20.text;
+    completeForm.schedule21C_auditStatus_comment_tview.text = twentyOneCView.commentBox20.text;
 
     int k ;
     for (k= 0; k < imgStoreArray.count; k++)
@@ -1732,6 +2075,119 @@
     
     return img;
 }
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    
+  
+    return dropDownItems.count;
+    
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    return  tableView.bounds.size.height/dropDownItems.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    
+    static NSString *cellID=@"CellID";
+    
+    UITableViewCell *myCell=[tableView dequeueReusableCellWithIdentifier:cellID];
+    
+    if(myCell==nil)
+    {
+        
+        myCell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        
+    }
+    
+    myCell.textLabel.text=dropDownItems[indexPath.row];
+    myCell.textLabel.textAlignment = NSTextAlignmentCenter;
+    myCell.textLabel.textColor=[UIColor colorWithRed:190.0f/256 green:190.0f/256 blue:190.0f/256 alpha:1];
+    //myCell.selectionStyle=UITableViewCellSelectionStyleNone;
+    
+    //tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    
+    return myCell;
+    
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    
+  if([tableView isEqual:listDropDown.dropDownTable])
+ {
+ 
+     [_CGseduleDropDownView.updateBtn setEnabled:YES];
+ 
+     if(indexPath.row==0)
+     {
+         _CGseduleDropDownView.dropdownListBtn.enabled=NO;
+         NSLog(@"15 form..");
+         [listDropDown removeFromSuperview];
+         dropDownCreated=NO;
+         form15View.hidden=NO;
+         
+     }
+     
+     
+     if(indexPath.row==1)
+     {
+         _CGseduleDropDownView.dropdownListBtn.enabled=NO;
+         NSLog(@"17 form..");
+         [listDropDown removeFromSuperview];
+         dropDownCreated=NO;
+         form17View.hidden=NO;
+         
+     }
+     
+     if(indexPath.row==2)
+     {
+         _CGseduleDropDownView.dropdownListBtn.enabled=NO;
+         NSLog(@"21 b form..");
+         [listDropDown removeFromSuperview];
+         dropDownCreated=NO;
+         twentyOneBView.hidden=NO;
+         
+     }
+
+     
+     if(indexPath.row==3)
+     {
+         _CGseduleDropDownView.dropdownListBtn.enabled=NO;
+     
+         NSLog(@"21c form..");
+         
+         [listDropDown removeFromSuperview];
+         dropDownCreated=NO;
+         twentyOneCView.hidden=NO;
+      
+     }
+ 
+ }
+    
+
+}
+
+#pragma when tap select schedule this function call
+
+-(void)CGdropDownAction:(UIButton *)sender
+{
+    self.CGseduleDropDownView.CGseduleTable.hidden = NO;
+    self.CGseduleDropDownView.CGseduleTable.delegate = self;
+    self.CGseduleDropDownView.CGseduleTable.dataSource = self;
+    
+    
+    
+}
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

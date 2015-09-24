@@ -8,6 +8,7 @@
 
 #import "CGLoginViewController.h"
 #import "CGHomeViewController.h"
+#import "schedule21CView.h"
 
 
 @interface CGLoginViewController ()
@@ -20,6 +21,7 @@
     [super viewDidLoad];
     
     
+
     self.globalClass = [[CGglobalfunction alloc]init];
     
     _userName.text = @"Biplab@esolzmail.com";

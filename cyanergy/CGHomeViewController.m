@@ -11,7 +11,8 @@
 #import "CGAuditViewController.h"
 #import "CGAppDelegate.h"
 #import "UYLGenericPrintPageRenderer.h"
-@interface CGHomeViewController (){
+@interface CGHomeViewController ()
+{
     
     UIView *lView;
    CGFloat latitude,longitude;

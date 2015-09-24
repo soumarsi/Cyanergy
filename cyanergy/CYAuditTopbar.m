@@ -19,7 +19,7 @@
     formatter.dateFormat = @"dd-MM-yyyy";
     NSString *string = [formatter stringFromDate:[NSDate date]];
     
-    _date.text = [NSString stringWithFormat:@"%@",string];
+    self.date.text = [NSString stringWithFormat:@"%@",string];
 
     return self;
 }

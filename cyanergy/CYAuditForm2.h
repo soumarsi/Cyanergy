@@ -90,14 +90,17 @@
 @property (strong, nonatomic) NSString *sd15_chimneyinstall;
 @property (strong, nonatomic) NSString *sd15_externaldoorinstall;
 @property (strong, nonatomic) NSString *sd15_spareproduct;
+
 @property (strong, nonatomic) NSString *sd17_showerenergysaving;
 @property (strong, nonatomic) NSString *sd17_previousshower;
 @property (strong, nonatomic) NSString *sd17_spareshower;
 @property (strong, nonatomic) NSString *sd17_installbucket;
+
 @property (strong, nonatomic) NSString *sd21b_sensorglobes;
 @property (strong, nonatomic) NSString *sd21b_emptyglobes;
 @property (strong, nonatomic) NSString *sd21b_HEglobes;
 @property (strong, nonatomic) NSString *sd21b_customerglobes;
+
 @property (strong, nonatomic) NSString *sd21c_sensorglobes;
 @property (strong, nonatomic) NSString *sd21c_emptyglobe;
 @property (strong, nonatomic) NSString *sd21c_heglobes;
